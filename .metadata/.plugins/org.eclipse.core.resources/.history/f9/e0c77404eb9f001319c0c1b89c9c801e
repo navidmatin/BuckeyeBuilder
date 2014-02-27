@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Context context = getApplicationContext();
-		CharSequence text = "Welcome to Initial BuckeyeBuilder! V.000.000.000.01";
+		CharSequence text = "Hello toast!";
 		int duration = Toast.LENGTH_LONG;
 		Toast toast = Toast.makeText(context, text, duration);
 		toast.show();
@@ -34,14 +34,4 @@ public class MainActivity extends Activity {
 		Toast toast = Toast.makeText(context, text, duration);
 		toast.show();
 	}
-	@Override
-	protected void onStop(){
-		super.onStop();
-		Context context = getApplicationContext();
-		CharSequence text = "Don't LEAVEEEE!!!!!";
-		int duration = Toast.LENGTH_LONG;
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
-	}
 }
-
