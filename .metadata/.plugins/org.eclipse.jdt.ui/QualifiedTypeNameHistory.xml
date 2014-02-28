@@ -3,4 +3,6 @@
 <fullyQualifiedTypeName name="com.InfiniteLoop.buckeyebuilder.R.id"/>
 <fullyQualifiedTypeName name="com.google.android.gms.maps.GoogleMap"/>
 <fullyQualifiedTypeName name="com.google.android.gms.maps.MapFragment"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
 </qualifiedTypeNameHistroy>
