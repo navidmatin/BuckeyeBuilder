@@ -1,5 +1,5 @@
 package com.infintyloop.buckeyebuilder;
 
-public class Login {
+public class DatabaseHelper {
 
 }

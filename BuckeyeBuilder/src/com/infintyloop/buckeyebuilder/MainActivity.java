@@ -3,6 +3,7 @@ package com.infintyloop.buckeyebuilder;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ public class MainActivity extends Activity {
 		int duration = Toast.LENGTH_LONG;
 		Toast toast = Toast.makeText(context, text, duration);
 		toast.show();
+		Log.i("OnCreate Called","index");
 	}
 
 	@Override
@@ -33,6 +35,7 @@ public class MainActivity extends Activity {
 		int duration = Toast.LENGTH_LONG;
 		Toast toast = Toast.makeText(context, text, duration);
 		toast.show();
+		Log.i("OnRestart Called","index");
 	}
 	@Override
 	protected void onStop(){
@@ -42,6 +45,7 @@ public class MainActivity extends Activity {
 		int duration = Toast.LENGTH_LONG;
 		Toast toast = Toast.makeText(context, text, duration);
 		toast.show();
+		Log.i("OnStop Called","index");
 	}
 }
 
