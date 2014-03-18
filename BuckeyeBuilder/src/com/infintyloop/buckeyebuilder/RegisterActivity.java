@@ -1,8 +1,5 @@
 package com.infintyloop.buckeyebuilder;
 
-import com.wiley.fordummies.androidsdk.tictactoe.Account;
-import com.wiley.fordummies.androidsdk.tictactoe.DatabaseHelper;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
