@@ -1,8 +1,14 @@
 package com.infintyloop.buckeyebuilder;
+
+import com.wiley.fordummies.androidsdk.tictactoe.Account;
+import com.wiley.fordummies.androidsdk.tictactoe.DatabaseHelper;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -13,6 +19,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Activity which displays a register screen to the user, offering registration as
@@ -31,28 +38,25 @@ public class RegisterActivity extends Activity {
 	 */
 	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
 
-	/**
-	 * Keep track of the register task to ensure we can cancel it if requested.
-	 */
-	private UserregisterTask mAuthTask = null;
 
 	// Values for email and password at the time of the register attempt.
 	private String mUsername;
 	private String mPassword;
+	private String mPConfirm;
 
 	// UI references.
 	private EditText mUsernameView;
 	private EditText mPasswordView;
+	private EditText mPConfirmView;
 	private View mregisterFormView;
 	private View mregisterStatusView;
 	private TextView mregisterStatusMessageView;
+	private DatabaseHelper dh;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
-		//Password confirmation
-		String mPasswordConfirmed;
 		
 		// Set up the register form.
 		mUsername = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -72,6 +76,7 @@ public class RegisterActivity extends Activity {
 						return false;
 					}
 				});
+		mPConfirmView = (EditText) findViewById(R.id.confirm_password);
 		EditText mPasswordConfirmView=(EditText) findViewById(R.id.confirm_password);
 		mPasswordConfirmView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
@@ -102,9 +107,6 @@ public class RegisterActivity extends Activity {
 	 * errors are presented and no actual register attempt is made.
 	 */
 	public void attemptregister() {
-		if (mAuthTask != null) {
-			return;
-		}
 
 		// Reset errors.
 		mUsernameView.setError(null);
@@ -113,6 +115,7 @@ public class RegisterActivity extends Activity {
 		// Store values at the time of the register attempt.
 		mUsername = mUsernameView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
+		mPConfirm = mPConfirmView.getText().toString();		
 
 		boolean cancel = false;
 		View focusView = null;
@@ -137,8 +140,32 @@ public class RegisterActivity extends Activity {
 			// perform the user register attempt.
 			mregisterStatusMessageView.setText(R.string.register_progress_creating_new_user);
 			showProgress(true);
-			mAuthTask = new UserregisterTask();
-			mAuthTask.execute((Void) null);
+			
+			if ((mPassword.equals(mPConfirm)) && (!mUsername.equals(""))
+					&& (!mPassword.equals("")) && (!mPConfirm.equals(""))) {
+				this.dh = new DatabaseHelper(this);
+				this.dh.insert(mUsername, mPassword);
+				// this.labResult.setText("Added");
+				Toast.makeText(RegisterActivity.this, "new record inserted",
+						Toast.LENGTH_SHORT).show();
+				finish();
+			} else if ((mUsername.equals("")) || (mPassword.equals(""))
+					|| (mPConfirm.equals(""))) {
+				Toast.makeText(RegisterActivity.this, "Missing entry", Toast.LENGTH_SHORT)
+						.show();
+			} else if (!mPassword.equals(mPConfirm)) {
+				new AlertDialog.Builder(this)
+						.setTitle("Error")
+						.setMessage("passwords do not match")
+						.setNeutralButton("Try Again",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+									}
+								})
+
+						.show();
+			}
 			startActivity(new Intent(this, MainActivity.class));
 		}
 	}
@@ -188,9 +215,40 @@ public class RegisterActivity extends Activity {
 	 * Represents an asynchronous register/registration task used to authenticate
 	 * the user.
 	 */
-	public class UserregisterTask extends AsyncTask<Void, Void, Boolean> {
+	/*public class UserregisterTask extends AsyncTask<Void, Void, Boolean> {
+
 		@Override
 		protected Boolean doInBackground(Void... params) {
+			
+			String username = mUsernameView.getText().toString();
+			String password = mPasswordView.getText().toString();
+			String confirm = mPConfirm.getText().toString();
+			if ((password.equals(confirm)) && (!username.equals(""))
+					&& (!password.equals("")) && (!confirm.equals(""))) {
+				dh = new DatabaseHelper(savedInstanceState);
+				this.dh.insert(username, password);
+				// this.labResult.setText("Added");
+				Toast.makeText(Account.this, "new record inserted",
+						Toast.LENGTH_SHORT).show();
+				finish();
+			} else if ((username.equals("")) || (password.equals(""))
+					|| (confirm.equals(""))) {
+				Toast.makeText(Account.this, "Missing entry", Toast.LENGTH_SHORT)
+						.show();
+			} else if (!password.equals(confirm)) {
+				new AlertDialog.Builder(this)
+						.setTitle("Error")
+						.setMessage("passwords do not match")
+						.setNeutralButton("Try Again",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+									}
+								})
+
+						.show();
+			}
+			/*
 			// TODO: attempt authentication against a network service.
 
 			try {
@@ -206,7 +264,8 @@ public class RegisterActivity extends Activity {
 					// Account exists, return true if the password matches.
 					return pieces[1].equals(mPassword);
 				}
-			}
+			}*/
+	/*
 
 			// TODO: register the new account here.
 			return true;
@@ -231,5 +290,5 @@ public class RegisterActivity extends Activity {
 			mAuthTask = null;
 			showProgress(false);
 		}
-	}
+	}*/
 }
