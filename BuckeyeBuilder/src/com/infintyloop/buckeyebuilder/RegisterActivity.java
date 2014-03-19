@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,8 +26,6 @@ public class RegisterActivity extends Activity {
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
 	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
 
 	/**
 	 * The default email to populate the email field with.
@@ -74,8 +71,7 @@ public class RegisterActivity extends Activity {
 					}
 				});
 		mPConfirmView = (EditText) findViewById(R.id.confirm_password);
-		EditText mPasswordConfirmView=(EditText) findViewById(R.id.confirm_password);
-		mPasswordConfirmView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+		mPConfirmView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView textView, int id,
 					KeyEvent keyEvent) {
@@ -133,10 +129,6 @@ public class RegisterActivity extends Activity {
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
-			// Show a progress spinner, and kick off a background task to
-			// perform the user register attempt.
-			mregisterStatusMessageView.setText(R.string.register_progress_creating_new_user);
-			showProgress(true);
 			
 			if ((mPassword.equals(mPConfirm)) && (!mUsername.equals(""))
 					&& (!mPassword.equals("")) && (!mPConfirm.equals(""))) {
@@ -145,7 +137,9 @@ public class RegisterActivity extends Activity {
 				// this.labResult.setText("Added");
 				Toast.makeText(RegisterActivity.this, "new record inserted",
 						Toast.LENGTH_SHORT).show();
-				finish();
+				mregisterStatusMessageView.setText(R.string.register_progress_creating_new_user);
+				showProgress(true);
+				startActivity(new Intent(this, LoginActivity.class));
 			} else if ((mUsername.equals("")) || (mPassword.equals(""))
 					|| (mPConfirm.equals(""))) {
 				Toast.makeText(RegisterActivity.this, "Missing entry", Toast.LENGTH_SHORT)
@@ -163,7 +157,6 @@ public class RegisterActivity extends Activity {
 
 						.show();
 			}
-			startActivity(new Intent(this, MainActivity.class));
 		}
 	}
 

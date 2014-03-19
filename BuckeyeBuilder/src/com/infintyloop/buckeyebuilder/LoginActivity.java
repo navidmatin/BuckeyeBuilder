@@ -90,12 +90,7 @@ public class LoginActivity extends Activity {
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						createUser();
-					}
-
-					private void createUser() {
-						// TODO Auto-generated method stub
-						
+						createNewUser();
 					}
 				});				
 	}
