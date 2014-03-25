@@ -2,7 +2,7 @@
 target
 tmp
 *~
-bin/*
+BuckeyeBuilder/bin/*
 */test-output
 temp-testng-customsuite.xml
 **pom.xml.releaseBackup
