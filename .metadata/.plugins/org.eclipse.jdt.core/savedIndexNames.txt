@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+C:\Users\Tom\Documents\GitHub\BuckeyeBuilder\.metadata\.plugins\org.eclipse.jdt.core
-3235716164.index
-848856923.index
-1085882544.index
