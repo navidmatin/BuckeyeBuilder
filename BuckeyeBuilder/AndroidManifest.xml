@@ -54,6 +54,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infintyloop.buckeyebuilder.LoginActivity" />
         </activity>
+        <activity
+            android:name="com.infintyloop.buckeyebuilder.BuildingDetailActivity"
+            android:label="@string/title_activity_building_detail" >
+        </activity>
     </application>
 
 </manifest>
