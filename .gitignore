@@ -18,3 +18,4 @@ gen-external-apklibs
 *.swp
 out
 .metadata/*
+project.properties
