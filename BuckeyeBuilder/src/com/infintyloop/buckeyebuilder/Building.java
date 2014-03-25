@@ -5,7 +5,7 @@ public class Building implements IBuilding {
 	private int woodRequired;
 	private int metalRequired;
 	private int stoneRequired;
-	private int level;
+	public int level;
 	private int levelCosts[] = new int[3];
 	private int genCosts[] = new int[2];
 	//private Location location;
@@ -25,6 +25,11 @@ public class Building implements IBuilding {
 		description = theDescription;
 	}
 
+	@Override
+	public void SetLevel(int incomingLevel){
+		level = incomingLevel;
+	}
+	
 	@Override
 	public String GetName() {
 		return name;

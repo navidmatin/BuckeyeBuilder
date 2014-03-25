@@ -9,17 +9,15 @@ private int moneyCap;
 // private Location location;
 private int money;
 private Market myMarket = new Market();
-public int[] levelsOwned = new int[3];
 
 @Override 
-public void User(String userName,int[] amounts, int cap, int cash, int[] levels){
+public void User(String userName,int[] amounts, int cap, int cash){
 	name = userName;
 	materialAmounts[0] = amounts[0];
 	materialAmounts[1] = amounts[1];
 	materialAmounts[2] = amounts[2];
 	moneyCap = cap;
 	money = cash;
-	levelsOwned = levels;
 	// somehow set value to all variables
 }
 

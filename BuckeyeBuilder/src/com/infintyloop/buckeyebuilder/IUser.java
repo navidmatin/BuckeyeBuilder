@@ -2,7 +2,7 @@ package com.infintyloop.buckeyebuilder;
 //import com.infintyloop.buckeyebuilder.IBuilding;
 
 public interface IUser {
-	public void User(String userName,int[] amounts, int cap, int cash, int[] levels);
+	public void User(String userName,int[] amounts, int cap, int cash);
 	public String GetUsername();
 	public int[] GetAmounts();
 	public int GetMoney();

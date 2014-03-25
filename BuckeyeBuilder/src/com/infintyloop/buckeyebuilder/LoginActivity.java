@@ -17,6 +17,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.infintyloop.buckeyebuilder.BuildingFactory;
+import com.infintyloop.buckeyebuilder.IUser;
+
 /**
  * Activity which displays a login screen to the user, offering registration as
  * well.
@@ -24,13 +26,14 @@ import com.infintyloop.buckeyebuilder.BuildingFactory;
 public class LoginActivity extends Activity {
 	
 	public BuildingFactory myFactory = new BuildingFactory();
+	public IUser user = new User();
 	/**
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
 	 */
 	private static final String[] DUMMY_CREDENTIALS = new String[] {
 			"foo@example.com:hello", "bar@example.com:world" };
-
+	
 	/**
 	 * The default username to populate the username field with.
 	 */
@@ -57,7 +60,6 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_login);
-
 		// Set up the login form.
 		musername = getIntent().getStringExtra(EXTRA_username);
 		musernameView = (EditText) findViewById(R.id.username);
@@ -148,6 +150,10 @@ public class LoginActivity extends Activity {
 			mAuthTask = new UserLoginTask();
 			mAuthTask.execute((Void) null);
 			myFactory.MakeBuildings();
+			// Using username, access database and fill in info for user
+			// and levels of buildings owned
+			user.User("testuser", new int[] {20,20,20}, 10000, 5000);
+			myFactory.AssignLevels(new int[] {0,0,0});
 			startActivity(new Intent(this, MainActivity.class));
 		}
 	}

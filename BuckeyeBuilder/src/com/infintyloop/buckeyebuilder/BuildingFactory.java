@@ -13,6 +13,11 @@ public class BuildingFactory{
 			listOfBuildings[i].Building(BuildingNames[0],Cost[0], genRates[0], description[0]);
 		}
 	}
+	public void AssignLevels(int[] levels){
+		for (int i=0; i < levels.length; i++){
+			listOfBuildings[i].SetLevel(levels[i]);
+		}
+	}
 	public IBuilding ReturnBuildingReference(String name){
 		for (int i = 0; i <BuildingNames.length; i++){
 			if(listOfBuildings[i].GetName() == name){
