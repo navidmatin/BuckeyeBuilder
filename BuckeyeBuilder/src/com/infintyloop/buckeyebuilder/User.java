@@ -11,7 +11,7 @@ private int money;
 private Market myMarket = new Market();
 
 @Override 
-public void User(String userName,int[] amounts, int cap, int cash){
+public void GiveValuesToUser(String userName,int[] amounts, int cap, int cash){
 	name = userName;
 	materialAmounts[0] = amounts[0];
 	materialAmounts[1] = amounts[1];
@@ -67,9 +67,12 @@ public void BuyWood(int woodRequest) {
 
 @Override
 public void UpgradeBuilding(IBuilding buildingName) {
-	if(money > buildingName.GetCurrentCost()){
+	int[] requirements = buildingName.GetCurrentCost();
+	if(materialAmounts[0] > requirements[0] && materialAmounts[1] > requirements[1] && materialAmounts[2] > requirements[2]){
 		if(buildingName.Upgrade()){
-			money = money - buildingName.GetCurrentCost();
+			for(int i = 0; i < 3; i++){
+				materialAmounts[i] = materialAmounts[i] - requirements[i];
+			}
 		}
 	}
 }

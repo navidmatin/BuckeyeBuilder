@@ -2,19 +2,16 @@ package com.infintyloop.buckeyebuilder;
 
 public class Building implements IBuilding {
 	private String name;
-	private int woodRequired;
-	private int metalRequired;
-	private int stoneRequired;
 	public int level;
-	private int levelCosts[] = new int[3];
+	private int levelCosts[][] = new int[3][3];
 	private int genCosts[] = new int[2];
 	//private Location location;
-	private double radius;
-	private int currentCost;
+	//private double radius;
+	private int[] currentCost = new int[3];
 	private String description;
 	
 	@Override
-	public void Building(String theName, int[] theCost, int[] theGenRates, String theDescription) {
+	public void GiveValuesToBuilding(String theName, int[][] theCost, int[] theGenRates, String theDescription) {
 		// somehow need to set a value to all variables...
 		name = theName;
 		levelCosts[0] = theCost[0];
@@ -41,7 +38,7 @@ public class Building implements IBuilding {
 	}
 
 	@Override
-	public int GetCurrentCost() {
+	public int[] GetCurrentCost() {
 		if(level == 0){
 			currentCost = levelCosts[0];
 		}
@@ -60,7 +57,7 @@ public class Building implements IBuilding {
 	}
 	
 	@Override
-	public int[] GetCosts() {
+	public int[][] GetCosts() {
 		return levelCosts;
 	}
 	

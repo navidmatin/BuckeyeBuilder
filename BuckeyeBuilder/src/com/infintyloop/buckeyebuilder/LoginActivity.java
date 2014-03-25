@@ -152,7 +152,7 @@ public class LoginActivity extends Activity {
 			myFactory.MakeBuildings();
 			// Using username, access database and fill in info for user
 			// and levels of buildings owned
-			user.User("testuser", new int[] {20,20,20}, 10000, 5000);
+			user.GiveValuesToUser("testuser", new int[] {20,20,20}, 10000, 5000);
 			myFactory.AssignLevels(new int[] {0,0,0});
 			startActivity(new Intent(this, MainActivity.class));
 		}
