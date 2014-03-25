@@ -14,8 +14,9 @@ public class Building implements IBuilding {
 	private int currentCost;
 	
 	@Override
-	public void Building() {
+	public void Building(String theName, int theCost) {
 		// somehow need to set a value to all variables...
+		name = theName;
 		if(level == 0){
 			currentCost = level1Cost;
 		}
@@ -51,6 +52,20 @@ public class Building implements IBuilding {
 		else {
 		// error message: No more available upgrades!
 			return false;
+		}
+	}
+	
+	@Override
+	public int Update(){
+	// once everywhatever
+		if (level == 1){
+			return 1;
+		}
+		else if (level == 2){
+			return 2;
+		}
+		else {
+			return 0;
 		}
 	}
 

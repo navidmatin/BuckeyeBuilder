@@ -12,7 +12,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+ 		setContentView(R.layout.activity_main);
 		Context context = getApplicationContext();
 		CharSequence text = "Welcome to Initial BuckeyeBuilder! V.000.000.000.01";
 		int duration = Toast.LENGTH_LONG;
