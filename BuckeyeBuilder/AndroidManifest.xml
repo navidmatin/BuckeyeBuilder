@@ -45,6 +45,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+          
         </activity>
         <activity
             android:name="com.infintyloop.buckeyebuilder.RegisterActivity"
@@ -57,6 +58,16 @@
         <activity
             android:name="com.infintyloop.buckeyebuilder.BuildingDetailActivity"
             android:label="@string/title_activity_building_detail" >
+        </activity>
+        
+        <activity
+            android:name="com.infintyloop.buckeyebuilder.BuildPlanActivity"
+            android:label="@string/title_activity_build_plan" >
+              
+        </activity>
+        <activity
+            android:name="com.infintyloop.buckeyebuilder.TestActivity"
+            android:label="@string/title_activity_test" >
         </activity>
     </application>
 
