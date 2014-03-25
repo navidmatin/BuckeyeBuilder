@@ -6,26 +6,23 @@ public class Building implements IBuilding {
 	private int metalRequired;
 	private int stoneRequired;
 	private int level;
-	private int level1Cost;
-	private int level2Cost;
-	private int level3Cost;
+	private int levelCosts[] = new int[3];
+	private int genCosts[] = new int[2];
 	//private Location location;
 	private double radius;
 	private int currentCost;
+	private String description;
 	
 	@Override
-	public void Building(String theName, int theCost) {
+	public void Building(String theName, int[] theCost, int[] theGenRates, String theDescription) {
 		// somehow need to set a value to all variables...
 		name = theName;
-		if(level == 0){
-			currentCost = level1Cost;
-		}
-		else if(level == 1){
-			currentCost = level2Cost;
-		}
-		else{
-			currentCost = level3Cost;
-		}
+		levelCosts[0] = theCost[0];
+		levelCosts[1] = theCost[1];
+		levelCosts[2] = theCost[2];
+		genCosts[0] = theGenRates[0];
+		genCosts[1] = theGenRates[1];
+		description = theDescription;
 	}
 
 	@Override
@@ -39,10 +36,34 @@ public class Building implements IBuilding {
 	}
 
 	@Override
-	public int GetCost() {
+	public int GetCurrentCost() {
+		if(level == 0){
+			currentCost = levelCosts[0];
+		}
+		else if(level == 1){
+			currentCost = levelCosts[1];
+		}
+		else{
+			currentCost = levelCosts[2];
+		}
 		return currentCost;
 	}
 
+	@Override
+	public String GetDescription(){
+		return description;
+	}
+	
+	@Override
+	public int[] GetCosts() {
+		return levelCosts;
+	}
+	
+	@Override
+	public int[] GetGenRates() {
+		return genCosts;
+	}
+	
 	@Override
 	public boolean Upgrade() {
 		if(level < 2){
@@ -54,6 +75,7 @@ public class Building implements IBuilding {
 			return false;
 		}
 	}
+	
 	
 	@Override
 	public int Update(){

@@ -16,12 +16,14 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import com.infintyloop.buckeyebuilder.BuildingFactory;
 /**
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
 public class LoginActivity extends Activity {
+	
+	public BuildingFactory myFactory = new BuildingFactory();
 	/**
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
@@ -145,6 +147,7 @@ public class LoginActivity extends Activity {
 			showProgress(true);
 			mAuthTask = new UserLoginTask();
 			mAuthTask.execute((Void) null);
+			myFactory.MakeBuildings();
 			startActivity(new Intent(this, MainActivity.class));
 		}
 	}

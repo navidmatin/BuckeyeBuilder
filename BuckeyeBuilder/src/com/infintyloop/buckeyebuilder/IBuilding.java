@@ -1,10 +1,13 @@
 package com.infintyloop.buckeyebuilder;
 
 public interface IBuilding {
-	public void Building(String theName, int theCost);
+	public void Building(String theName, int[] theCost, int[] theGenRates, String theDescription);
 	public String GetName();
 	public int GetLevel();
-	public int GetCost();
+	public int GetCurrentCost();
+	public String GetDescription();
+	public int[] GetCosts();
+	public int[] GetGenRates();
 	public boolean Upgrade();
 	public int Update();
 }
