@@ -80,13 +80,12 @@ public class Building implements IBuilding {
 	
 	
 	@Override
-	public int Update(){
-	// once everywhatever
+	public int GenerateMoney(){
 		if (level == 1){
-			return 1;
+			return genCosts[0];
 		}
 		else if (level == 2){
-			return 2;
+			return genCosts[1];
 		}
 		else {
 			return 0;

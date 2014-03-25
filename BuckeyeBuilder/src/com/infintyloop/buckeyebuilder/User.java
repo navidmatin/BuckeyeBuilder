@@ -79,6 +79,7 @@ public void UpgradeBuilding(IBuilding buildingName) {
 
 @Override
 public void MakeMoney(int amount) {
+	
 	if(money < moneyCap){
 		money = money + amount;
 	}

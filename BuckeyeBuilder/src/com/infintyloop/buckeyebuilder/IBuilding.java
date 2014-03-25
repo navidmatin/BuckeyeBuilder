@@ -10,5 +10,5 @@ public interface IBuilding {
 	public int[][] GetCosts();
 	public int[] GetGenRates();
 	public boolean Upgrade();
-	public int Update();
+	public int GenerateMoney();
 }
