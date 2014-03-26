@@ -106,7 +106,7 @@ public class LoginActivity extends Activity {
 					public void onClick(View view) {
 						createNewUser();
 					}
-				});				
+				});			
 	}
 
 	@Override
@@ -164,6 +164,7 @@ public class LoginActivity extends Activity {
 				startActivity(new Intent(this, MainActivity.class));
 				finish();
 			}
+			
 		}
 	}
 	private boolean checkLogin(){

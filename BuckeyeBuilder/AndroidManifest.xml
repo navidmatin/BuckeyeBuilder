@@ -39,7 +39,8 @@
         <activity
             android:name="com.infintyloop.buckeyebuilder.LoginActivity"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:launchMode="singleInstance" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,7 +51,8 @@
         <activity
             android:name="com.infintyloop.buckeyebuilder.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName="com.infintyloop.buckeyebuilder.LoginActivity" >
+            android:parentActivityName="com.infintyloop.buckeyebuilder.LoginActivity"
+            android:launchMode="singleInstance" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infintyloop.buckeyebuilder.LoginActivity" />
