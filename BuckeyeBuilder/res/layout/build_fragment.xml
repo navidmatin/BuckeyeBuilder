@@ -3,20 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <TableRow >
-
+        <TextView
+            android:id="@+id/textMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Money:"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+             android:id="@+id/textMoneyAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+      </TableRow>
+      <TableRow
+	    android:paddingTop="20dp"> 
+        <TextView 
+            android:id="@+id/moneyperHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            />
         <ProgressBar
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            />  
     </TableRow>
-	<TableRow>
-	    <Button
-	        android:id="@+id/button1"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:text="Button" />
+	<TableRow
+	    android:paddingTop="20dp">
+
+		<Button
+		    android:id="@+id/button1"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:text="Build" />
+
     </TableRow>
+    <TableRow
+	    android:paddingTop="20dp">
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+		
+	</TableRow>
 
 </TableLayout>

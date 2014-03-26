@@ -2,10 +2,7 @@ package com.infintyloop.buckeyebuilder;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 

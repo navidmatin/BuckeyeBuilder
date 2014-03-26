@@ -9,5 +9,4 @@
     <string name="title_activity_building_detail">BuildingDetailActivity</string>
     <string name="title_activity_build_plan">BuildPlanActivity</string>
     <string name="title_activity_test">TestActivity</string>
-
 </resources>
