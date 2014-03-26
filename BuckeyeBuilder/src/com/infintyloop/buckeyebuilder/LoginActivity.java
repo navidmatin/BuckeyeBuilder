@@ -1,14 +1,22 @@
 package com.infintyloop.buckeyebuilder;
 
+import java.util.List;
+
 import com.infintyloop.buckeyebuilder.R;
+
+import android.R.bool;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -16,6 +24,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.infintyloop.buckeyebuilder.BuildingFactory;
 import com.infintyloop.buckeyebuilder.IUser;
 
@@ -33,7 +42,7 @@ public class LoginActivity extends Activity {
 	 */
 	private static final String[] DUMMY_CREDENTIALS = new String[] {
 			"foo@example.com:hello", "bar@example.com:world" };
-	
+	private static final String OPT_NAME="name";
 	/**
 	 * The default username to populate the username field with.
 	 */
@@ -54,6 +63,7 @@ public class LoginActivity extends Activity {
 	private View mLoginFormView;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
+	private DatabaseHelper dh;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -146,16 +156,48 @@ public class LoginActivity extends Activity {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-			showProgress(true);
-			mAuthTask = new UserLoginTask();
-			mAuthTask.execute((Void) null);
-			myFactory.MakeBuildings();
-			// Using username, access database and fill in info for user
-			// and levels of buildings owned
-			user.GiveValuesToUser("testuser", new int[] {20,20,20}, 10000, 5000);
-			myFactory.AssignLevels(new int[] {0,0,0}, user);
-			startActivity(new Intent(this, MainActivity.class));
+			if(checkLogin())
+			{				
+				showProgress(true);
+				mAuthTask = new UserLoginTask();
+				mAuthTask.execute((Void) null);
+				startActivity(new Intent(this, MainActivity.class));
+				finish();
+			}
 		}
+	}
+	private boolean checkLogin(){
+    	String username=this.musernameView.getText().toString();
+        String password=this.mPasswordView.getText().toString();
+        this.dh=new DatabaseHelper(this);
+        List<String> names=this.dh.selectAll(username,password);
+        if(names.size() >0){ // Login successful
+        	// Save username as the name of the player & Set up the initial values for the user
+            setupUser(username);
+            return true;
+        	
+        } else {
+            // Try again? 
+        	new AlertDialog.Builder(this)
+    		.setTitle("Error")
+    		.setMessage("Login failed")
+    		.setNeutralButton("Try Again", new DialogInterface.OnClickListener() {
+    			public void onClick(DialogInterface dialog, int which) {}
+    		})
+    		.show();
+        	return false;
+        }	
+	}
+	private void setupUser(String username){
+    	SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
+    	SharedPreferences.Editor editor=settings.edit();
+        editor.putString(OPT_NAME, username);
+        editor.commit();
+		myFactory.MakeBuildings();
+		// Using username, access database and fill in info for user
+		// and levels of buildings owned
+		user.GiveValuesToUser("testuser", new int[] {20,20,20}, 10000, 5000);
+		myFactory.AssignLevels(new int[] {0,0,0}, user);
 	}
 	public void createNewUser() {
 		startActivity(new Intent(this, RegisterActivity.class));
