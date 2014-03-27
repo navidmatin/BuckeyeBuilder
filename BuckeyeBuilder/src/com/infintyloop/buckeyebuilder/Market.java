@@ -6,18 +6,14 @@ int totalWood,totalMetal,totalStone;
 //boolean buyingWood,buyingMetal,buyingStone;
 public int money,amountMaterial;
 
-public void Generate_Money()
-{
-	//int i=0;
-	//while(i<=100)
-	//{
-	//	if(i==100)
-		//{	
-			//money++;
-		//}
-		
-		//i++;
-	//}	
+public static void PayUser(IBuilding[] buildings, IUser user){
+	int paycheck = 0;
+	for (int i = 0; i < buildings.length; i++){
+		if(buildings[i].GetLevel() > 0){
+			paycheck = paycheck + buildings[i].GenerateMoney();
+		}
+	}
+	user.MakeMoney(paycheck);
 }
 	
 public int Buy_Wood(int woodAmount)
