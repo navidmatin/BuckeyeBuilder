@@ -13,6 +13,11 @@ public class Building implements IBuilding {
 	private int[] currentCost = new int[3];
 	private String description;
 	
+	public Building(){;};
+	
+	public Building(Parcel in){
+		readFromParcel(in);
+	}
 	
 	public void GiveValuesToBuilding(String theName, int[][] theCost, int[] theGenRates, String theDescription) {
 		// somehow need to set a value to all variables...
@@ -104,7 +109,19 @@ public class Building implements IBuilding {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
-		
+		dest.writeString(name);
+		dest.writeInt(level);
+		dest.writeString(description);
+		dest.writeIntArray(currentCost);
+		dest.writeIntArray(genCosts);
+		dest.writeArray(levelCosts);
 	}
-
+	
+	public void readFromParcel(Parcel in){
+		name = in.readString();
+		level = in.readInt();
+		description = in.readString();
+		currentCost = in.createIntArray();
+		genCosts = in.createIntArray();
+	}
 }

@@ -1,6 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 
 
+import android.os.Parcel;
 import android.os.Parcelable;
 
 public interface IBuilding extends Parcelable {
