@@ -22,13 +22,8 @@ public class BuildingFactory{
 			listOfBuildings[i].SetLevel(levels[i]);
 		}
 	}
-	public IBuilding ReturnBuildingReference(String name){
-		for (int i = 0; i <BuildingNames.length; i++){
-			if(listOfBuildings[i].GetName() == name){
-				return listOfBuildings[0];
-			}
-		}
-		return null;
+	public IBuilding[] ReturnBuildingList(){
+		return listOfBuildings;
 	}
 	public void PayUser(){
 		paycheck = 0;
