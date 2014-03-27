@@ -13,7 +13,7 @@ public class Building implements IBuilding {
 	private int[] currentCost = new int[3];
 	private String description;
 	
-	@Override
+	
 	public void GiveValuesToBuilding(String theName, int[][] theCost, int[] theGenRates, String theDescription) {
 		// somehow need to set a value to all variables...
 		name = theName;
@@ -25,22 +25,22 @@ public class Building implements IBuilding {
 		description = theDescription;
 	}
 
-	@Override
+	
 	public void SetLevel(int incomingLevel){
 		level = incomingLevel;
 	}
 	
-	@Override
+	
 	public String GetName() {
 		return name;
 	}
 
-	@Override
+	
 	public int GetLevel() {
 		return level;
 	}
 
-	@Override
+	
 	public int[] GetCurrentCost() {
 		if(level == 0){
 			currentCost = levelCosts[0];
@@ -54,22 +54,22 @@ public class Building implements IBuilding {
 		return currentCost;
 	}
 
-	@Override
+	
 	public String GetDescription(){
 		return description;
 	}
 	
-	@Override
+	
 	public int[][] GetCosts() {
 		return levelCosts;
 	}
 	
-	@Override
+	
 	public int[] GetGenRates() {
 		return genCosts;
 	}
 	
-	@Override
+	
 	public boolean Upgrade() {
 		if(level < 2){
 			level = level + 1;
@@ -82,7 +82,7 @@ public class Building implements IBuilding {
 	}
 	
 	
-	@Override
+	
 	public int GenerateMoney(){
 		if (level == 1){
 			return genCosts[0];

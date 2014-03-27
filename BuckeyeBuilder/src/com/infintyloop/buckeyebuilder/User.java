@@ -13,7 +13,6 @@ private int moneyCap;
 private int money;
 private Market myMarket = new Market();
 
-@Override 
 public void GiveValuesToUser(String userName,int[] amounts, int cap, int cash){
 	name = userName;
 	materialAmounts[0] = amounts[0];
@@ -24,27 +23,26 @@ public void GiveValuesToUser(String userName,int[] amounts, int cap, int cash){
 	// somehow set value to all variables
 }
 
-@Override 
 public String GetUsername(){
 	return name;
 }
 
-@Override 
+  
 public int[] GetAmounts(){
 	return materialAmounts;
 }
 
-@Override 
+  
 public int GetMoney(){
 	return money;
 }
 
-@Override 
+  
 public int GetCap(){
 	return moneyCap;
 }
 
-@Override
+ 
 public void BuyMetal(int metalRequest) {
 	if(money > myMarket.Buy_Metal(metalRequest)){
 		money = money - myMarket.Buy_Metal(metalRequest);
@@ -52,7 +50,7 @@ public void BuyMetal(int metalRequest) {
 	}
 }
 
-@Override
+ 
 public void BuyStone(int stoneRequest) {
 	if(money > myMarket.Buy_Stone(stoneRequest)){
 		money = money - myMarket.Buy_Stone(stoneRequest);
@@ -60,7 +58,7 @@ public void BuyStone(int stoneRequest) {
 	}
 }
 
-@Override
+ 
 public void BuyWood(int woodRequest) {
 	if(money > myMarket.Buy_Wood(woodRequest)){
 		money = money - myMarket.Buy_Wood(woodRequest);
@@ -68,7 +66,7 @@ public void BuyWood(int woodRequest) {
 	}
 }
 
-@Override
+ 
 public void UpgradeBuilding(IBuilding buildingName) {
 	int[] requirements = buildingName.GetCurrentCost();
 	if(materialAmounts[0] > requirements[0] && materialAmounts[1] > requirements[1] && materialAmounts[2] > requirements[2]){
@@ -80,7 +78,7 @@ public void UpgradeBuilding(IBuilding buildingName) {
 	}
 }
 
-@Override
+ 
 public void MakeMoney(int amount) {
 	
 	if(money < moneyCap){
@@ -90,18 +88,18 @@ public void MakeMoney(int amount) {
 // ODO Auto-generated method stub
 }
 
-@Override
+ 
 public void Walk() {
 // TODO Auto-generated method stub
 }
 
-@Override
+ @Override
 public int describeContents() {
 	// TODO Auto-generated method stub
 	return 0;
 }
 
-@Override
+@Override 
 public void writeToParcel(Parcel dest, int flags) {
 	// TODO Auto-generated method stub
 	
