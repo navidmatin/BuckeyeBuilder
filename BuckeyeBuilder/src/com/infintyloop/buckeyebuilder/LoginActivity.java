@@ -200,6 +200,8 @@ public class LoginActivity extends Activity {
 		user.GiveValuesToUser(musername, new int[] {20,20,20}, 10000, 5000);
         intent.putExtra("User", user);
 		myFactory.AssignLevels(new int[] {0,0,0}, user);
+		IBuilding[] myBuildings = myFactory.ReturnBuildingList();
+		intent.putExtra("BuildingList", myBuildings);
 	}
 	public void createNewUser() {
 		startActivity(new Intent(this, RegisterActivity.class));
