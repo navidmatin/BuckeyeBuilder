@@ -1,7 +1,10 @@
 package com.infintyloop.buckeyebuilder;
+
+import android.os.Parcelable;
+
 //import com.infintyloop.buckeyebuilder.IBuilding;
 
-public interface IUser {
+public interface IUser extends Parcelable {
 	public void GiveValuesToUser(String userName,int[] amounts, int cap, int cash);
 	public String GetUsername();
 	public int[] GetAmounts();

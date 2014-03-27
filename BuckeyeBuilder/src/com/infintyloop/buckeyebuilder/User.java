@@ -1,8 +1,11 @@
 package com.infintyloop.buckeyebuilder;
+import android.os.Parcel;
+
 import com.infintyloop.buckeyebuilder.Market;
 
 public class User implements IUser {
 
+//serialVersionUID
 private String name;
 private int materialAmounts[] = new int[3];
 private int moneyCap;
@@ -90,5 +93,17 @@ public void MakeMoney(int amount) {
 @Override
 public void Walk() {
 // TODO Auto-generated method stub
+}
+
+@Override
+public int describeContents() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public void writeToParcel(Parcel dest, int flags) {
+	// TODO Auto-generated method stub
+	
 }
 }

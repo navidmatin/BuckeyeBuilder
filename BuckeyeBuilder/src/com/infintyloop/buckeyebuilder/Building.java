@@ -1,6 +1,9 @@
 package com.infintyloop.buckeyebuilder;
 
+import android.os.Parcel;
+
 public class Building implements IBuilding {
+	
 	private String name;
 	public int level;
 	private int levelCosts[][] = new int[3][3];
@@ -90,6 +93,18 @@ public class Building implements IBuilding {
 		else {
 			return 0;
 		}
+	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

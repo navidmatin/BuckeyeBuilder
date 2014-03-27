@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.infintyloop.buckeyebuilder.R;
 
-import android.R.bool;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -33,7 +32,7 @@ import com.infintyloop.buckeyebuilder.IUser;
  * well.
  */
 public class LoginActivity extends Activity {
-	
+	private Intent intent;
 	public BuildingFactory myFactory = new BuildingFactory();
 	public IUser user = new User();
 	/**
@@ -161,7 +160,7 @@ public class LoginActivity extends Activity {
 				showProgress(true);
 				mAuthTask = new UserLoginTask();
 				mAuthTask.execute((Void) null);
-				startActivity(new Intent(this, MainActivity.class));
+				startActivity(intent);
 				finish();
 			}
 			
@@ -194,10 +193,12 @@ public class LoginActivity extends Activity {
     	SharedPreferences.Editor editor=settings.edit();
         editor.putString(OPT_NAME, username);
         editor.commit();
+        intent=new Intent(this, MainActivity.class);
 		myFactory.MakeBuildings();
 		// Using username, access database and fill in info for user
 		// and levels of buildings owned
-		user.GiveValuesToUser("testuser", new int[] {20,20,20}, 10000, 5000);
+		user.GiveValuesToUser(musername, new int[] {20,20,20}, 10000, 5000);
+        intent.putExtra("User", user);
 		myFactory.AssignLevels(new int[] {0,0,0}, user);
 	}
 	public void createNewUser() {

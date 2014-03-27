@@ -1,6 +1,9 @@
 package com.infintyloop.buckeyebuilder;
 
-public interface IBuilding {
+
+import android.os.Parcelable;
+
+public interface IBuilding extends Parcelable {
 	public void GiveValuesToBuilding(String theName, int[][] theCost, int[] theGenRates, String theDescription);
 	public void SetLevel(int incomingLevel);
 	public String GetName();
