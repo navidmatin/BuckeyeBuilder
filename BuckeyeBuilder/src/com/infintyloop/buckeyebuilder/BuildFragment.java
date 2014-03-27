@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class BuildFragment extends Fragment{
 	final static String ARG_POSITION = "position";
@@ -21,6 +23,11 @@ public class BuildFragment extends Fragment{
 	public void onStart()
 	{
 		super.onStart();
+		IUser user = ((MainActivity)getActivity()).user;
+		int money= user.GetMoney();
+		TextView moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
+		moneyView.setText(money+"$");
+		
 	}
 	@Override
 	public void onPause()
