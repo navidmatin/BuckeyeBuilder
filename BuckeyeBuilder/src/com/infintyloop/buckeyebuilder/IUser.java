@@ -17,7 +17,7 @@ public interface IUser extends Parcelable {
 	public void UpgradeBuilding(IBuilding building);
 	public void MakeMoney(int amount);
 	public void Walk();
-	//public void writeToParcel(Parcel dest, int flags);
-	//public int describeContents();
+	public void writeToParcel(Parcel dest, int flags);
+	public int describeContents();
 }
 

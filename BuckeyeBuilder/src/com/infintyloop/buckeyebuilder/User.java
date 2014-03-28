@@ -109,7 +109,13 @@ public class User implements IUser {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+	private void readFrmParce(Parcel in) {		
+			name=in.readString();
+			materialAmounts=in.createIntArray();
+			moneyCap=in.readInt();
+			money=in.readInt();	
+			myMarket = in.readParcelable(Market.class.getClassLoader());
+	}
 	@Override 
 	public void writeToParcel(Parcel dest, int flags) {		
 		dest.writeString(name);
@@ -118,13 +124,6 @@ public class User implements IUser {
 		dest.writeInt(money);
 		dest.writeParcelable(myMarket, flags);
 		
-	}
-	private void readFrmParce(Parcel in) {
-		myMarket = in.readParcelable(Market.class.getClassLoader());
-		name=in.readString();
-		materialAmounts=in.createIntArray();
-		moneyCap=in.readInt();
-		money=in.readInt();		
 	}
 	
 	public static final Parcelable.Creator<User> CREATOR = 

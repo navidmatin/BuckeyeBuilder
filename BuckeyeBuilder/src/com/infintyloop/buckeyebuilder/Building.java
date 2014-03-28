@@ -14,7 +14,7 @@ public class Building implements IBuilding {
 	private int currentCost;
 	private String description;
 	
-	public Building(){;};
+	public Building(){};
 	
 	public Building(Parcel in){
 		readFromParcel(in);
@@ -90,7 +90,14 @@ public class Building implements IBuilding {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	private void readFromParcel(Parcel in){
+		name = in.readString();
+		level = in.readInt();
+		description = in.readString();
+		currentCost = in.readInt();
+		genRate = in.readInt();
+		cost = in.readInt();
+	}
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
@@ -102,14 +109,6 @@ public class Building implements IBuilding {
 		dest.writeInt(cost);
 	}
 	
-	public void readFromParcel(Parcel in){
-		name = in.readString();
-		level = in.readInt();
-		description = in.readString();
-		currentCost = in.readInt();
-		genRate = in.readInt();
-		cost = in.readInt();
-	}
 	public static final Parcelable.Creator<Building> CREATOR = 
 			new Parcelable.Creator<Building>() {
 		public Building createFromParcel (Parcel in) {

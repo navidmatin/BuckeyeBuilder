@@ -197,7 +197,7 @@ public class LoginActivity extends Activity {
 		//myFactory.MakeBuildings();
 		// Using username, access database and fill in info for user
 		// and levels of buildings owned
-		user.GiveValuesToUser(musername, new int[] {20,20,20}, 10000, 5000);
+		user.GiveValuesToUser(musername, new int[] {20,30,20}, 10000, 5000);
         intent.putExtra("User", user);
 		//myFactory.AssignLevels(new int[] {0,0,0}, user);
 		//IBuilding[] myBuildings = myFactory.ReturnBuildingList();

@@ -62,7 +62,16 @@ public int money,amountMaterial;
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+	private void readFromParcel(Parcel in) {
+		woodCost = in.readInt();
+		metalCost = in.readInt();
+		stoneCost = in.readInt();
+		totalWood = in.readInt();
+		totalMetal = in.readInt();
+		totalStone = in.readInt();
+		money = in.readInt();
+		amountMaterial = in.readInt();
+	}
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		
@@ -76,16 +85,6 @@ public int money,amountMaterial;
 		dest.writeInt(amountMaterial);
 	}
 	
-	public void readFromParcel(Parcel in) {
-		woodCost = in.readInt();
-		metalCost = in.readInt();
-		stoneCost = in.readInt();
-		totalWood = in.readInt();
-		totalMetal = in.readInt();
-		totalStone = in.readInt();
-		money = in.readInt();
-		amountMaterial = in.readInt();
-	}
 	public static final Parcelable.Creator<Market> CREATOR = 
 			new Parcelable.Creator<Market>() {
 		public Market createFromParcel (Parcel in) {

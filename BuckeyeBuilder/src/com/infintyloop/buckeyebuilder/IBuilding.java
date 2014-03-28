@@ -1,6 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 
 
+import android.os.Parcel;
 import android.os.Parcelable;
 
 public interface IBuilding extends Parcelable {
@@ -13,4 +14,6 @@ public interface IBuilding extends Parcelable {
 	public int GetCurrentGenRate();
 	public boolean Upgrade();
 	public int GenerateMoney();
+	public void writeToParcel(Parcel dest, int flags);
+	public int describeContents();
 }
