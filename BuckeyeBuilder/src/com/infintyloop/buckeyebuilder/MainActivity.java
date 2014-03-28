@@ -7,6 +7,7 @@ import android.view.Menu;
 
 public class MainActivity extends Activity {
 	IUser user = new User();
+	//IBuilding[] buildingList = new Building[4];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +15,7 @@ public class MainActivity extends Activity {
  		setContentView(R.layout.activity_main);
  		Intent intent = getIntent();
  		user = intent.getParcelableExtra("User");
+ 		//buildingList = intent.getParcelableArrayExtra("BuildingList");
 	}
 
 	@Override

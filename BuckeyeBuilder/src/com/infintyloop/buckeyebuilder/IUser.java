@@ -16,6 +16,7 @@ public interface IUser extends Parcelable {
 	public void BuyWood(int woodRequest);
 	public void UpgradeBuilding(IBuilding building);
 	public void MakeMoney(int amount);
+	public int CalculateCurrentGenRate(IBuilding[] buildingList);
 	public void Walk();
 	public void writeToParcel(Parcel dest, int flags);
 	public int describeContents();

@@ -89,7 +89,15 @@ public class User implements IUser {
 		}
 	}
 	
-	 
+	public int CalculateCurrentGenRate(IBuilding[] buildingList)
+	{
+		int genRate=0;
+		for(int i=0;i<buildingList.length;i++)
+		{
+			genRate+=buildingList[i].GetCurrentGenRate();
+		}
+		return genRate;
+	}
 	public void MakeMoney(int amount) {
 		
 		if(money < moneyCap){
