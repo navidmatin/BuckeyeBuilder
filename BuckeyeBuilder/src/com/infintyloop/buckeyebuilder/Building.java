@@ -1,16 +1,17 @@
 package com.infintyloop.buckeyebuilder;
 
 import android.os.Parcel;
+import android.os.Parcelable;
 
 public class Building implements IBuilding {
 	
 	private String name;
 	public int level;
-	private int levelCosts[][] = new int[3][3];
-	private int genCosts[] = new int[2];
+	private int cost; // Cost of level 0 to 1 upgrade
+	private int genRate;
 	//private Location location;
 	//private double radius;
-	private int[] currentCost = new int[3];
+	private int currentCost;
 	private String description;
 	
 	public Building(){;};
@@ -19,18 +20,14 @@ public class Building implements IBuilding {
 		readFromParcel(in);
 	}
 	
-	public void GiveValuesToBuilding(String theName, int[][] theCost, int[] theGenRates, String theDescription) {
+	public void GiveValuesToBuilding(String theName, int _cost, int theGenRate, String theDescription) {
 		// somehow need to set a value to all variables...
 		name = theName;
-		levelCosts[0] = theCost[0];
-		levelCosts[1] = theCost[1];
-		levelCosts[2] = theCost[2];
-		genCosts[0] = theGenRates[0];
-		genCosts[1] = theGenRates[1];
+		cost=_cost; //Cost of the leve 0 to 1 upgrade
+		genRate=theGenRate; //The initial gen rate
 		description = theDescription;
 	}
 
-	
 	public void SetLevel(int incomingLevel){
 		level = incomingLevel;
 	}
@@ -46,15 +43,15 @@ public class Building implements IBuilding {
 	}
 
 	
-	public int[] GetCurrentCost() {
+	public int GetCurrentCost() {
 		if(level == 0){
-			currentCost = levelCosts[0];
+			currentCost=cost;
 		}
 		else if(level == 1){
-			currentCost = levelCosts[1];
+			currentCost = cost * 2;
 		}
 		else{
-			currentCost = levelCosts[2];
+			currentCost = cost * 3;
 		}
 		return currentCost;
 	}
@@ -65,13 +62,9 @@ public class Building implements IBuilding {
 	}
 	
 	
-	public int[][] GetCosts() {
-		return levelCosts;
-	}
-	
-	
-	public int[] GetGenRates() {
-		return genCosts;
+	public int GetCurrentGenRate() {
+		
+		return (int) (genRate*level*1.5); //Outputting the current generation rate based on the level of the buildings
 	}
 	
 	
@@ -89,15 +82,7 @@ public class Building implements IBuilding {
 	
 	
 	public int GenerateMoney(){
-		if (level == 1){
-			return genCosts[0];
-		}
-		else if (level == 2){
-			return genCosts[1];
-		}
-		else {
-			return 0;
-		}
+		return GetCurrentGenRate();
 	}
 
 	@Override
@@ -112,16 +97,26 @@ public class Building implements IBuilding {
 		dest.writeString(name);
 		dest.writeInt(level);
 		dest.writeString(description);
-		dest.writeIntArray(currentCost);
-		dest.writeIntArray(genCosts);
-		dest.writeArray(levelCosts);
+		dest.writeInt(currentCost);
+		dest.writeInt(genRate);
+		dest.writeInt(cost);
 	}
 	
 	public void readFromParcel(Parcel in){
 		name = in.readString();
 		level = in.readInt();
 		description = in.readString();
-		currentCost = in.createIntArray();
-		genCosts = in.createIntArray();
+		currentCost = in.readInt();
+		genRate = in.readInt();
+		cost = in.readInt();
 	}
+	public static final Parcelable.Creator<Building> CREATOR = 
+			new Parcelable.Creator<Building>() {
+		public Building createFromParcel (Parcel in) {
+			return new Building(in);
+		}
+		public Building[] newArray(int size) {
+			return new Building[size];
+		}
+	};
 }

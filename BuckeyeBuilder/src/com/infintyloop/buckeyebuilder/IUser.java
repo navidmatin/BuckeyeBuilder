@@ -1,5 +1,6 @@
 package com.infintyloop.buckeyebuilder;
 
+import android.os.Parcel;
 import android.os.Parcelable;
 
 //import com.infintyloop.buckeyebuilder.IBuilding;
@@ -16,4 +17,7 @@ public interface IUser extends Parcelable {
 	public void UpgradeBuilding(IBuilding building);
 	public void MakeMoney(int amount);
 	public void Walk();
+	//public void writeToParcel(Parcel dest, int flags);
+	//public int describeContents();
 }
+

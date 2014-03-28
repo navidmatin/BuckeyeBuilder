@@ -4,8 +4,8 @@ import com.infintyloop.buckeyebuilder.IUser;
 
 public class BuildingFactory{
 	private String[] BuildingNames = {"Hitchcock Hall","Bolz Hall","Dreese Laboratories","Scott Laboratories"};
-	private int[][][] Cost = {{{100,100,100},{200,200,300},{300,400,400}},{{200,200,400},{300,300,400},{400,400,400}},{{50,100,200},{100,150,200},{150,175,200}}};
-	private int[][] genRates = {{0,2},{3,4},{3,4}};
+	private int[] Cost = {100,200,300,200};
+	private int[] genRates = {20,25,30,25};
 	private String[] description = {"building 1", "building 2", "building 3", "building 4"};
 	public IBuilding[] listOfBuildings = new IBuilding[BuildingNames.length];
 	private int paycheck;

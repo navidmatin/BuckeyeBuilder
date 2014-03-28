@@ -33,7 +33,7 @@ import com.infintyloop.buckeyebuilder.IUser;
  */
 public class LoginActivity extends Activity {
 	private Intent intent;
-	public BuildingFactory myFactory = new BuildingFactory();
+	//public BuildingFactory myFactory = new BuildingFactory();
 	public IUser user = new User();
 	/**
 	 * A dummy authentication store containing known user names and passwords.
@@ -194,14 +194,14 @@ public class LoginActivity extends Activity {
         editor.putString(OPT_NAME, username);
         editor.commit();
         intent=new Intent(this, MainActivity.class);
-		myFactory.MakeBuildings();
+		//myFactory.MakeBuildings();
 		// Using username, access database and fill in info for user
 		// and levels of buildings owned
 		user.GiveValuesToUser(musername, new int[] {20,20,20}, 10000, 5000);
         intent.putExtra("User", user);
-		myFactory.AssignLevels(new int[] {0,0,0}, user);
-		IBuilding[] myBuildings = myFactory.ReturnBuildingList();
-		intent.putExtra("BuildingList", myBuildings);
+		//myFactory.AssignLevels(new int[] {0,0,0}, user);
+		//IBuilding[] myBuildings = myFactory.ReturnBuildingList();
+		//intent.putExtra("BuildingList", myBuildings);
 	}
 	public void createNewUser() {
 		startActivity(new Intent(this, RegisterActivity.class));

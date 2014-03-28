@@ -78,11 +78,12 @@ public class User implements IUser {
 	
 	 
 	public void UpgradeBuilding(IBuilding buildingName) {
-		int[] requirements = buildingName.GetCurrentCost();
-		if(materialAmounts[0] > requirements[0] && materialAmounts[1] > requirements[1] && materialAmounts[2] > requirements[2]){
+		//NEED TO RE-check the logic, I changed it based on the changes I made to the Building
+		int requirements = buildingName.GetCurrentCost();
+		if(materialAmounts[0] > requirements && materialAmounts[1] > requirements && materialAmounts[2] > requirements){
 			if(buildingName.Upgrade()){
 				for(int i = 0; i < 3; i++){
-					materialAmounts[i] = materialAmounts[i] - requirements[i];
+					materialAmounts[i] = materialAmounts[i] - requirements;
 				}
 			}
 		}

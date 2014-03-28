@@ -23,10 +23,10 @@ public class BuildFragment extends Fragment{
 	public void onStart()
 	{
 		super.onStart();
-		IUser user = ((MainActivity)getActivity()).user;
+		/*IUser user = ((MainActivity)getActivity()).user;
 		int money= user.GetMoney();
 		TextView moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
-		moneyView.setText(money+"$");
+		moneyView.setText(money+"$");*/
 		
 	}
 	@Override
