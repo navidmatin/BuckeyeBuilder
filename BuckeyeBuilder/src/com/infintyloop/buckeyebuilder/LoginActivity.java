@@ -1,5 +1,6 @@
 package com.infintyloop.buckeyebuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.infintyloop.buckeyebuilder.R;
@@ -202,7 +203,7 @@ public class LoginActivity extends Activity {
 		user.GiveValuesToUser(musername, new int[] {20,30,20}, 10000, 5000);
         intent.putExtra("User", user);
 		myFactory.AssignLevels(new int[] {0,0,0}, user); //HardCoded Building Generator
-		IBuilding[] myBuildings = myFactory.ReturnBuildingList();
+		ArrayList<IBuilding> myBuildings = myFactory.ReturnBuildingList();
 		intent.putExtra("BuildingList", myBuildings);
 	}
 	public void createNewUser() {
