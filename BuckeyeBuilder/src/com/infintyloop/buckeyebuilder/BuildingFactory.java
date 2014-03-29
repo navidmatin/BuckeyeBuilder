@@ -14,8 +14,8 @@ public class BuildingFactory{
 	private IUser user;
 	public void MakeBuildings(){
 		for (int i=0;i < BuildingNames.length; i++){
-			IBuilding temp = listOfBuildings.get(i);
-			temp.GiveValuesToBuilding(BuildingNames[0],Cost[0], genRates[0], description[0]);
+			IBuilding temp= new Building();
+			temp.GiveValuesToBuilding(BuildingNames[i],Cost[i], genRates[i], description[i]);
 			listOfBuildings.add(temp);
 		}
 	}
