@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.View;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
@@ -21,6 +22,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
 
 	@Override
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
  		setContentView(R.layout.activity_main);
@@ -60,8 +62,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  			
  		});
  		
- 		/* Data and Back-end Processes */
- 		//Bundle b = getIntent().getExtras();
  		Intent intent = getIntent();
  		user = intent.getParcelableExtra("User");
  		//buildingList = intent.getParcelableArrayExtra("BuildingList");
@@ -72,6 +72,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	public void sendMessage(View view){
+		Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+		startActivity(intent);
 	}
 
 	@Override
