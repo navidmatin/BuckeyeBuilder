@@ -1,18 +1,65 @@
 package com.infintyloop.buckeyebuilder;
 
+import com.infinityloop.buckeyebuilder.adapter.TabsPagerAdapter;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.FragmentTransaction;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	IUser user = new User();
-	//IBuilding[] buildingList = new Building[4];
+	private ViewPager viewPager;
+	private TabsPagerAdapter mAdapter;
+	private ActionBar actionBar;
+	//Tab names
+	private String[] tabs = { "Build", "Manage", "Build Plan" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
  		setContentView(R.layout.activity_main);
+ 		
+ 		//Initialization of Tabs
+ 		viewPager = (ViewPager) findViewById(R.id.pager);
+ 		actionBar = getActionBar();
+ 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+ 		
+ 		viewPager.setAdapter(mAdapter);
+ 		actionBar.setHomeButtonEnabled(false);
+ 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+ 		
+ 		//Adding Tabs
+ 		for (String tab_name : tabs) {
+            actionBar.addTab(actionBar.newTab().setText(tab_name)
+                    .setTabListener(this));
+        }
+ 		
+ 		//ViewChange Listener so by changing view the tabs change
+ 		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+ 			@Override
+ 			public void onPageSelected(int position){
+ 				//on changing the page, it changes the tab
+ 				actionBar.setSelectedNavigationItem(position);
+ 			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				
+			}
+ 			
+ 		});
+ 		
  		Intent intent = getIntent();
  		user = intent.getParcelableExtra("User");
  		//buildingList = intent.getParcelableArrayExtra("BuildingList");
@@ -24,19 +71,23 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+
 	@Override
-	protected void onRestart(){
-		super.onRestart();
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		viewPager.setCurrentItem(tab.getPosition());
+		
 	}
+
 	@Override
-	protected void onStop(){
-		super.onStop();
-/*		Context context = getApplicationContext();
-		CharSequence text = "Don't LEAVEEEE!!!!!";
-		int duration = Toast.LENGTH_LONG;
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
-		Log.i("OnStop Called","index");*/
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

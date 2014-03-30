@@ -1,6 +1,7 @@
 package com.infintyloop.buckeyebuilder;
-import android.app.Fragment;
+//import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 public class BuildFragment extends Fragment{
 	final static String ARG_POSITION = "position";
-	int mCurrentPosition = -1;
+	int mCurrentPosition =1;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -23,11 +24,11 @@ public class BuildFragment extends Fragment{
 	public void onStart()
 	{
 		super.onStart();
-		IUser user = ((MainActivity)getActivity()).user;
+	/*	IUser user = getActivity();
 		int money= user.GetMoney();
 		int cap=user.GetCap();
 		TextView moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
-		moneyView.setText(money+"$ /"+cap+"$");
+		moneyView.setText(money+"$ /"+cap+"$");*/
 		
 		
 	}

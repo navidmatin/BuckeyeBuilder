@@ -57,20 +57,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infintyloop.buckeyebuilder.LoginActivity" />
         </activity>
-        <activity
-            android:name="com.infintyloop.buckeyebuilder.BuildingDetailActivity"
-            android:label="@string/title_activity_building_detail" >
-        </activity>
-        
-        <activity
-            android:name="com.infintyloop.buckeyebuilder.BuildPlanActivity"
-            android:label="@string/title_activity_build_plan" >
-              
-        </activity>
-        <activity
-            android:name="com.infintyloop.buckeyebuilder.TestActivity"
-            android:label="@string/title_activity_test" >
-        </activity>
     </application>
 
 </manifest>
