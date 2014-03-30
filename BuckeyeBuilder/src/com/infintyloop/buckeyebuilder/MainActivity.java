@@ -60,6 +60,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  			
  		});
  		
+ 		/* Data and Back-end Processes */
+ 		//Bundle b = getIntent().getExtras();
  		Intent intent = getIntent();
  		user = intent.getParcelableExtra("User");
  		//buildingList = intent.getParcelableArrayExtra("BuildingList");
