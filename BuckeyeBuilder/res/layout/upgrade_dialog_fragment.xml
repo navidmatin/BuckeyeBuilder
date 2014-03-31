@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TableRow android:paddingTop="20dp"
+     		android:layout_marginLeft="20dp"
+     		android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/upgrade_building_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/Title_blue"
+            android:gravity="center" />
+    </TableRow>
+    <TableRow android:paddingTop="20dp"
+     		android:layout_marginLeft="20dp"
+     		android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/upgrade_building_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </TableRow>
+    <TableRow  android:paddingTop="20dp"
+     		android:layout_marginLeft="20dp"
+     		android:layout_marginRight="20dp">
+        <TextView
+            android:id="@+id/upgrade_infp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Info:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/Title_blue"
+            android:gravity="center" />
+    </TableRow>
+   <TableRow android:paddingTop="20dp"
+     		android:layout_marginLeft="20dp"
+     		android:layout_marginRight="20dp" >
+		<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="level1"
+            android:textColor="@color/Title_blue"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView
+		    android:id="@+id/upgrade_level1_cost"
+		    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView
+		    android:id="@+id/upgrade_level1_gen_rate"
+		    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+    </TableRow>
+      <TableRow android:paddingTop="20dp"
+     		android:layout_marginLeft="20dp"
+     		android:layout_marginRight="20dp" >
+		<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="level2"
+            android:textColor="@color/Title_blue"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView
+		    android:id="@+id/upgrade_level2_cost"
+		    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView
+		    android:id="@+id/upgrade_level2_gen_rate"
+		    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+    </TableRow>
+      <TableRow android:paddingTop="20dp"
+     		android:layout_marginLeft="20dp"
+     		android:layout_marginRight="20dp" >
+		<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="level3"
+            android:textColor="@color/Title_blue"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView
+		    android:id="@+id/upgrade_level3_cost"
+		    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView
+		    android:id="@+id/upgrade_level3_gen_rate"
+		    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+    </TableRow>
+    
+    
+
+</TableLayout>
