@@ -34,7 +34,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyB-tpfwcxN0EiUKGdtWa6tT46wsACQ8dlE" />
+            android:value="AIzaSyBSR3NrMaFzmuNqVQoVSiOsOMGrVxcJ4Fo" />
 
         <activity
             android:name="com.infintyloop.buckeyebuilder.LoginActivity"

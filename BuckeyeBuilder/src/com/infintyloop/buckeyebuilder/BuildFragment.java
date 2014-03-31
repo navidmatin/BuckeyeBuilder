@@ -36,10 +36,10 @@ public class BuildFragment extends Fragment{
 		super.onStart();
 		mapFragment = new SupportMapFragment();
 		userInfoFragment = new UserInfoFragment();
-		FragmentTransaction transaction1 = getChildFragmentManager().beginTransaction();
-		transaction1.add(R.id.map_fragment, mapFragment).commit();
-		FragmentTransaction transaction2 = getChildFragmentManager().beginTransaction();
-		transaction2.add(R.id.user_info_fragment_placeholder, userInfoFragment).commit();	
+		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+		transaction.add(R.id.map_fragment, mapFragment);
+		transaction.add(R.id.user_info_fragment_placeholder, userInfoFragment);	
+		transaction.commit();
 		/*
 		IUser user = ((MainActivity)getActivity()).user;
 		int money= user.GetMoney();
