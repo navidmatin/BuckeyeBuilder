@@ -26,6 +26,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
 
 	@Override
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
  		setContentView(R.layout.activity_main);
@@ -65,6 +66,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  			
  		});
  		
+
  		/* Data and Back-end Processes */
  		Intent intent = getIntent();
  		user = intent.getParcelableExtra("User");
@@ -80,6 +82,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
