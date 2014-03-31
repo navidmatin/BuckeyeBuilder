@@ -202,7 +202,7 @@ public class LoginActivity extends Activity {
 		// and levels of buildings owned
 		user.GiveValuesToUser(musername, new int[] {20,30,20}, 10000, 5000);
         intent.putExtra("User", user);
-		myFactory.AssignLevels(new int[] {0,0,0}, user); //HardCoded Building Generator
+		myFactory.AssignLevels(new int[] {2,1,0}, user); //HardCoded Building Generator
 		ArrayList<IBuilding> myBuildings = myFactory.ReturnBuildingList();
 		intent.putExtra("BuildingList", myBuildings);
 	}

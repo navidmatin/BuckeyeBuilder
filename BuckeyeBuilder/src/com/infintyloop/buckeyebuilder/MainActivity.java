@@ -1,5 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 
+import java.util.ArrayList;
+
 import com.infinityloop.buckeyebuilder.adapter.TabsPagerAdapter;
 
 import android.os.Bundle;
@@ -8,15 +10,18 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.View;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	IUser user = new User();
+	ArrayList<IBuilding> buildingList = new ArrayList<IBuilding>();
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
+	
 	//Tab names
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
 
@@ -61,12 +66,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		});
  		
  		/* Data and Back-end Processes */
- 		//Bundle b = getIntent().getExtras();
  		Intent intent = getIntent();
  		user = intent.getParcelableExtra("User");
- 		//buildingList = intent.getParcelableArrayExtra("BuildingList");
+ 		buildingList = intent.getParcelableArrayListExtra("BuildingList");
 	}
-
+	public void sendMessage(View view){
+		 		Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+		 		startActivity(intent);
+		 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

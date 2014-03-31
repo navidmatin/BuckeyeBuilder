@@ -1,5 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 
+import java.util.ArrayList;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -16,7 +18,7 @@ public interface IUser extends Parcelable {
 	public void BuyWood(int woodRequest);
 	public void UpgradeBuilding(IBuilding building);
 	public void MakeMoney(int amount);
-	public int CalculateCurrentGenRate(IBuilding[] buildingList);
+	public int CalculateCurrentGenRate(ArrayList<IBuilding> buildingList);
 	public void Walk();
 	public void writeToParcel(Parcel dest, int flags);
 	public int describeContents();

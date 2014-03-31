@@ -1,4 +1,6 @@
 package com.infintyloop.buckeyebuilder;
+import java.util.ArrayList;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -89,12 +91,12 @@ public class User implements IUser {
 		}
 	}
 	
-	public int CalculateCurrentGenRate(IBuilding[] buildingList)
+	public int CalculateCurrentGenRate(ArrayList<IBuilding> buildingList)
 	{
 		int genRate=0;
-		for(int i=0;i<buildingList.length;i++)
+		for(IBuilding building : buildingList)
 		{
-			genRate+=buildingList[i].GetCurrentGenRate();
+			genRate+=building.GetCurrentGenRate();
 		}
 		return genRate;
 	}

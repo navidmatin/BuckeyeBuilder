@@ -1,5 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,6 +26,11 @@ public class UserInfoFragment extends Fragment {
 		int cap=user.GetCap();
 		TextView moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
 		moneyView.setText(money+"$ /"+cap+"$");
+		
+		ArrayList<IBuilding> buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
+		int genRate=user.CalculateCurrentGenRate(buildingList);
+		TextView genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
+		genRateView.setText(genRate+"$"+ " per hour");
 		
 		
 	}
