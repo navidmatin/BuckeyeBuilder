@@ -11,12 +11,8 @@ public class UpgradeDialogFragment extends DialogFragment {
 	
 	private TextView buildingName;
 	private TextView description;
-	private TextView level1Cost;
-	private TextView level2Cost;
-	private TextView level3Cost;
-	private TextView level1GenRate;
-	private TextView level2GenRate;
-	private TextView level3GenRate;
+	private TextView levelCost;
+	private TextView levelGenRate;
 	private Bundle bundle;
 	private IBuilding building;
 	public UpgradeDialogFragment(){
@@ -29,12 +25,8 @@ public class UpgradeDialogFragment extends DialogFragment {
 		
 		buildingName= (TextView) view.findViewById(R.id.upgrade_building_title);
 		description= (TextView) view.findViewById(R.id.upgrade_building_description);
-		level1Cost= (TextView) view.findViewById(R.id.upgrade_level1_cost);
-		level2Cost= (TextView) view.findViewById(R.id.upgrade_level2_cost);
-		level3Cost= (TextView) view.findViewById(R.id.upgrade_level3_cost);
-		level1GenRate= (TextView) view.findViewById(R.id.upgrade_level1_gen_rate);
-		level2GenRate= (TextView) view.findViewById(R.id.upgrade_level2_gen_rate);
-		level3GenRate= (TextView) view.findViewById(R.id.upgrade_level3_gen_rate);
+		levelCost= (TextView) view.findViewById(R.id.upgrade_level_cost);
+		levelGenRate= (TextView) view.findViewById(R.id.upgrade_level_gen_rate);
 	
 		return view;	
 	}
@@ -48,6 +40,8 @@ public class UpgradeDialogFragment extends DialogFragment {
 		
 		buildingName.setText(building.GetName());
 		description.setText(building.GetDescription());
+		levelCost.setText(building.GetCurrentCost());
+		levelGenRate.setText(building.GetCurrentGenRate());
 		
 		
 		

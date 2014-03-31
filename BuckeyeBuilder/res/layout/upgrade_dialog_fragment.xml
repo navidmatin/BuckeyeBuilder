@@ -24,11 +24,11 @@
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>
+    
     <TableRow  android:paddingTop="20dp"
      		android:layout_marginLeft="20dp"
      		android:layout_marginRight="20dp">
         <TextView
-            android:id="@+id/upgrade_infp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Info:"
@@ -36,6 +36,7 @@
             android:textColor="@color/Title_blue"
             android:gravity="center" />
     </TableRow>
+    
    <TableRow android:paddingTop="20dp"
      		android:layout_marginLeft="20dp"
      		android:layout_marginRight="20dp" >
@@ -43,72 +44,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="level1"
             android:textColor="@color/Title_blue"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 		<TextView
-		    android:id="@+id/upgrade_level1_cost"
+		    android:id="@+id/upgrade_level_cost"
 		    android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 		<TextView
-		    android:id="@+id/upgrade_level1_gen_rate"
+		    android:id="@+id/upgrade_level_gen_rate"
 		    android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAppearance="?android:attr/textAppearanceMedium" />
      
     </TableRow>
-      <TableRow android:paddingTop="20dp"
-     		android:layout_marginLeft="20dp"
-     		android:layout_marginRight="20dp" >
-		<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="level2"
-            android:textColor="@color/Title_blue"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-		<TextView
-		    android:id="@+id/upgrade_level2_cost"
-		    android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-		<TextView
-		    android:id="@+id/upgrade_level2_gen_rate"
-		    android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-     
-    </TableRow>
-      <TableRow android:paddingTop="20dp"
-     		android:layout_marginLeft="20dp"
-     		android:layout_marginRight="20dp" >
-		<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="level3"
-            android:textColor="@color/Title_blue"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-		<TextView
-		    android:id="@+id/upgrade_level3_cost"
-		    android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-		<TextView
-		    android:id="@+id/upgrade_level3_gen_rate"
-		    android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-     
-    </TableRow>
-    
-    
+
+   <TableRow
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="20dp"
+       android:layout_marginRight="20dp"
+       android:paddingTop="20dp" >
+
+       <!--  Button
+           android:id="@+id/upgrade_button"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_weight="1"
+           android:background="@drawable/buttonshape"
+           android:text="Upgrade"
+           android:textSize="32sp" /-->
+
+   </TableRow>
 
 </TableLayout>

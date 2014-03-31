@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class ManageFragment extends Fragment {
-	Bundle bundle;
 	ArrayList<IBuilding> buildingList;
 	LinearLayout linearLayout;
 	@Override
@@ -39,30 +38,40 @@ public class ManageFragment extends Fragment {
 					LayoutParams params = new  LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 					button.setLayoutParams(params);
 					button.setText(building.GetName());
-					//Bundling up the building information
-					bundle = new Bundle();
-					bundle.putParcelable("Building", building);
 					
-					button.setOnClickListener(new OnClickListener(){
-		
-						@Override
-						public void onClick(View v) {
-							
-							FragmentManager fm= getFragmentManager();
-							UpgradeDialogFragment upgradeDialog = new UpgradeDialogFragment();
-							upgradeDialog.setArguments(bundle);
-							upgradeDialog.show(fm, "upgrade_dialog_fragment");
-							
-							
-						}
-						
-					});
+					button.setOnClickListener(showUpgradeFragment(button));
 					linearLayout.addView(button);	
 			}
 		}
 	}
+	private View.OnClickListener showUpgradeFragment(final Button button)
+	{
+		return new View.OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				//Bundling up information related to that building
+				Bundle bundle = new Bundle();
+				bundle.putParcelable("Building", BuildingFactory.FindBuilding((String)button.getText(), buildingList)); //finding building name based on the Button name
+				//Starting up the Dialog Fragment
+				FragmentManager fm= getFragmentManager();
+				UpgradeDialogFragment upgradeDialog = new UpgradeDialogFragment();
+				upgradeDialog.setArguments(bundle);
+				upgradeDialog.show(fm, "upgrade_dialog_fragment");
+				
+			}
+		};
+		
+	}
+	/*private void showUpgradeFragment()
+	{
+		FragmentManager fm= getFragmentManager();
+		UpgradeDialogFragment upgradeDialog = new UpgradeDialogFragment();
+		upgradeDialog.setArguments(bundle);
+		upgradeDialog.show(fm, "upgrade_dialog_fragment");
+	}*/
 	@Override
-	public void onPause(){
+	public void onStop(){
 		super.onPause();
 		linearLayout.removeAllViewsInLayout();
 	}

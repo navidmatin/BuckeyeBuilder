@@ -12,6 +12,7 @@ public class BuildingFactory{
 	public ArrayList<IBuilding> listOfBuildings = new ArrayList<IBuilding>();
 	private int paycheck;
 	private IUser user;
+	
 	public void MakeBuildings(){
 		for (int i=0;i < BuildingNames.length; i++){
 			IBuilding temp= new Building();
@@ -19,6 +20,7 @@ public class BuildingFactory{
 			listOfBuildings.add(temp);
 		}
 	}
+	
 	public void AssignLevels(int[] levels, IUser theUser){
 		user = theUser;
 		for (int i=0; i < levels.length; i++){
@@ -28,9 +30,11 @@ public class BuildingFactory{
 			listOfBuildings.set(i, x);
 		}		
 	}
+	
 	public ArrayList<IBuilding> ReturnBuildingList(){
 		return listOfBuildings;
 	}
+	
 	public void PayUser(){
 		paycheck = 0;
 		for (int i = 0; i < BuildingNames.length; i++){
@@ -40,5 +44,17 @@ public class BuildingFactory{
 			}
 		}
 		user.MakeMoney(paycheck);
+	}
+	
+	public static IBuilding FindBuilding(String buildingName, ArrayList<IBuilding> buildingList)
+	{
+		
+		for(IBuilding building: buildingList)
+		{
+			if(building.GetName()==buildingName)
+				return building;
+		}
+		return null;
+		
 	}
 }
