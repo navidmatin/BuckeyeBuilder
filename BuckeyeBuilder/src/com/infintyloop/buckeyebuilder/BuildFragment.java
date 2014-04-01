@@ -57,14 +57,17 @@ public class BuildFragment extends Fragment{
 	        if (map != null) {
 	        	//CameraPosition camPosition= new CameraPosition(null, mCurrentPosition, mCurrentPosition, mCurrentPosition);
 	            GoogleMapOptions options = new GoogleMapOptions();
-	            options.mapType(GoogleMap.MAP_TYPE_SATELLITE)
+	            options.mapType(GoogleMap.MAP_TYPE_NORMAL)
 	            	.compassEnabled(true)
 	            	.rotateGesturesEnabled(false)
 	            	.tiltGesturesEnabled(true)
 	            	.zoomGesturesEnabled(true);
-	            SupportMapFragment.newInstance(options);
-	            map.setPadding(10, 60, 10, 10);
-	            	
+	            mapFragment=SupportMapFragment.newInstance(options);
+	            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+	            transaction.remove(mapFragment);
+	            transaction.add(R.id.map_fragment,  mapFragment);
+	            transaction.commit();
+	            
 
 	        }
 	    }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="Title_blue">#0099CC</color>
+    <color name="opaque_back">#FFFFFF</color>
     
 </resources>
