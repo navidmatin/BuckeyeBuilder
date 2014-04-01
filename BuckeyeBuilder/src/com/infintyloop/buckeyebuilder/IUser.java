@@ -10,7 +10,9 @@ import android.os.Parcelable;
 public interface IUser extends Parcelable {
 	public void GiveValuesToUser(String userName,int[] amounts, int cap, int cash);
 	public String GetUsername();
-	public int[] GetAmounts();
+	public int GetMetalAmount();
+	public int GetStoneAmount();
+	public int GetWoodAmount();
 	public int GetMoney();
 	public int GetCap();
 	public void BuyMetal(int metalRequest);

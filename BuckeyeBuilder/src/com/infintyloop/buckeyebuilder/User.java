@@ -9,7 +9,7 @@ import com.infintyloop.buckeyebuilder.Market;
 public class User implements IUser {
 
 	private String name;
-	private int materialAmounts[] = new int[3];
+	private int metalAmount,stoneAmount,woodAmount;
 	private int moneyCap;
 	// private Location location;
 	private int money;
@@ -27,9 +27,9 @@ public class User implements IUser {
 	
 	public void GiveValuesToUser(String userName,int[] amounts, int cap, int cash){
 		name = userName;
-		materialAmounts[0] = amounts[0];
-		materialAmounts[1] = amounts[1];
-		materialAmounts[2] = amounts[2];
+		metalAmount = amounts[0];
+		stoneAmount = amounts[1];
+		woodAmount = amounts[2];
 		moneyCap = cap;
 		money = cash;
 		// somehow set value to all variables
@@ -40,10 +40,17 @@ public class User implements IUser {
 	}
 	
 	  
-	public int[] GetAmounts(){
-		return materialAmounts;
+	public int GetMetalAmount(){
+		return metalAmount;
 	}
 	
+	public int GetStoneAmount(){
+		return stoneAmount;
+	}
+	
+	public int GetWoodAmount(){
+		return woodAmount;
+	}
 	  
 	public int GetMoney(){
 		return money;
@@ -58,7 +65,7 @@ public class User implements IUser {
 	public void BuyMetal(int metalRequest) {
 		if(money > myMarket.Buy_Metal(metalRequest)){
 			money = money - myMarket.Buy_Metal(metalRequest);
-			materialAmounts[0] = materialAmounts[0] + metalRequest;
+			metalAmount = metalAmount + metalRequest;
 		}
 	}
 	
@@ -66,7 +73,7 @@ public class User implements IUser {
 	public void BuyStone(int stoneRequest) {
 		if(money > myMarket.Buy_Stone(stoneRequest)){
 			money = money - myMarket.Buy_Stone(stoneRequest);
-			materialAmounts[1] = materialAmounts[1] + stoneRequest;
+			stoneAmount = stoneAmount + stoneRequest;
 		}
 	}
 	
@@ -74,7 +81,7 @@ public class User implements IUser {
 	public void BuyWood(int woodRequest) {
 		if(money > myMarket.Buy_Wood(woodRequest)){
 			money = money - myMarket.Buy_Wood(woodRequest);
-			materialAmounts[2] = materialAmounts[2] + woodRequest;
+			woodAmount = woodAmount + woodRequest;
 		}
 	}
 	
@@ -82,11 +89,11 @@ public class User implements IUser {
 	public void UpgradeBuilding(IBuilding buildingName) {
 		//NEED TO RE-check the logic, I changed it based on the changes I made to the Building
 		int requirements = buildingName.GetCurrentCost();
-		if(materialAmounts[0] > requirements && materialAmounts[1] > requirements && materialAmounts[2] > requirements){
+		if(metalAmount > requirements && stoneAmount > requirements && woodAmount > requirements){
 			if(buildingName.Upgrade()){
-				for(int i = 0; i < 3; i++){
-					materialAmounts[i] = materialAmounts[i] - requirements;
-				}
+				metalAmount = metalAmount - requirements;
+				stoneAmount = stoneAmount - requirements;
+				stoneAmount = stoneAmount - requirements;
 			}
 		}
 	}
@@ -121,7 +128,9 @@ public class User implements IUser {
 	}
 	private void readFrmParce(Parcel in) {		
 			name=in.readString();
-			materialAmounts=in.createIntArray();
+			metalAmount = in.readInt();
+			stoneAmount = in.readInt();
+			woodAmount = in.readInt();
 			moneyCap=in.readInt();
 			money=in.readInt();	
 			myMarket = in.readParcelable(Market.class.getClassLoader());
@@ -129,7 +138,9 @@ public class User implements IUser {
 	@Override 
 	public void writeToParcel(Parcel dest, int flags) {		
 		dest.writeString(name);
-		dest.writeIntArray(materialAmounts);
+		dest.writeInt(metalAmount);
+		dest.writeInt(stoneAmount);
+		dest.writeInt(woodAmount);
 		dest.writeInt(moneyCap);
 		dest.writeInt(money);
 		dest.writeParcelable(myMarket, flags);
