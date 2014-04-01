@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buildplan_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <Button
-        android:id="@+id/dreese_button"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
-		            android:onClick="sendMessage"
-        android:text="Dreese Lab" />
-
-    <Button
-        android:id="@+id/caldwell_button"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
-		    		            android:onClick="sendMessage"
-		    
-        android:text="Caldwell Lab" />
-
-    <Button
-        android:id="@+id/hitchcock_button"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
-		    		            android:onClick="sendMessage"
-		    
-        android:text="Hitchcock Hall" />
-
-    <Button
-        android:id="@+id/bolz_button"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
-		    		            android:onClick="sendMessage"
-		    
-        android:text="Bolz Hall" />
-
 </LinearLayout>
