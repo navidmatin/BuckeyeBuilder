@@ -2,9 +2,13 @@ package com.infintyloop.buckeyebuilder;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class UpgradeDialogFragment extends DialogFragment {
@@ -29,6 +33,15 @@ public class UpgradeDialogFragment extends DialogFragment {
 		level= (TextView) view.findViewById(R.id.upgrade_level);
 		levelCost= (TextView) view.findViewById(R.id.upgrade_level_cost);
 		levelGenRate= (TextView) view.findViewById(R.id.upgrade_level_gen_rate);
+		Button cancelBtn = (Button) view.findViewById(R.id.upgrade_cancel_button);
+		cancelBtn.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				getDialog().dismiss();
+			}
+			
+		});
 	
 		return view;	
 	}
