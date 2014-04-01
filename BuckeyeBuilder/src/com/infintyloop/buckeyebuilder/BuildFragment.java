@@ -1,13 +1,15 @@
 package com.infintyloop.buckeyebuilder;
 //import android.app.Fragment;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,43 +30,44 @@ public class BuildFragment extends Fragment{
 			mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
 		}
 		View viewRoot= inflater.inflate(R.layout.build_fragment, container,false);
+		
+		//For now I'm just using the SupportMapFragment() and not GoogleMapFragment custom fragment
+		mapFragment = new  SupportMapFragment();
+		userInfoFragment = new UserInfoFragment();
+		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+		transaction.add(R.id.map_fragment, mapFragment);
+		transaction.add(R.id.user_info_fragment_placeholder, userInfoFragment);	
+		transaction.commit();
+		
 		return viewRoot;
 	}
 	@Override
 	public void onStart()
 	{
 		super.onStart();
-		mapFragment = new SupportMapFragment();
-		userInfoFragment = new UserInfoFragment();
-		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-		transaction.add(R.id.map_fragment, mapFragment);
-		transaction.add(R.id.user_info_fragment_placeholder, userInfoFragment);	
-		transaction.commit();
-		/*
-		IUser user = ((MainActivity)getActivity()).user;
-		int money= user.GetMoney();
-		int cap=user.GetCap();
-		TextView moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
-		moneyView.setText(money+"$ /"+cap+"$");*/
-		
-		
+		setUpMapIfNeeded();
+		//map=((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment)).getMap();	
 	}
-	/*@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		FragmentManager fm = getChildFragmentManager();
-		mapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map_container);
-		if (mapFragment == null) {
-			mapFragment = SupportMapFragment.newInstance();
-			fm.beginTransaction().replace(R.id.map_container,mapFragment).commit();
-		}
+	private void setUpMapIfNeeded() {
+		 // Do a null check to confirm that we have not already instantiated the map.
+	    if (map == null) {
+	        map = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment))
+	                            .getMap();
+	        // Check if we were successful in obtaining the map.
+	        if (map != null) {
+	        	//CameraPosition camPosition= new CameraPosition(null, mCurrentPosition, mCurrentPosition, mCurrentPosition);
+	            GoogleMapOptions options = new GoogleMapOptions();
+	            options.mapType(GoogleMap.MAP_TYPE_SATELLITE)
+	            	.compassEnabled(true)
+	            	.rotateGesturesEnabled(false)
+	            	.tiltGesturesEnabled(true)
+	            	.zoomGesturesEnabled(true);
+	            SupportMapFragment.newInstance(options);
+	            map.setPadding(10, 60, 10, 10);
+	            	
+
+	        }
+	    }
+	
 	}
-	@Override
-	public void onResume() {
-		super.onResume();
-		if(map == null) {
-			map = mapFragment.getMap();
-			map.addMarker(new MarkerOptions().position(new LatLng(0, 0)));
-		}
-	}*/
 }
