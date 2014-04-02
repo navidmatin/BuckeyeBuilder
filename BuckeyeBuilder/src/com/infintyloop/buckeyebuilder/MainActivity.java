@@ -21,6 +21,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
+	GPSManager gps= new GPSManager(this);
 	
 	//Tab names
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
@@ -37,7 +38,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
  		
  		viewPager.setAdapter(mAdapter);
- 		actionBar.setHomeButtonEnabled(false);
+ 		//actionBar.setHomeButtonEnabled(false);
  		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
  		
  		//Adding Tabs
