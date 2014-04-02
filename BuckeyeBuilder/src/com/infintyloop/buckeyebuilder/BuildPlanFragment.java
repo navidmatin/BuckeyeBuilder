@@ -61,9 +61,9 @@ public class BuildPlanFragment extends Fragment {
 				bundle.putParcelable("Building", BuildingFactory.FindBuilding((String)button.getText(), buildingList)); //finding building name based on the Button name
 				//Starting up the Dialog Fragment
 				FragmentManager fm= getFragmentManager();
-				UpgradeDialogFragment upgradeDialog = new UpgradeDialogFragment();
-				upgradeDialog.setArguments(bundle);
-				upgradeDialog.show(fm, "upgrade_dialog_fragment");
+				BuildingDetailFragment buildingDetail = new BuildingDetailFragment();
+				buildingDetail.setArguments(bundle);
+				buildingDetail.show(fm, "buildplan_fragment");
 				
 			}
 		};

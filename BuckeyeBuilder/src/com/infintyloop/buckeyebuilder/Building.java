@@ -23,7 +23,7 @@ public class Building implements IBuilding {
 	public void GiveValuesToBuilding(String theName, int _cost, int theGenRate, String theDescription) {
 		// somehow need to set a value to all variables...
 		name = theName;
-		cost=_cost; //Cost of the leve 0 to 1 upgrade
+		cost=_cost; //Cost of the level 0 to 1 upgrade
 		genRate=theGenRate; //The initial gen rate
 		description = theDescription;
 	}
@@ -56,17 +56,14 @@ public class Building implements IBuilding {
 		return currentCost;
 	}
 
-	
 	public String GetDescription(){
 		return description;
 	}
-	
 	
 	public int GetCurrentGenRate() {
 		
 		return (int) (genRate*level*1.5); //Outputting the current generation rate based on the level of the buildings
 	}
-	
 	
 	public boolean Upgrade() {
 		if(level < 2){
