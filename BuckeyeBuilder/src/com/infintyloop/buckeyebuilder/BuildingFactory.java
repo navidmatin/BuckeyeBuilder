@@ -5,10 +5,10 @@ import com.infintyloop.buckeyebuilder.IBuilding;
 import com.infintyloop.buckeyebuilder.IUser;
 
 public class BuildingFactory{
-	private String[] BuildingNames = {"Hitchcock Hall","Bolz Hall","Dreese Laboratories","Scott Laboratories"};
-	private int[] Cost = {100,200,300,200};
-	private int[] genRates = {20,25,30,25};
-	private String[] description = {"building 1", "building 2", "building 3", "building 4"};
+	private String[] BuildingNames = {"Hitchcock Hall","Bolz Hall","Dreese Laboratories","Scott Laboratories","Knowlton Hall", "Koffolt Laboratories","Lincoln Tower","Jennings Hall"};
+	private int[] Cost = {100,200,300,200,300,400,500,100};
+	private int[] genRates = {20,25,30,25,10,10,70,80};
+	private String[] description = {"building 1", "building 2", "building 3", "building 4","building 5","building 6", "building 7", "building 8"};
 	public ArrayList<IBuilding> listOfBuildings = new ArrayList<IBuilding>();
 	private int paycheck;
 	private IUser user;
