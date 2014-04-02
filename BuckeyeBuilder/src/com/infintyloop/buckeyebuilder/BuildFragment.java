@@ -8,6 +8,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,6 +24,7 @@ public class BuildFragment extends Fragment{
 	private GoogleMap map;
 	private SupportMapFragment mapFragment;
 	private Fragment userInfoFragment;
+	private View userInfoFragmentView;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -33,19 +35,28 @@ public class BuildFragment extends Fragment{
 		
 		//For now I'm just using the SupportMapFragment() and not GoogleMapFragment custom fragment
 		mapFragment = new  SupportMapFragment();
+		//Map stuff
+		 GoogleMapOptions options = new GoogleMapOptions();
+         options.mapType(GoogleMap.MAP_TYPE_NORMAL)
+         	.compassEnabled(true)
+         	.rotateGesturesEnabled(false)
+         	.tiltGesturesEnabled(true)
+         	.zoomGesturesEnabled(true);
+         mapFragment=SupportMapFragment.newInstance(options);
 		userInfoFragment = new UserInfoFragment();
 		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 		transaction.add(R.id.map_fragment, mapFragment);
 		transaction.add(R.id.user_info_fragment_placeholder, userInfoFragment);	
 		transaction.commit();
-		
 		return viewRoot;
 	}
 	@Override
 	public void onStart()
 	{
 		super.onStart();
+		userInfoFragmentView=userInfoFragment.getView();
 		setUpMapIfNeeded();
+		
 		//map=((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment)).getMap();	
 	}
 	private void setUpMapIfNeeded() {
@@ -56,19 +67,10 @@ public class BuildFragment extends Fragment{
 	        // Check if we were successful in obtaining the map.
 	        if (map != null) {
 	        	//CameraPosition camPosition= new CameraPosition(null, mCurrentPosition, mCurrentPosition, mCurrentPosition);
-	            GoogleMapOptions options = new GoogleMapOptions();
-	            options.mapType(GoogleMap.MAP_TYPE_NORMAL)
-	            	.compassEnabled(true)
-	            	.rotateGesturesEnabled(false)
-	            	.tiltGesturesEnabled(true)
-	            	.zoomGesturesEnabled(true);
-	            mapFragment=SupportMapFragment.newInstance(options);
-	            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-	            transaction.remove(mapFragment);
-	            transaction.add(R.id.map_fragment,  mapFragment);
-	            transaction.commit();
+	        	int i = userInfoFragmentView.getHeight();
+	        	i=userInfoFragmentView.getMeasuredHeight();
+	        	map.setMyLocationEnabled(true);
 	            
-
 	        }
 	    }
 	
