@@ -33,12 +33,15 @@ public class Building implements IBuilding {
 	{
 		return radius;
 	}
-	public void GiveValuesToBuilding(String theName, int _cost, int theGenRate, String theDescription) {
+	public void GiveValuesToBuilding(String theName, int _cost, int theGenRate, String theDescription, double longitude, double latitude, double rad) {
 		// somehow need to set a value to all variables...
 		name = theName;
 		cost=_cost; //Cost of the level 0 to 1 upgrade
 		genRate=theGenRate; //The initial gen rate
 		description = theDescription;
+		lat = latitude;
+		longi = longitude;
+		radius = rad;
 	}
 
 	public void SetLevel(int incomingLevel){

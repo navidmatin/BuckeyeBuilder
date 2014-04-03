@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public interface IBuilding extends Parcelable {
-	public void GiveValuesToBuilding(String theName, int cost, int theGenRates, String theDescription);
+	public void GiveValuesToBuilding(String theName, int cost, int theGenRates, String theDescription, double longitude, double latitude, double rad);
 	public void SetLevel(int incomingLevel);
 	public String GetName();
 	public int GetLevel();
