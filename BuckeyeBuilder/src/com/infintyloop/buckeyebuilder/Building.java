@@ -9,7 +9,9 @@ public class Building implements IBuilding {
 	public int level;
 	private int cost; // Cost of level 0 to 1 upgrade
 	private int genRate;
-	//private Location location;
+	private double lat;
+	private double longi;
+	private double radius;
 	//private double radius;
 	private int currentCost;
 	private String description;
@@ -19,7 +21,18 @@ public class Building implements IBuilding {
 	public Building(Parcel in){
 		readFromParcel(in);
 	}
-	
+	public double GetLatitude()
+	{
+		return lat;
+	}
+	public double GetLongitude()
+	{
+		return longi;
+	}
+	public double GetRadius()
+	{
+		return radius;
+	}
 	public void GiveValuesToBuilding(String theName, int _cost, int theGenRate, String theDescription) {
 		// somehow need to set a value to all variables...
 		name = theName;

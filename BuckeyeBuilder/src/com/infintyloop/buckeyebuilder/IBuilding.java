@@ -15,4 +15,7 @@ public interface IBuilding extends Parcelable {
 	public void Upgrade(IUser user);
 	public void writeToParcel(Parcel dest, int flags);
 	public int describeContents();
+	public double GetRadius();
+	public double GetLatitude();
+	public double GetLongitude();
 }
