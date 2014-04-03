@@ -65,21 +65,18 @@ public class Building implements IBuilding {
 		return (int) (genRate*level*1.5); //Outputting the current generation rate based on the level of the buildings
 	}
 	
-	public boolean Upgrade() {
-		if(level < 2){
-			level = level + 1;
-			return true;
+	public void Upgrade(IUser user) {
+		if(level<3){
+			int _cost=this.GetCurrentCost();
+			if(user.GetMoney()>=_cost)
+			{
+				user.Pay(_cost);
+				level++;
+			}
 		}
-		else {
-		// error message: No more available upgrades!
-			return false;
+		else{
+			//Find a way to show an alert
 		}
-	}
-	
-	
-	
-	public int GenerateMoney(){
-		return GetCurrentGenRate();
 	}
 
 	@Override

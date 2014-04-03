@@ -41,19 +41,15 @@ public class User implements IUser {
 		return money;
 	}
 	
+	public void Pay(int amount){
+		if(amount<=money)
+		{
+			money=money-amount;
+		}
+	}
 	  
 	public int GetCap(){
 		return moneyCap;
-	}
-
-	public void UpgradeBuilding(IBuilding buildingName) {
-		//NEED TO RE-check the logic, I changed it based on the changes I made to the Building
-		int cost = buildingName.GetCurrentCost();
-		if(money > cost){
-			if(buildingName.Upgrade()){
-				money = money - cost;
-			}
-		}
 	}
 	
 	public int CalculateCurrentGenRate(ArrayList<IBuilding> buildingList)

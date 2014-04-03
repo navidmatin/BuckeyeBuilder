@@ -11,8 +11,8 @@ public interface IUser extends Parcelable {
 	public void GiveValuesToUser(String userName,int cap, int cash);
 	public String GetUsername();
 	public int GetMoney();
+	public void Pay(int amount);
 	public int GetCap();
-	public void UpgradeBuilding(IBuilding building);
 	public void MakeMoney(int amount);
 	public int CalculateCurrentGenRate(ArrayList<IBuilding> buildingList);
 	public void Walk();

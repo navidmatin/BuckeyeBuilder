@@ -40,7 +40,7 @@ public class BuildingFactory{
 		for (int i = 0; i < BuildingNames.length; i++){
 			IBuilding temp = listOfBuildings.get(i); 
 			if(temp.GetLevel() > 0){
-				paycheck = paycheck + temp.GenerateMoney();
+				paycheck = paycheck + temp.GetCurrentGenRate();
 			}
 		}
 		user.MakeMoney(paycheck);

@@ -20,6 +20,8 @@ public class UpgradeDialogFragment extends DialogFragment {
 	private TextView level;
 	private Bundle bundle;
 	private IBuilding building;
+	private IUser user;
+	private View _view;
 	public UpgradeDialogFragment(){
 	}
 	
@@ -42,7 +44,7 @@ public class UpgradeDialogFragment extends DialogFragment {
 			}
 			
 		});
-	
+		_view=view;
 		return view;	
 	}
 	
@@ -52,6 +54,7 @@ public class UpgradeDialogFragment extends DialogFragment {
 		super.onResume();
 		bundle=this.getArguments();
 		building=bundle.getParcelable("Building");
+		user=bundle.getParcelable("User");
 		
 		buildingName.setText(building.GetName());
 		description.setText(building.GetDescription());
@@ -59,8 +62,33 @@ public class UpgradeDialogFragment extends DialogFragment {
 		level.setText("Level "+ Integer.toString(levelnumber));
 		levelGenRate.setText(building.GetCurrentGenRate()+"$");
 		levelCost.setText(building.GetCurrentCost()+"$");
+
+		Button upgradeBtn= (Button) _view.findViewById(R.id.upgrade_button);
+		if(building.GetLevel()>=3)
+			upgradeBtn.setEnabled(false);
+		
+		upgradeBtn.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				Upgrade();
+				getDialog().dismiss();
+			}
+			
+		});
 		
 		
-		
+	}
+	private void Upgrade(){
+		int beforeUpgradelvl=building.GetLevel();
+		if(user.GetMoney()<building.GetCurrentCost())
+		{
+			Alert.notEnoughMoneyAlert(getActivity());
+		}
+		else{
+			building.Upgrade(user);
+			if(beforeUpgradelvl==building.GetLevel())
+				Alert.upgradeFailed(getActivity());
+		}
 	}
 }

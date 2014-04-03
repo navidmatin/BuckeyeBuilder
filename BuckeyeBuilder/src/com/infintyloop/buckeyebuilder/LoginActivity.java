@@ -205,7 +205,7 @@ public class LoginActivity extends Activity {
 		myFactory.MakeBuildings();
 		// Using username, access database and fill in info for user
 		// and levels of buildings owned
-		user.GiveValuesToUser(musername, 10000, 5000);
+		user.GiveValuesToUser(musername, 1000, 300);
 		myHandler.Initialize(names, latitudes, longitudes);
         intent.putExtra("User", user);
         intent.putExtra("LocationHandler", myHandler);

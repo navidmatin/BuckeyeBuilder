@@ -1,15 +1,17 @@
 package com.infintyloop.buckeyebuilder;
 
+import java.util.ArrayList;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Market implements Parcelable{
 
-	public static void PayUser(IBuilding[] buildings, IUser user){
+	public static void PayUser(ArrayList<IBuilding> buildings, IUser user){
 		int paycheck = 0;
-		for (int i = 0; i < buildings.length; i++){
-			if(buildings[i].GetLevel() > 0){
-				paycheck = paycheck + buildings[i].GenerateMoney();
+		for (IBuilding building : buildings){
+			if(building.GetLevel() > 0){
+				paycheck = paycheck + building.GetCurrentGenRate();
 			}
 		}
 		user.MakeMoney(paycheck);

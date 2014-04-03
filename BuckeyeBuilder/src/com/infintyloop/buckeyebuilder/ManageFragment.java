@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 public class ManageFragment extends Fragment {
 	ArrayList<IBuilding> buildingList;
+	IUser user;
 	LinearLayout linearLayout;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,6 +29,7 @@ public class ManageFragment extends Fragment {
 	public void onStart(){
 		super.onStart();
 		buildingList=((MainActivity)getActivity()).buildingList;
+		user=((MainActivity)getActivity()).user;
 		for (IBuilding building : buildingList)
 		{
 			if(building.GetLevel()>0)
@@ -53,6 +55,7 @@ public class ManageFragment extends Fragment {
 				//Bundling up information related to that building
 				Bundle bundle = new Bundle();
 				bundle.putParcelable("Building", BuildingFactory.FindBuilding((String)button.getText(), buildingList)); //finding building name based on the Button name
+				bundle.putParcelable("User", user);
 				//Starting up the Dialog Fragment
 				FragmentManager fm= getFragmentManager();
 				UpgradeDialogFragment upgradeDialog = new UpgradeDialogFragment();

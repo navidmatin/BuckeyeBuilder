@@ -12,8 +12,7 @@ public interface IBuilding extends Parcelable {
 	public int GetCurrentCost();
 	public String GetDescription();
 	public int GetCurrentGenRate();
-	public boolean Upgrade();
-	public int GenerateMoney();
+	public void Upgrade(IUser user);
 	public void writeToParcel(Parcel dest, int flags);
 	public int describeContents();
 }
