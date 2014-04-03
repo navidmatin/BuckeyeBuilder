@@ -192,9 +192,6 @@ public class LoginActivity extends Activity {
 		IUser user = new User();
 		
 		LocationHandler myHandler = new LocationHandler();
-		ArrayList<String> names = new ArrayList<String>();
-		ArrayList<Double> latitudes = new ArrayList<Double>();
-		ArrayList<Double> longitudes = new ArrayList<Double>();
 		
     	SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
     	SharedPreferences.Editor editor=settings.edit();
@@ -206,11 +203,11 @@ public class LoginActivity extends Activity {
 		// Using username, access database and fill in info for user
 		// and levels of buildings owned
 		user.GiveValuesToUser(musername, 1000, 300);
-		myHandler.Initialize(names, latitudes, longitudes);
         intent.putExtra("User", user);
-        intent.putExtra("LocationHandler", myHandler);
 		myFactory.AssignLevels(new int[] {2,1,0}, user); //HardCoded Building Generator
 		ArrayList<IBuilding> myBuildings = myFactory.ReturnBuildingList();
+		myHandler.Initialize(myBuildings);
+        intent.putExtra("LocationHandler", myHandler);
 		intent.putExtra("BuildingList", myBuildings);
 	}
 	public void createNewUser() {

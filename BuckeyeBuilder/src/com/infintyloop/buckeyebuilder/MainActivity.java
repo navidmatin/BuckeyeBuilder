@@ -84,7 +84,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			localHandler.RecieveLocation(lat, lon);
 		}
 		
-	//	localHandler.Initialize(theBuildingNames, latitudes, longitudes);
+		String currentBuilding = localHandler.CheckLocationForBuilding();
 		
  		buildingList = intent.getParcelableArrayListExtra("BuildingList");
 	}

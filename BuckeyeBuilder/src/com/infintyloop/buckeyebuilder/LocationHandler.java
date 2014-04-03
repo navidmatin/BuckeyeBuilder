@@ -7,15 +7,26 @@ import android.os.Parcelable;
 public class LocationHandler  implements Parcelable{
 	private double userLongitude, userLatitude;
 	private ArrayList<Double> lats = new ArrayList<Double>();
+	private ArrayList<Double> rads = new ArrayList<Double>();
 	private ArrayList<Double> lons = new ArrayList<Double>();
 	private ArrayList<String> buildingNames = new ArrayList<String>();
 	private int radius;
 	 
-	public void Initialize(ArrayList<String> theBuildingNames, ArrayList<Double> latitudes,ArrayList<Double> longitudes){
-		lats.addAll(latitudes);
-		lons.addAll(longitudes);
-		buildingNames.addAll(theBuildingNames);
+	public void Initialize(ArrayList<IBuilding> allBuildings){
+		for(int i = 0; i < allBuildings.size(); i++){
+			IBuilding temp = allBuildings.get(i);
+			double tempLat = temp.GetLatitude();
+			double tempLon = temp.GetLongitude();
+			double tempRadius = temp.GetRadius();
+			String tempName = temp.GetName();
+			lats.add(tempLat);
+			lons.add(tempLon);
+			rads.add(tempRadius);
+			buildingNames.add(tempName);
+		}
+
 	}
+	
 	// will be grabbed from user class or location void API
 	public void RecieveLocation(double lat, double lon){
 		userLongitude = lat; // temporary values until we can get the real thing
@@ -25,7 +36,8 @@ public class LocationHandler  implements Parcelable{
 		for (int i = 0; i < buildingNames.size(); i++){
 			double tempLat = lats.get(i);
 			double tempLon = lons.get(i);
-			if((userLongitude > (tempLon - radius)) && (userLongitude < (tempLon + radius)) && (userLatitude < (tempLat + radius)) && (userLatitude > (tempLat - radius))){
+			double tempRad = rads.get(i);
+			if((userLongitude > (tempLon - tempRad)) && (userLongitude < (tempLon + tempRad)) && (userLatitude < (tempLat + tempRad)) && (userLatitude > (tempLat - tempRad))){
 				return buildingNames.get(i);
 			}
 		}
