@@ -5,6 +5,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,6 +37,14 @@ public class BuildingDetailFragment extends DialogFragment{
 		levelCost3 = (TextView) view.findViewById(R.id.detail_third_level_cost);
 		levelGenRate3= (TextView) view.findViewById(R.id.detail_third_level_gen_rate);
 		Button cancelBtn = (Button) view.findViewById(R.id.detail_cancel_button);
+		cancelBtn.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				getDialog().dismiss();
+			}
+			
+		});
 		return view;	
 	}
 	
