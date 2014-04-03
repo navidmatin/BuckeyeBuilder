@@ -13,6 +13,7 @@ public class User implements IUser {
 	// private Location location;
 	private int money;
 	private Market myMarket;
+	private int longitude, latitude;
 	
 	
 	//Constructors
@@ -44,7 +45,7 @@ public class User implements IUser {
 	public int GetCap(){
 		return moneyCap;
 	}
-	
+
 	public void UpgradeBuilding(IBuilding buildingName) {
 		//NEED TO RE-check the logic, I changed it based on the changes I made to the Building
 		int cost = buildingName.GetCurrentCost();
@@ -88,6 +89,8 @@ public class User implements IUser {
 			moneyCap=in.readInt();
 			money=in.readInt();	
 			myMarket = in.readParcelable(Market.class.getClassLoader());
+			longitude = in.readInt();
+			latitude = in.readInt();
 	}
 	@Override 
 	public void writeToParcel(Parcel dest, int flags) {		
@@ -95,7 +98,8 @@ public class User implements IUser {
 		dest.writeInt(moneyCap);
 		dest.writeInt(money);
 		dest.writeParcelable(myMarket, flags);
-		
+		dest.writeInt(longitude);
+		dest.writeInt(latitude);
 	}
 	
 	public static final Parcelable.Creator<User> CREATOR = 

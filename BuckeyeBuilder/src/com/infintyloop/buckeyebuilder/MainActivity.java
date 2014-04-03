@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.infinityloop.buckeyebuilder.adapter.TabsPagerAdapter;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
@@ -22,6 +24,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
 	GPSManager gps= new GPSManager(this);
+	private LocationHandler localHandler;
 	
 	//Tab names
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
@@ -71,6 +74,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		/* Data and Back-end Processes */
  		Intent intent = getIntent();
  		user = intent.getParcelableExtra("User");
+ 		localHandler = intent.getParcelableExtra("LocationHandler");
+ 		Location location = gps.getLocation();
+ 		
+ 		// but we need to do this continuousy
+		if(gps.canGetLocation()){ 
+			double lat = gps.getLatitude();
+			double lon = gps.getLongitude();
+			localHandler.RecieveLocation(lat, lon);
+		}
+		
+	//	localHandler.Initialize(theBuildingNames, latitudes, longitudes);
+		
  		buildingList = intent.getParcelableArrayListExtra("BuildingList");
 	}
 	public void sendMessage(View view){
