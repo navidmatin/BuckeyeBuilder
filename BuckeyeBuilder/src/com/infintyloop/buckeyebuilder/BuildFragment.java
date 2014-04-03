@@ -1,5 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 //import android.app.Fragment;
+import java.util.ArrayList;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
@@ -25,6 +27,8 @@ public class BuildFragment extends Fragment{
 	private SupportMapFragment mapFragment;
 	private Fragment userInfoFragment;
 	private View userInfoFragmentView;
+	private ArrayList<IBuilding> buildingList;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -56,6 +60,17 @@ public class BuildFragment extends Fragment{
 		super.onStart();
 		userInfoFragmentView=userInfoFragment.getView();
 		setUpMapIfNeeded();
+		buildingList=((MainActivity)getActivity()).buildingList;
+		for(IBuilding building : buildingList)
+		{
+			double lat=building.GetLatitude();
+			double longi=building.GetLongitude();
+			LatLng latlng= new LatLng(lat, longi);
+			map.addMarker(new MarkerOptions()
+					.position(latlng)
+					);
+			
+		}
 		
 		//map=((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment)).getMap();	
 	}
