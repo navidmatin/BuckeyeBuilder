@@ -1,0 +1,22 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+#   (use "git pull" to update your local branch)
+#
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   BuckeyeBuilder/lint.xml
+#	modified:   BuckeyeBuilder/project.properties
+#	modified:   BuckeyeBuilder/res/layout/building_detail_fragment.xml
+#	modified:   BuckeyeBuilder/src/com/infintyloop/buckeyebuilder/BuildPlanFragment.java
+#	modified:   BuckeyeBuilder/src/com/infintyloop/buckeyebuilder/BuildingDetailFragment.java
+#	modified:   BuckeyeBuilder/src/com/infintyloop/buckeyebuilder/BuildingFactory.java
+#	new file:   BuckeyeBuilder/src/com/infintyloop/buckeyebuilder/SingleLineTextView.java
+#	new file:   BuckeyeBuilder/src/com/infintyloop/buckeyebuilder/Time.java
+#	modified:   BuckeyeBuilder/src/com/infintyloop/buckeyebuilder/UpgradeDialogFragment.java
+#	modified:   BuckeyeBuilder/src/com/infintyloop/buckeyebuilder/User.java
+#
+
