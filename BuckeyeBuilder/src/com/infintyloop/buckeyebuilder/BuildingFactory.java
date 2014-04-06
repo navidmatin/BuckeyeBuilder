@@ -12,6 +12,8 @@ public class BuildingFactory{
 	private double[] longitudes = {3.0,2.0,1.0,2.0,2.0,2.0,2.0,2.0};
 	private double[] radiusValues = {3.0,2.0,1.0,2.0,2.0,2.0,2.0,2.0};
 	private String[] description = {"building 1", "building 2", "building 3", "building 4","building 5","building 6", "building 7", "building 8"};
+	
+	//Use the database for the above info^
 	public ArrayList<IBuilding> listOfBuildings = new ArrayList<IBuilding>();
 	private int paycheck;
 	private IUser user;

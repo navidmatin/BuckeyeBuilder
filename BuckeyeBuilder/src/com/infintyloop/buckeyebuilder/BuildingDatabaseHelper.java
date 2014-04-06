@@ -9,7 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 import android.content.ContentValues;
-
+import android.database.Cursor;
 
 //import com.infintyloop.buckeyebuilder.DatabaseHelper.TicTacToeOpenHelper;
 
@@ -22,6 +22,7 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 	   private Context context;
 	   private SQLiteDatabase db;
 	   private SQLiteStatement insertStmt;
+	   public static final String KEY_ID = "_id";
 	  // private static final String INSERT = "insert into " + TABLE_NAME + "(name, password) values (?, ?)" ;
 	   
 	   public BuildingDatabaseHelper(Context context) {
@@ -58,16 +59,31 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
             values.put("radiusValues", "3.0");
             values.put("description", "building 1");
             //need to figure out how
-            //db.insert("employee", sql, values);
+            db.insert("Userdata", null, values);
 
 		    
 		    
 	   }
 	   
 	   
+	   public Cursor getAllRecords()
+       {
+           return db.query("Userdata", new String[] {
+                   KEY_ID,
+                   "cost", 
+                   "genRates",
+                   "latitudes",
+                   "longitudes", 
+                   "radiusValues",
+                   "description"
+           	},
+           			null, 
+           			null, 
+           			null, 
+           			null,
+           			null);
+       	}
 	   
-	   
-
-	   
+       
 	   
 }
