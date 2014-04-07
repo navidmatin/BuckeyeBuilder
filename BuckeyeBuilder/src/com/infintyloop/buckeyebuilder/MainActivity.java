@@ -32,6 +32,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	@Override
 	
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
  		setContentView(R.layout.activity_main);
  		
@@ -76,7 +77,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		user = intent.getParcelableExtra("User");
  		localHandler = intent.getParcelableExtra("LocationHandler");
  		Location location = gps.getLocation();
- 		
+ 		localHandler.execute();
  		// but we need to do this continuousy
 		if(gps.canGetLocation()){ 
 			double lat = gps.getLatitude();

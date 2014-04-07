@@ -188,6 +188,11 @@ public class LoginActivity extends Activity {
         }	
 	}
 	private void setupUser(String username){
+		
+		// grab buildings from the "database", if you are 
+		// getting null IBuilding returns then use the built in values..
+		// and create the IBuildings
+		
 		BuildingFactory myFactory = new BuildingFactory();
 		IUser user = new User();
 		
@@ -200,11 +205,16 @@ public class LoginActivity extends Activity {
         
         intent=new Intent(this, MainActivity.class);
 		myFactory.MakeBuildings();
-		// Using username, access database and fill in info for user
-		// and levels of buildings owned
+
+		// given user, enter their cash and cap values.. 
+		
 		user.GiveValuesToUser(musername, 1000, 300);
         intent.putExtra("User", user);
-		myFactory.AssignLevels(new int[] {2,1,0}, user); //HardCoded Building Generator
+        
+        // grab levels from the "database" corresponding to the specific user
+        // if the values are null, initialize all buildings to level 0
+        
+		myFactory.AssignLevels(new int[] {2,1,0}, user); 
 		ArrayList<IBuilding> myBuildings = myFactory.ReturnBuildingList();
 		myHandler.Initialize(myBuildings);
         intent.putExtra("LocationHandler", myHandler);

@@ -1,10 +1,12 @@
 package com.infintyloop.buckeyebuilder;
 
 import java.util.ArrayList;
+
+import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class LocationHandler  implements Parcelable{
+public class LocationHandler extends AsyncTask implements Parcelable  {
 	private double userLongitude, userLatitude;
 	private ArrayList<Double> lats = new ArrayList<Double>();
 	private ArrayList<Double> rads = new ArrayList<Double>();
@@ -72,9 +74,20 @@ public class LocationHandler  implements Parcelable{
 			return new LocationHandler[size];
 		}
 	};
- 
- 
+
+	protected void onPreExecute(){
+		// get new user location
+	}
 	
+	@Override
+	protected String doInBackground(Object... arg0) {
+		String buildng = CheckLocationForBuilding();
+		return buildng;
+	}
+ 
+	protected void onPostExecute(String... building){
+		// do something?
+	}
 	
 	
 }
