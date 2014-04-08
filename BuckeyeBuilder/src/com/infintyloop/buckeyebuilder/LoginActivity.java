@@ -195,9 +195,7 @@ public class LoginActivity extends Activity {
 		
 		BuildingFactory myFactory = new BuildingFactory();
 		IUser user = new User();
-		
-		LocationHandler myHandler = new LocationHandler();
-		
+				
     	SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
     	SharedPreferences.Editor editor=settings.edit();
         editor.putString(OPT_NAME, username);
@@ -216,8 +214,7 @@ public class LoginActivity extends Activity {
         
 		myFactory.AssignLevels(new int[] {2,1,0}, user); 
 		ArrayList<IBuilding> myBuildings = myFactory.ReturnBuildingList();
-		myHandler.Initialize(myBuildings);
-        intent.putExtra("LocationHandler", myHandler);
+       
 		intent.putExtra("BuildingList", myBuildings);
 	}
 	public void createNewUser() {

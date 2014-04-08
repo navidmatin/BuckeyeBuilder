@@ -25,14 +25,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private ActionBar actionBar;
 	GPSManager gps= new GPSManager(this);
 	private LocationHandler localHandler;
+	double userLat, userLon;
 	
 	//Tab names
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
-
+	
 	@Override
+	
 	
 	protected void onCreate(Bundle savedInstanceState) {
 
+			   
 		super.onCreate(savedInstanceState);
  		setContentView(R.layout.activity_main);
  		
@@ -72,22 +75,29 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		});
  		
 
+ 		
+
  		/* Data and Back-end Processes */
  		Intent intent = getIntent();
  		user = intent.getParcelableExtra("User");
- 		localHandler = intent.getParcelableExtra("LocationHandler");
+ 		buildingList = intent.getParcelableArrayListExtra("BuildingList");
+
+ 		LocationHandler myHandler = new LocationHandler();
+
+ 		myHandler.Initialize(buildingList);
+ 	//	Thread t = new Thread(myHandler, "My Thread");
+ 	//	t.start();
+ 		
  		Location location = gps.getLocation();
- 		localHandler.execute();
- 		// but we need to do this continuousy
-		if(gps.canGetLocation()){ 
-			double lat = gps.getLatitude();
-			double lon = gps.getLongitude();
-			localHandler.RecieveLocation(lat, lon);
+
+ 		if(gps.canGetLocation()){ 
+			userLat = gps.getLatitude();
+			userLon = gps.getLongitude();
+			localHandler.RecieveLocation(userLat, userLon);
 		}
 		
 		String currentBuilding = localHandler.CheckLocationForBuilding();
 		
- 		buildingList = intent.getParcelableArrayListExtra("BuildingList");
 	}
 	public void sendMessage(View view){
 		 		Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -118,5 +128,5 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// TODO Auto-generated method stub
 		
 	}
+  
 }
-

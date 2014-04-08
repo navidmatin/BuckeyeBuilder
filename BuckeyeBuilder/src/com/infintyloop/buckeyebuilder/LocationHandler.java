@@ -6,13 +6,17 @@ import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class LocationHandler extends AsyncTask implements Parcelable  {
+public class LocationHandler {//implements Runnable { //extends AsyncTask 
 	private double userLongitude, userLatitude;
 	private ArrayList<Double> lats = new ArrayList<Double>();
 	private ArrayList<Double> rads = new ArrayList<Double>();
 	private ArrayList<Double> lons = new ArrayList<Double>();
 	private ArrayList<String> buildingNames = new ArrayList<String>();
 	private int radius;
+	
+    //public static void main(ArrayList<IBuilding> allBuildings) {
+     //   (new Thread(new LocationHandler())).start();
+   // }
 	 
 	public void Initialize(ArrayList<IBuilding> allBuildings){
 		for(int i = 0; i < allBuildings.size(); i++){
@@ -31,10 +35,12 @@ public class LocationHandler extends AsyncTask implements Parcelable  {
 	
 	// will be grabbed from user class or location void API
 	public void RecieveLocation(double lat, double lon){
-		userLongitude = lat; // temporary values until we can get the real thing
+		userLongitude = lat;
 		userLatitude = lon;
 	}
 	public String CheckLocationForBuilding(){
+		// foreach loop
+	//	for(String a : buildingNames)
 		for (int i = 0; i < buildingNames.size(); i++){
 			double tempLat = lats.get(i);
 			double tempLon = lons.get(i);
@@ -46,48 +52,15 @@ public class LocationHandler extends AsyncTask implements Parcelable  {
 		return null;
 	}
 	
-	public LocationHandler() {
-	};
-	public LocationHandler(Parcel in){
-		readFromParcel(in);
-	}
-	
-	
-	
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	private void readFromParcel(Parcel in) {
-	}
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-	}
-	
-	public static final Parcelable.Creator<LocationHandler> CREATOR = 
-			new Parcelable.Creator<LocationHandler>() {
-		public LocationHandler createFromParcel (Parcel in) {
-			return new LocationHandler(in);
-		}
-		public LocationHandler[] newArray (int size) {
-			return new LocationHandler[size];
-		}
-	};
+//	@Override
+//	protected String doInBackground(Object... arg0) {
+//		String buildng = CheckLocationForBuilding();
+//		return buildng;
+//	}
 
-	protected void onPreExecute(){
-		// get new user location
-	}
-	
-	@Override
-	protected String doInBackground(Object... arg0) {
-		String buildng = CheckLocationForBuilding();
-		return buildng;
-	}
- 
-	protected void onPostExecute(String... building){
-		// do something?
-	}
-	
-	
+//	@Override
+//	public void run() {
+	// add print statement
+	//	this.CheckLocationForBuilding();
+//	}
 }
