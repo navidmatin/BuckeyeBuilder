@@ -1,6 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class UserInfoFragment extends Fragment {
 	{
 		View viewRoot= inflater.inflate(R.layout.user_info_fragment, container,false);
 		//TEST: Show current Long and Lat
+		
 		return viewRoot;
 	}
 	@Override
@@ -45,7 +47,7 @@ public class UserInfoFragment extends Fragment {
 		btn.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				GPSManager _gps=((MainActivity)getParentFragment().getActivity()).gps;
+				   	GPSManager _gps=((MainActivity)getParentFragment().getActivity()).gps;
 				Location location=_gps.getLocation();
 				if(_gps.canGetLocation()){
 					longi=_gps.getLatitude();

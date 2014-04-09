@@ -82,13 +82,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		user = intent.getParcelableExtra("User");
  		buildingList = intent.getParcelableArrayListExtra("BuildingList");
 
- 		LocationHandler myHandler = new LocationHandler();
+ 		//LocationHandler myHandler = new LocationHandler();
 
- 		myHandler.Initialize(buildingList);
+ 		//myHandler.Initialize(buildingList);
  	//	Thread t = new Thread(myHandler, "My Thread");
  	//	t.start();
  		
- 		Location location = gps.getLocation();
+ 		/*Location location = gps.getLocation();
 
  		if(gps.canGetLocation()){ 
 			userLat = gps.getLatitude();
@@ -96,7 +96,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			localHandler.RecieveLocation(userLat, userLon);
 		}
 		
-		String currentBuilding = localHandler.CheckLocationForBuilding();
+		String currentBuilding = localHandler.CheckLocationForBuilding();*/
 		
 	}
 	public void sendMessage(View view){

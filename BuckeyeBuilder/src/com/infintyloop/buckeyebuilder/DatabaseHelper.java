@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DatabaseHelper {
@@ -28,6 +30,7 @@ public class DatabaseHelper {
    public long insert(String name, String password) {
       this.insertStmt.bindString(1, name);
       this.insertStmt.bindString(2, password);
+      //this.insertStmt.bindLong(3, hours);
       return this.insertStmt.executeInsert();
    }
    public void deleteAll() {
