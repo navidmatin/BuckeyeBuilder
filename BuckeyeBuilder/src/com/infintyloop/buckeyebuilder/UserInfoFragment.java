@@ -39,7 +39,9 @@ public class UserInfoFragment extends Fragment {
 		super.onStart();
 		
 		user = ((MainActivity)getParentFragment().getActivity()).user;
+
 		location = ((MainActivity)getParentFragment().getActivity()).currentBuilding;
+
 		ArrayList<IBuilding> buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
 		int genRate=user.CalculateCurrentGenRate(buildingList);
 		TextView genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
@@ -63,6 +65,7 @@ public class UserInfoFragment extends Fragment {
 		
 		
 	}
+	@Override
 	public void onResume(){
 		super.onResume();
 		int money= user.GetMoney();
@@ -74,5 +77,10 @@ public class UserInfoFragment extends Fragment {
 		user.MakeMoney();
 		//this.dh.updateTime(user.GetUsername());
 		//Toast.makeText(getActivity(), user.GetMoney(), Toast.LENGTH_LONG).show();
+	}
+	@Override
+	public void onPause(){
+		super.onPause();
+		((MainActivity)getParentFragment().getActivity()).user=user;
 	}
 }

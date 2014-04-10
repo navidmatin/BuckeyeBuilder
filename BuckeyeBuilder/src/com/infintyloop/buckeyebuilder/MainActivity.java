@@ -38,6 +38,32 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			   
 		super.onCreate(savedInstanceState);
  		setContentView(R.layout.activity_main);
+ 		Intent intent = getIntent();
+ 		/**START DATA**/
+		/* Data and Back-end Processes */
+ 		
+ 		if(savedInstanceState ==null)
+ 		{
+ 		/* Data and Back-end Processes */
+ 			user = intent.getParcelableExtra("User");
+ 			buildingList = intent.getParcelableArrayListExtra("BuildingList");
+ 		}
+ 		else{
+ 			IUser tempUser1 = intent.getParcelableExtra("User");
+ 			IUser tempUser2 = savedInstanceState.getParcelable("User");
+ 			if(tempUser1.GetUsername()==tempUser2.GetUsername())
+ 			{
+ 				user= savedInstanceState.getParcelable("User");
+ 				buildingList=savedInstanceState.getParcelableArrayList("BuildingList");
+ 			}
+ 			else
+ 			{
+ 				user=tempUser1;
+ 				buildingList = intent.getParcelableArrayListExtra("BuildingList");
+ 			}
+ 		}
+ 		
+ 		/**END DATA**/
  		
  		//Initialization of Tabs
  		viewPager = (ViewPager) findViewById(R.id.pager);
@@ -77,10 +103,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
  		
 
- 		/* Data and Back-end Processes */
- 		Intent intent = getIntent();
- 		user = intent.getParcelableExtra("User");
- 		buildingList = intent.getParcelableArrayListExtra("BuildingList");
+ 
 
  		LocationHandler myHandler = new LocationHandler();
 
@@ -137,5 +160,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// TODO Auto-generated method stub
 		
 	}
-  
+	@Override 
+	public void onSaveInstanceState(Bundle savedInstanceState)
+	{
+		
+		if(user!=null)
+			savedInstanceState.putParcelable("User", user);
+		if(buildingList!=null)
+			savedInstanceState.putParcelableArrayList("BuildingList", buildingList);
+		super.onSaveInstanceState(savedInstanceState);
+	}
 }

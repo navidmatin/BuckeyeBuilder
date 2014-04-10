@@ -77,5 +77,6 @@ public class ManageFragment extends Fragment {
 	public void onStop(){
 		super.onPause();
 		linearLayout.removeAllViewsInLayout();
+		((MainActivity)getActivity()).buildingList=buildingList;
 	}
 }
