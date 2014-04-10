@@ -16,12 +16,14 @@ import android.database.Cursor;
 
 public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 	
+	BuildingFactory buildingfactory;
 	private static final String DATABASE_NAME = "BuildingData.db";
 	   private static final int DATABASE_VERSION = 1;
 	   private static final String TABLE_NAME = "UserData";
+	   public String sql;
 	   //private Context context;
 	   private SQLiteDatabase db;
-	   //private SQLiteStatement insertStmt;
+	   private SQLiteStatement insertStmt;
 	   public static final String KEY_ID = "_id";
 	  // private static final String INSERT = "insert into " + TABLE_NAME + "(name, password) values (?, ?)" ;
 	   
@@ -37,9 +39,8 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 	   
 	   public void onCreate(SQLiteDatabase db) {
 		   
-		   
 		   //Creates the Record
-		   String sql = "CREATE TABLE IF NOT EXISTS UserData (" +
+		     sql = "CREATE TABLE IF NOT EXISTS UserData (" +
                    "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				   "buildingname TEXT," +
                    "cost INTEGER, " +
@@ -49,96 +50,28 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
                    "radiusValues REAL, " +
                    "description TEXT, ";
 		   	db.execSQL(sql);
- 
-		   	
-		   	
-		    ContentValues values = new ContentValues();
-		    //adds hardcoded values to the database
-		    values.put("buildingname", "Hitchcock Hall");
-		    values.put("cost", "100");
-            values.put("genRates", "20");
-            values.put("latitudes", "3.0");
-            values.put("longitudes", "3.0");
-            values.put("radiusValues", "3.0");
-            values.put("description", "building 1");
-            //Inserts data into id=0
-            db.insert("UserData", null, values);
-            
-            values.put("buildingname", "Bolz Hall");
-		    values.put("cost", "200");
-            values.put("genRates", "25");
-            values.put("latitudes", "2.0");
-            values.put("longitudes", "2.0");
-            values.put("radiusValues", "2.0");
-            values.put("description", "building 2");
-            //Inserts data into id=1
-            db.insert("UserData", null, values);
-            
-            
-            values.put("buildingname", "Dreese Laboratories");
-		    values.put("cost", "300");
-            values.put("genRates", "30");
-            values.put("latitudes", "1.0");
-            values.put("longitudes", "1.0");
-            values.put("radiusValues", "1.0");
-            values.put("description", "building 3");
-            //Inserts data into id=2
-            db.insert("UserData", null, values);
-            
-            values.put("buildingname", "Scott Laboratories");
-		    values.put("cost", "200");
-            values.put("genRates", "25");
-            values.put("latitudes", "2.0");
-            values.put("longitudes", "2.0");
-            values.put("radiusValues", "2.0");
-            values.put("description", "building 4");
-            //Inserts data into id=3
-            db.insert("UserData", null, values);
-
-
-            values.put("buildingname", "Knowlton Hall");
-		    values.put("cost", "300");
-            values.put("genRates", "10");
-            values.put("latitudes", "2.0");
-            values.put("longitudes", "2.0");
-            values.put("radiusValues", "2.0");
-            values.put("description", "building 5");
-            //Inserts data into id=4
-            db.insert("UserData", null, values);
-            
-            
-            values.put("buildingname", "Koffolt Laboratories");
-		    values.put("cost", "400");
-            values.put("genRates", "10");
-            values.put("latitudes", "2.0");
-            values.put("longitudes", "2.0");
-            values.put("radiusValues", "2.0");
-            values.put("description", "building 6");
-            //Inserts data into id=5
-            db.insert("UserData", null, values);
-            
-            values.put("buildingname", "Lincoln Tower");
-		    values.put("cost", "500");
-            values.put("genRates", "70");
-            values.put("latitudes", "2.0");
-            values.put("longitudes", "2.0");
-            values.put("radiusValues", "2.0");
-            values.put("description", "building 7");
-            //Inserts data into id=6
-            db.insert("UserData", null, values);
-            
-            values.put("buildingname", "Jennings Hall");
-		    values.put("cost", "100");
-            values.put("genRates", "80");
-            values.put("latitudes", "2.0");
-            values.put("longitudes", "2.0");
-            values.put("radiusValues", "2.0");
-            values.put("description", "building 8");
-            //Inserts data into id=6
-            db.insert("UserData", null, values);
-		    
-		    
+  
 	   }
+	   
+	   
+	   public long insert(String buildingname, int cost,int genRates,double latitudes,double longitudes,double radiusValues,String description) {
+		      this.insertStmt.bindString(1, buildingname);
+		      this.insertStmt.bindLong(2, cost);
+		      this.insertStmt.bindLong(3, genRates);
+		      this.insertStmt.bindDouble(4,latitudes);
+		      this.insertStmt.bindDouble(5, longitudes);
+		      this.insertStmt.bindDouble(6, radiusValues);
+		      this.insertStmt.bindString(7, description);
+		   
+		      return this.insertStmt.executeInsert();
+		   }
+	   
+	   public void deleteAll() {
+
+		      this.db.delete(TABLE_NAME, null, null);
+		   }
+	   
+	   
 	   
 	   
 	   public Cursor getAllRecords()
@@ -169,6 +102,11 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 	         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 	         onCreate(db);
 	      }
+	   
+	   
+	   
+	   
+	   
 	   
 	   
 }
