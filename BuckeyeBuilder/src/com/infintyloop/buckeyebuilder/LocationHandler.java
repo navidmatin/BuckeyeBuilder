@@ -2,11 +2,13 @@ package com.infintyloop.buckeyebuilder;
 
 import java.util.ArrayList;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.Toast;
 
-public class LocationHandler {//implements Runnable { //extends AsyncTask 
+public class LocationHandler{// implements Runnable { //extends AsyncTask 
 	private double userLongitude, userLatitude;
 	private ArrayList<Double> lats = new ArrayList<Double>();
 	private ArrayList<Double> rads = new ArrayList<Double>();
@@ -60,7 +62,11 @@ public class LocationHandler {//implements Runnable { //extends AsyncTask
 
 //	@Override
 //	public void run() {
-	// add print statement
-	//	this.CheckLocationForBuilding();
+//		int n = 4;
+//		n = 5*5;
+	//	Context context = null;
+	//	Toast toast = Toast.makeText(context, "yada", 10);
+	//	toast.show();
+		//this.CheckLocationForBuilding();
 //	}
 }

@@ -24,8 +24,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
 	GPSManager gps= new GPSManager(this);
-	private LocationHandler localHandler;
 	double userLat, userLon;
+	String currentBuilding;
 	
 	//Tab names
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
@@ -105,21 +105,30 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
  
 
- 		//LocationHandler myHandler = new LocationHandler();
+ 		LocationHandler myHandler = new LocationHandler();
 
- 		//myHandler.Initialize(buildingList);
- 	//	Thread t = new Thread(myHandler, "My Thread");
+ 		myHandler.Initialize(buildingList);
+
+ //		Thread t = new Thread(new Runnable() {
+ //		    public void run() {
+ 		    	
+ 		  //  		Location location = gps.getLocation();
+
+ 		    	 		if(gps.canGetLocation()){ 
+ 		    				userLat = gps.getLatitude();
+ 		    				userLon = gps.getLongitude();
+ 		    				myHandler.RecieveLocation(userLat, userLon);
+ 		    			}
+ 		    	 		currentBuilding = myHandler.CheckLocationForBuilding();
+ //		    }
+ //		});
  	//	t.start();
+ //		Thread t = new Thread(myHandler, "My Thread");
+ //		t.start();
  		
- 		/*Location location = gps.getLocation();
 
- 		if(gps.canGetLocation()){ 
-			userLat = gps.getLatitude();
-			userLon = gps.getLongitude();
-			localHandler.RecieveLocation(userLat, userLon);
-		}
 		
-		String currentBuilding = localHandler.CheckLocationForBuilding();*/
+//		String currentBuilding = localHandler.CheckLocationForBuilding();
 		
 	}
 	public void sendMessage(View view){
