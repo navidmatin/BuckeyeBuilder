@@ -112,7 +112,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  //		Thread t = new Thread(new Runnable() {
  //		    public void run() {
  		    	
- 		  //  		Location location = gps.getLocation();
+ 		    		Location location = gps.getLocation();
 
  		    	 		if(gps.canGetLocation()){ 
  		    				userLat = gps.getLatitude();
@@ -120,6 +120,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		    				myHandler.RecieveLocation(userLat, userLon);
  		    			}
  		    	 		currentBuilding = myHandler.CheckLocationForBuilding();
+ 		    	 		//currentBuilding="Dreese";
  //		    }
  //		});
  	//	t.start();
