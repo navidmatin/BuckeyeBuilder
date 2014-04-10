@@ -14,7 +14,7 @@ public class Market implements Parcelable{
 				paycheck = paycheck + building.GetCurrentGenRate();
 			}
 		}
-		user.MakeMoney(paycheck);
+		//user.MakeMoney();
 	}
 	
 	public Market() {

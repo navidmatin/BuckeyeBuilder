@@ -14,17 +14,27 @@ public class User implements IUser {
 	private int money;
 	private Market myMarket;
 	private int longitude, latitude;
+	private long genTime;
+	private MoneyGenerator mGenerator;
+	private int genRate;
 	
 	
 	//Constructors
-	public User() {};
+	public User() {
+		genRate=0;
+		genTime=System.currentTimeMillis();
+		mGenerator=new MoneyGenerator();
+	}
 	public Market myMarket() {
 		return myMarket;
+	}
+	public MoneyGenerator mGenerator(){
+		return mGenerator;
 	}
 	public User(Parcel in){
 		readFrmParce(in);
 	}
-	
+
 	public void GiveValuesToUser(String userName, int cap, int cash){
 		name = userName;
 		moneyCap = cap;
@@ -54,18 +64,25 @@ public class User implements IUser {
 	
 	public int CalculateCurrentGenRate(ArrayList<IBuilding> buildingList)
 	{
-		int genRate=0;
+		int _genRate=0;
 		for(IBuilding building : buildingList)
 		{
-			genRate+=building.GetCurrentGenRate();
+			_genRate+=building.GetCurrentGenRate();
 		}
-		return genRate;
+		genRate=_genRate;
+		return _genRate;
 	}
-	public void MakeMoney(int amount) {
-		
-		if(money < moneyCap){
+	/** WRONG IMPLEMENTATION OF MONEY GENERATION, JUST FOR CHECKING **/
+	public void MakeMoney() {
+		mGenerator.UpdateGenRate(genRate);
+		genTime=System.currentTimeMillis();
+		int amount=mGenerator.GenerateMoney(genTime);
+		if(money+amount < moneyCap){
 			money = money + amount;
 		}
+		else 
+			money=moneyCap;
+		
 	// if money cap is not hit.. then call generate money
 	// ODO Auto-generated method stub
 	}
@@ -85,8 +102,11 @@ public class User implements IUser {
 			moneyCap=in.readInt();
 			money=in.readInt();	
 			myMarket = in.readParcelable(Market.class.getClassLoader());
+			mGenerator= in.readParcelable(MoneyGenerator.class.getClassLoader());
 			longitude = in.readInt();
 			latitude = in.readInt();
+			genTime=in.readLong();
+			genRate=in.readInt();
 	}
 	@Override 
 	public void writeToParcel(Parcel dest, int flags) {		
@@ -94,8 +114,11 @@ public class User implements IUser {
 		dest.writeInt(moneyCap);
 		dest.writeInt(money);
 		dest.writeParcelable(myMarket, flags);
+		dest.writeParcelable(mGenerator, flags);
 		dest.writeInt(longitude);
 		dest.writeInt(latitude);
+		dest.writeLong(genTime);
+		dest.writeInt(genRate);
 	}
 	
 	public static final Parcelable.Creator<User> CREATOR = 

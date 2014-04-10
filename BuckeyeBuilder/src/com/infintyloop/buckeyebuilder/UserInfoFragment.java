@@ -18,11 +18,16 @@ public class UserInfoFragment extends Fragment {
 	Button btn;
 	double longi;
 	double lat;
+	DatabaseHelper dh;
+	TextView moneyView;
+	IUser user;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
+		this.dh=new DatabaseHelper(getActivity());
 		View viewRoot= inflater.inflate(R.layout.user_info_fragment, container,false);
+		
 		//TEST: Show current Long and Lat
 		
 		return viewRoot;
@@ -32,12 +37,7 @@ public class UserInfoFragment extends Fragment {
 	{
 		super.onStart();
 		
-		IUser user = ((MainActivity)getParentFragment().getActivity()).user;
-		int money= user.GetMoney();
-		int cap=user.GetCap();
-		TextView moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
-		moneyView.setText(money+"$ /"+cap+"$");
-		
+		user = ((MainActivity)getParentFragment().getActivity()).user;
 		ArrayList<IBuilding> buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
 		int genRate=user.CalculateCurrentGenRate(buildingList);
 		TextView genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
@@ -59,5 +59,17 @@ public class UserInfoFragment extends Fragment {
 		});
 		
 		
+	}
+	public void onResume(){
+		super.onResume();
+		int money= user.GetMoney();
+		int cap=user.GetCap();
+		if(moneyView==null)
+			moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
+		moneyView.setText(null);
+		moneyView.setText(money+"$ /"+cap+"$");
+		user.MakeMoney();
+		//this.dh.updateTime(user.GetUsername());
+		//Toast.makeText(getActivity(), user.GetMoney(), Toast.LENGTH_LONG).show();
 	}
 }
