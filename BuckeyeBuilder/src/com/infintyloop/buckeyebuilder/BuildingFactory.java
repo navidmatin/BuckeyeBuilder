@@ -8,9 +8,9 @@ public class BuildingFactory{
 	private String[] BuildingNames = {"Hitchcock Hall","Bolz Hall","Dreese Laboratories","Scott Laboratories","Knowlton Hall", "Koffolt Laboratories","Lincoln Tower","Jennings Hall"};
 	private int[] Cost = {100,200,300,200,300,400,500,100};
 	private int[] genRates = {20,25,30,25,10,10,70,80};
-	private double[] latitudes = {3.0,2.0,40.002402,2.0,2.0,2.0,2.0,2.0};
-	private double[] longitudes = {3.0,2.0,-83.015043,2.0,2.0,2.0,2.0,2.0};
-	private double[] radiusValues = {3.0,2.0,1.0,2.0,2.0,2.0,2.0,2.0};
+	private double[] latitudes = {3.0,2.0,-83.015043,2.0,2.0,2.0,2.0,2.0};
+	private double[] longitudes = {3.0,2.0,40.002402,2.0,2.0,2.0,2.0,2.0};
+	private double[] radiusValues = {0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0};
 	private String[] description = {"building 1", "building 2", "building 3", "building 4","building 5","building 6", "building 7", "building 8"};
 	
 	//Use the database for the above info^

@@ -42,7 +42,7 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 	}
 	public String CheckLocationForBuilding(){
 		// foreach loop
-	//	for(String a : buildingNames)
+	//	for(String xa : buildingNames)
 		for (int i = 0; i < buildingNames.size(); i++){
 			double tempLat = lats.get(i);
 			double tempLon = lons.get(i);
@@ -51,7 +51,7 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 				return buildingNames.get(i);
 			}
 		}
-		return null;
+		return "Dreese Labs";
 	}
 	
 //	@Override
