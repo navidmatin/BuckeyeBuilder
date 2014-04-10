@@ -107,6 +107,9 @@ public class Building implements IBuilding {
 		currentCost = in.readInt();
 		genRate = in.readInt();
 		cost = in.readInt();
+		longi= in.readDouble();
+		lat = in.readDouble();
+		radius=in.readDouble();
 	}
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
@@ -117,6 +120,9 @@ public class Building implements IBuilding {
 		dest.writeInt(currentCost);
 		dest.writeInt(genRate);
 		dest.writeInt(cost);
+		dest.writeDouble(longi);
+		dest.writeDouble(lat);
+		dest.writeDouble(radius);
 	}
 	
 	public static final Parcelable.Creator<Building> CREATOR = 

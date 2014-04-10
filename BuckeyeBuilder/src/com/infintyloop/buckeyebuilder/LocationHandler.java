@@ -15,6 +15,7 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 	private ArrayList<Double> lons = new ArrayList<Double>();
 	private ArrayList<String> buildingNames = new ArrayList<String>();
 	private int radius;
+	private String currentLocal = "Maslkf";
 	
     //public static void main(ArrayList<IBuilding> allBuildings) {
      //   (new Thread(new LocationHandler())).start();
@@ -48,10 +49,10 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 			double tempLon = lons.get(i);
 			double tempRad = rads.get(i);
 			if((userLongitude > (tempLon - tempRad)) && (userLongitude < (tempLon + tempRad)) && (userLatitude < (tempLat + tempRad)) && (userLatitude > (tempLat - tempRad))){
-				return buildingNames.get(i);
+				currentLocal = buildingNames.get(i);
 			}
 		}
-		return "Dreese Labs";
+		return currentLocal;
 	}
 	
 //	@Override
