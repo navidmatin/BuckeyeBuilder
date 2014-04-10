@@ -21,6 +21,7 @@ public class UserInfoFragment extends Fragment {
 	DatabaseHelper dh;
 	TextView moneyView;
 	IUser user;
+	String location;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -38,6 +39,7 @@ public class UserInfoFragment extends Fragment {
 		super.onStart();
 		
 		user = ((MainActivity)getParentFragment().getActivity()).user;
+		location = ((MainActivity)getParentFragment().getActivity()).currentBuilding;
 		ArrayList<IBuilding> buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
 		int genRate=user.CalculateCurrentGenRate(buildingList);
 		TextView genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
@@ -53,6 +55,7 @@ public class UserInfoFragment extends Fragment {
 					longi=_gps.getLatitude();
 					lat=_gps.getLongitude();
 					Toast.makeText(getActivity().getApplicationContext(),"Your location is -\n Lat:"+ lat + "\nLong: "+longi, Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), (CharSequence) location, Toast.LENGTH_LONG).show();
 				}
 			}
 			
