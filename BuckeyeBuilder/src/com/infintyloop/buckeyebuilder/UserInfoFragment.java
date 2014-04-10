@@ -57,7 +57,7 @@ public class UserInfoFragment extends Fragment {
 					longi=_gps.getLatitude();
 					lat=_gps.getLongitude();
 					Toast.makeText(getActivity().getApplicationContext(),"Your location is -\n Lat:"+ lat + "\nLong: "+longi, Toast.LENGTH_LONG).show();
-					Toast.makeText(getActivity(), (CharSequence) location, Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), location+"", Toast.LENGTH_LONG).show();
 				}
 			}
 			
