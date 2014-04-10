@@ -48,7 +48,7 @@ public class BuildingFactory{
 				paycheck = paycheck + temp.GetCurrentGenRate();
 			}
 		}
-		user.MakeMoney(paycheck);
+		//user.MakeMoney();
 	}
 	
 	public static IBuilding FindBuilding(String buildingName, ArrayList<IBuilding> buildingList)

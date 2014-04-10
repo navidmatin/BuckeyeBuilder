@@ -1,5 +1,6 @@
 package com.infintyloop.buckeyebuilder;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,7 +19,7 @@ public class DatabaseHelper {
    private Context context;
    private SQLiteDatabase db;
    private SQLiteStatement insertStmt;
-   private static final String INSERT = "insert into " + TABLE_NAME + "(name, password) values (?, ?)" ;
+   private static final String INSERT = "insert into " + TABLE_NAME + "(name, password, time) values (?, ?, ?)" ;
    
    public DatabaseHelper(Context context) {
       this.context = context;
@@ -26,11 +27,29 @@ public class DatabaseHelper {
       this.db = openHelper.getWritableDatabase();
       this.insertStmt = this.db.compileStatement(INSERT);
    }
-
+   /**The following two methods are not used **/
+   public void updateTime(String name)
+   {
+	 //  Cursor cursor = this.db.query(TABLE_NAME, new String[] {"name", "password", "time"}, "name= '"+name+"'", null, null, null, "name desc");
+	   ContentValues args= new ContentValues();
+	   args.put("time", System.currentTimeMillis());
+	   this.db.update(TABLE_NAME, args, "name= '"+name+"'", null);
+	   		
+   }
+   public long readTime(String name)
+   {
+	   long time=0;
+	   Cursor cursor = this.db.query(TABLE_NAME, new String[] {"name", "time"},null, null, null, null, "name desc");
+	/*   if (cursor.moveToFirst())
+		   time=cursor.getLong(3);*/
+	   return time;
+   }
+   
    public long insert(String name, String password) {
+	  long time=System.currentTimeMillis();
       this.insertStmt.bindString(1, name);
       this.insertStmt.bindString(2, password);
-      //this.insertStmt.bindLong(3, hours);
+      this.insertStmt.bindLong(3, time);
       return this.insertStmt.executeInsert();
    }
    public void deleteAll() {
@@ -60,9 +79,8 @@ public class DatabaseHelper {
 
       @Override
       public void onCreate(SQLiteDatabase db) {
-         db.execSQL("CREATE TABLE " + TABLE_NAME + "(id INTEGER PRIMARY KEY, name TEXT, password TEXT)");
+         db.execSQL("CREATE TABLE " + TABLE_NAME + "(id INTEGER PRIMARY KEY, name TEXT, password TEXT, time LONG)");
       }
-
       @Override
       public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
