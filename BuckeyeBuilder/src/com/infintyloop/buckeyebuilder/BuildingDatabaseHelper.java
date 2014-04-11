@@ -16,16 +16,17 @@ import android.database.Cursor;
 
 public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 	
-	BuildingFactory buildingfactory;
-	private static final String DATABASE_NAME = "BuildingData.db";
+	   
+	   private static final String DATABASE_NAME = "BuildingData.db";
 	   private static final int DATABASE_VERSION = 1;
 	   private static final String TABLE_NAME = "UserData";
-	   public String sql;
-	   //private Context context;
 	   private SQLiteDatabase db;
 	   private SQLiteStatement insertStmt;
 	   public static final String KEY_ID = "_id";
-	  // private static final String INSERT = "insert into " + TABLE_NAME + "(name, password) values (?, ?)" ;
+	   public String sql;
+	   public BuildingFactory buildingfactory;
+	   public int i=0;
+	 
 	   
 	   public BuildingDatabaseHelper(Context context) {
 	        super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,7 +37,6 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 	        return db;
 	    }
 	   
-	   
 	   public void onCreate(SQLiteDatabase db) {
 		   
 		   //Creates the Record
@@ -45,24 +45,25 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 				   "buildingname TEXT," +
                    "cost INTEGER, " +
                    "genRates INTEGER, " +
-                   "latitudes REAL, " +
+                   "description TEXT, "+
                    "longitudes REAL, " +
-                   "radiusValues REAL, " +
-                   "description TEXT, ";
+                   "latitudes REAL, " +
+                   "radiusValues REAL, " ;
+                   
 		   	db.execSQL(sql);
   
 	   }
 	   
 	   
-	   public long insert(String buildingname, int cost,int genRates,double latitudes,double longitudes,double radiusValues,String description) {
+	   public long insert(String buildingname, int cost,int genRates,String description,double longitudes,double latitudes,double radiusValues) {
 		      this.insertStmt.bindString(1, buildingname);
 		      this.insertStmt.bindLong(2, cost);
 		      this.insertStmt.bindLong(3, genRates);
-		      this.insertStmt.bindDouble(4,latitudes);
+		      this.insertStmt.bindString(4, description);
 		      this.insertStmt.bindDouble(5, longitudes);
-		      this.insertStmt.bindDouble(6, radiusValues);
-		      this.insertStmt.bindString(7, description);
-		   
+		      this.insertStmt.bindDouble(6,latitudes);
+		      this.insertStmt.bindDouble(7, radiusValues);
+		      
 		      return this.insertStmt.executeInsert();
 		   }
 	   
@@ -72,27 +73,28 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 		   }
 	   
 	   
+	   public List<String> selectAll(String buildingname, int cost,int genRates,String description,double longitudes,double latitudes,double radiusValues) {
+		      List<String> list = new ArrayList<String>();
+		      //may be right or wrong
+		      Cursor cursor = this.db.query(TABLE_NAME, new String[]{"buildingname","cost","genRates","description,","longitudes","latitudes","radiusValues"},"name = '"+ buildingname + cost+genRates+description+longitudes+latitudes+radiusValues, null, null, null, "name desc");
+		      if (cursor.moveToFirst()) {
+		        do {
+		        	 list.add(cursor.getString(0));
+		        	 list.add(cursor.getString(1));
+		        	 list.add(cursor.getString(2));
+		        	 list.add(cursor.getString(3));
+		        	 list.add(cursor.getString(4));
+		        	 list.add(cursor.getString(5));
+		        	 list.add(cursor.getString(6));
+		         } while (cursor.moveToNext()); 
+		      }
+		      if (cursor != null && !cursor.isClosed()) {
+		         cursor.close();
+		      }
+		      return list;
+		   }
 	   
-	   
-	   public Cursor getAllRecords()
-       {
-           return db.query("UserData", new String[] {
-                   KEY_ID,
-                   "buildingname",
-                   "cost", 
-                   "genRates",
-                   "latitudes",
-                   "longitudes", 
-                   "radiusValues",
-                   "description"
-           	},
-           			null, 
-           			null, 
-           			null, 
-           			null,
-           			null);
-       	}
-	   
+
 	  
 	   @Override
 	   //If database verison is changed then deletes all tables and recreates them
@@ -104,8 +106,21 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 	      }
 	   
 	   
-	   
-	   
+	   //String buildingname, int cost,int genRates,String description,double longitudes,double latitudes,double radiusValues
+	   void addBuilding(String buildingname, int cost,int genRates,String description,double longitudes,double latitudes,double radiusValues) {
+	        SQLiteDatabase db = this.getWritableDatabase();
+	 
+	        ContentValues values = new ContentValues();
+	        
+	        //Not 100% sure on the names
+			//values.put(buildingname, buildingfactory.BuildingNames[i]); 
+	       // values.put(cost, buildingfactory.Cost[i]); 
+	        
+	 
+	        // Inserting Row
+	        db.insert(TABLE_NAME, null, values);
+	       // db.close(); // Closing database connection
+	   }
 	   
 	   
 	   
