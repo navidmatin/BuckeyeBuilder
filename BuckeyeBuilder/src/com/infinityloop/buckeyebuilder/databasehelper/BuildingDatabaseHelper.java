@@ -79,7 +79,6 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 	   
 	   public List<String> selectAll(String buildingname, int cost,int genRates,String description,double longitudes,double latitudes,double radiusValues) {
 		      List<String> list = new ArrayList<String>();
-		      //may be right or wrong
 		      Cursor cursor = this.db.query(TABLE_NAME, new String[]{"buildingname","cost","genRates","description,","longitudes","latitudes","radiusValues"},"name = '"+ buildingname + cost+genRates+description+longitudes+latitudes+radiusValues, null, null, null, "name desc");
 		      if (cursor.moveToFirst()) {
 		        do {
@@ -110,22 +109,7 @@ public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {
 	      }
 	   
 	   
-	   //String buildingname, int cost,int genRates,String description,double longitudes,double latitudes,double radiusValues
-	   void addBuilding(String buildingname, int cost,int genRates,String description,double longitudes,double latitudes,double radiusValues) {
-	        SQLiteDatabase db = this.getWritableDatabase();
-	 
-	        ContentValues values = new ContentValues();
-	        
-	        //Not 100% sure on the names
-			//values.put(buildingname, buildingfactory.BuildingNames[i]); 
-	       // values.put(cost, buildingfactory.Cost[i]); 
-	        
-	 
-	        // Inserting Row
-	        db.insert(TABLE_NAME, null, values);
-	       // db.close(); // Closing database connection
-	   }
-	   
-	   
+	
+	     
 	   
 }
