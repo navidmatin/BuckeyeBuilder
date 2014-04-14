@@ -30,9 +30,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	GPSManager gps= new GPSManager(this);
 	double userLat, userLon;
 	String currentBuilding;
-	String json;
-	ArrayList<Building> gsontest;
-	//Gson gson= new Gson();//new GsonBuilder().registerTypeAdapter(Building.class, new BuildingInstanceCreator()).create();
+	Gson gson= new Gson();//new GsonBuilder().registerTypeAdapter(Building.class, new BuildingInstanceCreator()).create();
 	//Tab names
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
 	
