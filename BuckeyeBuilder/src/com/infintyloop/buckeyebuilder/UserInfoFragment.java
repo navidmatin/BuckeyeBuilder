@@ -43,8 +43,8 @@ public class UserInfoFragment extends Fragment {
 		user = ((MainActivity)getParentFragment().getActivity()).user;
 
 		currentbuilding= ((MainActivity)getParentFragment().getActivity()).currentBuilding;
-		//ArrayList<IBuilding> gsonthing =((MainActivity)getParentFragment().getActivity()).gsontest;
-		ArrayList<IBuilding> buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
+		//ArrayList<Building> gsonthing =((MainActivity)getParentFragment().getActivity()).gsontest;
+		ArrayList<Building> buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
 		int genRate=user.CalculateCurrentGenRate(buildingList);
 		TextView genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
 		genRateView.setText(genRate+"$"+ " per hour");

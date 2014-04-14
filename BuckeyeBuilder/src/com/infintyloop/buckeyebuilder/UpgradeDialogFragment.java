@@ -19,7 +19,7 @@ public class UpgradeDialogFragment extends DialogFragment {
 	private TextView levelGenRate;
 	private TextView level;
 	private Bundle bundle;
-	private IBuilding building;
+	private Building building;
 	private IUser user;
 	private View _view;
 	public UpgradeDialogFragment(){

@@ -62,10 +62,10 @@ public class User implements IUser {
 		return moneyCap;
 	}
 	
-	public int CalculateCurrentGenRate(ArrayList<IBuilding> buildingList)
+	public int CalculateCurrentGenRate(ArrayList<Building> buildingList)
 	{
 		int _genRate=0;
-		for(IBuilding building : buildingList)
+		for(Building building : buildingList)
 		{
 			_genRate+=building.GetCurrentGenRate();
 		}

@@ -191,8 +191,8 @@ public class LoginActivity extends Activity {
 	private void setupUser(String username){
 		
 		// grab buildings from the "database", if you are 
-		// getting null IBuilding returns then use the built in values..
-		// and create the IBuildings
+		// getting null Building returns then use the built in values..
+		// and create the Buildings
 		
 		BuildingFactory myFactory = new BuildingFactory();
 		IUser user = new User();
@@ -214,7 +214,7 @@ public class LoginActivity extends Activity {
         // if the values are null, initialize all buildings to level 0
         
 		myFactory.AssignLevels(new int[] {2,1,0}, user); 
-		ArrayList<IBuilding> myBuildings = myFactory.ReturnBuildingList();
+		ArrayList<Building> myBuildings = myFactory.ReturnBuildingList();
        
 		intent.putExtra("BuildingList", myBuildings);
 	}

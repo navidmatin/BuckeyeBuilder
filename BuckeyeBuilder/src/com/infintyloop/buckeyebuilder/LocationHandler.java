@@ -17,13 +17,13 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 	private int radius;
 	private String currentLocal = "Maslkf";
 	
-    //public static void main(ArrayList<IBuilding> allBuildings) {
+    //public static void main(ArrayList<Building> allBuildings) {
      //   (new Thread(new LocationHandler())).start();
    // }
 	 
-	public void Initialize(ArrayList<IBuilding> allBuildings){
+	public void Initialize(ArrayList<Building> allBuildings){
 		for(int i = 0; i < allBuildings.size(); i++){
-			IBuilding temp = allBuildings.get(i);
+			Building temp = allBuildings.get(i);
 			double tempLat = temp.GetLatitude();
 			double tempLon = temp.GetLongitude();
 			double tempRadius = temp.GetRadius();

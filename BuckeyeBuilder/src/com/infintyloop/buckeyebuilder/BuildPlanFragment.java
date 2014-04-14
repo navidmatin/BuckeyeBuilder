@@ -22,7 +22,7 @@ import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 
 public class BuildPlanFragment extends Fragment {
-	ArrayList<IBuilding> buildingList;
+	ArrayList<Building> buildingList;
 	private Intent intent;
 	LinearLayout linearLayout;
 
@@ -39,7 +39,7 @@ public class BuildPlanFragment extends Fragment {
 	public void onStart(){
 		super.onStart();
 		buildingList=((MainActivity)getActivity()).buildingList;
-		for (IBuilding building : buildingList)
+		for (Building building : buildingList)
 		{
 					linearLayout = (LinearLayout) getActivity().findViewById(R.id.buildplan_list);
 					Button button = new Button(getActivity());

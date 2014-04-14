@@ -19,7 +19,7 @@ public class BuildingDetailFragment extends DialogFragment{
 	private TextView levelCost3;
 	private TextView levelGenRate3;
 	private Bundle bundle;
-	private IBuilding building;
+	private Building building;
 	public 	BuildingDetailFragment(){
 	}
 	

@@ -23,7 +23,7 @@ import android.app.FragmentTransaction;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	IUser user = new User();
-	ArrayList<IBuilding> buildingList = new ArrayList<IBuilding>();
+	ArrayList<Building> buildingList = new ArrayList<Building>();
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
@@ -31,8 +31,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	double userLat, userLon;
 	String currentBuilding;
 	String json;
-	ArrayList<IBuilding> gsontest;
-	//Gson gson= new Gson();//new GsonBuilder().registerTypeAdapter(IBuilding.class, new IBuildingInstanceCreator()).create();
+	ArrayList<Building> gsontest;
+	//Gson gson= new Gson();//new GsonBuilder().registerTypeAdapter(Building.class, new BuildingInstanceCreator()).create();
 	//Tab names
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
 	
@@ -52,7 +52,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  			user = intent.getParcelableExtra("User");
  			buildingList = intent.getParcelableArrayListExtra("BuildingList");
  			//json=gson.toJson(buildingList);
- 			//gsontest= gson.fromJson(json, new TypeToken<ArrayList<IBuilding>>(){}.getType());
+ 			//gsontest= gson.fromJson(json, new TypeToken<ArrayList<Building>>(){}.getType());
  			
  		}
  		else{
