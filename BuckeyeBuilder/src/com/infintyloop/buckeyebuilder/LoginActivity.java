@@ -3,6 +3,7 @@ package com.infintyloop.buckeyebuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
 import com.infintyloop.buckeyebuilder.R;
 
 import android.animation.Animator;

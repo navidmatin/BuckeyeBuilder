@@ -1,6 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 import java.util.ArrayList;
 
+import com.infinityloop.buckeyebuilder.databasehelper.BuildingDatabaseHelper;
 import com.infintyloop.buckeyebuilder.IBuilding;
 import com.infintyloop.buckeyebuilder.IUser;
 

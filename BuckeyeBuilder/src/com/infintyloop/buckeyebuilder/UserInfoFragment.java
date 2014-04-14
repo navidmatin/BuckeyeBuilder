@@ -3,6 +3,8 @@ package com.infintyloop.buckeyebuilder;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
+
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

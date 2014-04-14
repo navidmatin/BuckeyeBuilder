@@ -1,5 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 
+import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;

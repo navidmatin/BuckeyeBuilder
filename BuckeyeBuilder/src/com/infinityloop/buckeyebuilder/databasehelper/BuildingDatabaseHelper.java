@@ -1,4 +1,4 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder.databasehelper;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,8 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import com.infintyloop.buckeyebuilder.BuildingFactory;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 
