@@ -1,6 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -79,6 +80,7 @@ public class UpgradeDialogFragment extends DialogFragment {
 		
 		
 	}
+
 	private void Upgrade(){
 		int beforeUpgradelvl=building.GetLevel();
 		if(user.GetMoney()<building.GetCurrentCost())

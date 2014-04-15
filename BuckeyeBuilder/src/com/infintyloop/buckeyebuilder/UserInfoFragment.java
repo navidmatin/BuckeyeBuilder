@@ -7,6 +7,7 @@ import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
 
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,10 +87,41 @@ public class UserInfoFragment extends Fragment {
 		if(moneyView==null)
 			moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
 		moneyView.setText(null);
-		moneyView.setText(money+"$ /"+cap+"$");
-		user.MakeMoney();
+		moneyGeneratorThread();
+		//moneyView.setText(money+"$ /"+cap+"$");
+		//user.MakeMoney();
 		//this.dh.updateTime(user.GetUsername());
 		//Toast.makeText(getActivity(), user.GetMoney(), Toast.LENGTH_LONG).show();
+	}
+	//Constantly updating the money
+	private void moneyGeneratorThread() {
+		final Handler handler = new Handler();
+		Thread runnable = new Thread(new Runnable() {
+			private long startTime = System.currentTimeMillis();
+			public void run(){
+				while(true)
+				{
+					try {
+						Thread.sleep(100);
+					}
+					catch(InterruptedException e) {
+						e.printStackTrace();
+					}
+					handler.post(new Runnable(){
+						@Override
+						public void run(){
+							user.MakeMoney();
+							int money= user.GetMoney();
+							int cap=user.GetCap();
+							moneyView.setText(money+"$ /"+cap+"$");
+							
+						}
+					});
+				}
+			}
+		});
+		if(!runnable.isAlive())
+			runnable.start();
 	}
 	@Override
 	public void onPause(){
