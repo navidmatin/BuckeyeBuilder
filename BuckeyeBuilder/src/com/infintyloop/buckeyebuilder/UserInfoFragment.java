@@ -51,7 +51,7 @@ public class UserInfoFragment extends Fragment {
 		genRateView.setText(genRate+"$"+ " per hour");
 		
 	//	btn=(Button) getView().findViewById(R.id.button1);
-	//	btn.setText("Build " + currentbuilding);
+		//btn.setText("Build " + currentbuilding);
 		
 	  // 	GPSManager _gps=((MainActivity)getParentFragment().getActivity()).gps;
 	   //	Location location=_gps.getLocation();
