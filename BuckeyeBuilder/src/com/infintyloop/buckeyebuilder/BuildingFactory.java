@@ -6,15 +6,14 @@ import com.infintyloop.buckeyebuilder.Building;
 import com.infintyloop.buckeyebuilder.IUser;
 
 public class BuildingFactory{
-	//made all public just a note in case in breaks anything
-	public String[] BuildingNames = {"Hitchcock Hall","Bolz Hall","Dreese Laboratories","Scott Laboratories","Caldwell Laboratories", "Koffolt Laboratories","Lincoln Tower","Jennings Hall"};
-	public int[] Cost = {100,200,300,200,300,400,500,100};
-	public int[] genRates = {20,25,30,25,10,10,70,80};
-	public double[] latitudes = {40.003671,40.002989,40.002319,40.002295,40.002402,2.0,2.0,39.998670};
-	public double[] longitudes = {-83.015363,-83.014996,-83.015826,-83.014377,-83.015043,2.0,2.0,-83.039015};
-	public double[] radiusValues = {0.000087,0.000049,0.000146,0.000378,0.000246,0.0,0.0,0.0005};
-	public String[] description = {"building 1", "building 2", "building 3", "building 4","building 5","building 6", "building 7", "building 8"};
-	public BuildingDatabaseHelper buildingdatabasehelper;
+	private String[] BuildingNames = {"Hitchcock Hall","Bolz Hall","Dreese Laboratories","Scott Laboratories","Caldwell Laboratories", "Koffolt Laboratories","Lincoln Tower","Jennings Hall"};
+	private int[] Cost = {100,200,300,200,300,400,500,100};
+	private int[] genRates = {20,25,30,25,10,10,70,80};
+	private double[] latitudes = {40.003671,40.002989,40.002319,40.002295,40.002402,2.0,2.0,39.998670};
+	private double[] longitudes = {-83.015363,-83.014996,-83.015826,-83.014377,-83.015043,2.0,2.0,-83.039015};
+	private double[] radiusValues = {0.000087,0.000049,0.000146,0.000378,0.000246,0.0,0.0,0.0005};
+	private String[] description = {"building 1", "building 2", "building 3", "building 4","building 5","building 6", "building 7", "building 8"};
+	private BuildingDatabaseHelper buildingdatabasehelper;
 	
 	
 	
