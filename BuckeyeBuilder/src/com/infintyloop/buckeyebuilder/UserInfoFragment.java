@@ -23,7 +23,7 @@ public class UserInfoFragment extends Fragment {
 	DatabaseHelper dh;
 	TextView moneyView;
 	IUser user;
-	String currentbuilding;
+	String currentbuilding = "Nothing";
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -49,22 +49,32 @@ public class UserInfoFragment extends Fragment {
 		TextView genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
 		genRateView.setText(genRate+"$"+ " per hour");
 		
-		btn=(Button) getView().findViewById(R.id.button1);
-		btn.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				   	GPSManager _gps=((MainActivity)getParentFragment().getActivity()).gps;
-				Location location=_gps.getLocation();
-				if(_gps.canGetLocation()){
-					longi=_gps.getLatitude();
-					lat=_gps.getLongitude();
-					Toast.makeText(getActivity().getApplicationContext(),"Your location is -\n Lat:"+ lat + "\nLong: "+longi, Toast.LENGTH_LONG).show();
-					Toast.makeText(getActivity(), currentbuilding, Toast.LENGTH_LONG).show();
-
-				}
-			}
+	//	btn=(Button) getView().findViewById(R.id.button1);
+	//	btn.setText("Build " + currentbuilding);
+		
+	  // 	GPSManager _gps=((MainActivity)getParentFragment().getActivity()).gps;
+	   //	Location location=_gps.getLocation();
+	//	if(_gps.canGetLocation()){
+		//	longi=_gps.getLatitude();
+			//lat=_gps.getLongitude();
+	//		Toast.makeText(getActivity().getApplicationContext(),"Your location is -\n Lat:"+ lat + "\nLong: "+longi, Toast.LENGTH_LONG).show();
+		//	Toast.makeText(getActivity(), currentbuilding, Toast.LENGTH_LONG).show();
+//		}
+	
+	//	btn.setOnClickListener(new OnClickListener(){
+		//	@Override
+//			public void onClick(View v) {
+	//	for(int i = 0; i < buildingList.size(); i++){
+	//		IBuilding temp = buildingList.get(i);
+	//		String tempName = temp.GetName();
+	//		if (tempName == currentbuilding){
+	//			temp.Upgrade(user);
+	//		}
 			
-		});
+	//	}
+	//		}
+			
+	//	});
 		
 		
 	}

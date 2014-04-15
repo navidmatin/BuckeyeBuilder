@@ -15,7 +15,7 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 	private ArrayList<Double> lons = new ArrayList<Double>();
 	private ArrayList<String> buildingNames = new ArrayList<String>();
 	private int radius;
-	private String currentLocal = "Maslkf";
+	private String currentLocal = "null";
 	
     //public static void main(ArrayList<IBuilding> allBuildings) {
      //   (new Thread(new LocationHandler())).start();
