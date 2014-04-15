@@ -135,6 +135,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		viewPager.setCurrentItem(tab.getPosition());
+		//ViewPager.SimpleOnPageChangeListener
 		
 	}
 
