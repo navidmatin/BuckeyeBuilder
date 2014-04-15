@@ -24,14 +24,14 @@ public class UserInfoFragment extends Fragment {
 	DatabaseHelper dh;
 	TextView moneyView;
 	IUser user;
-	String currentbuilding = "Nothing";
+	String currentbuilding;
+	boolean fragmentState=false;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		this.dh=new DatabaseHelper(getActivity());
 		View viewRoot= inflater.inflate(R.layout.user_info_fragment, container,false);
-		
 		//TEST: Show current Long and Lat
 		
 		return viewRoot;
@@ -50,8 +50,8 @@ public class UserInfoFragment extends Fragment {
 		TextView genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
 		genRateView.setText(genRate+"$"+ " per hour");
 		
-	//	btn=(Button) getView().findViewById(R.id.button1);
-		//btn.setText("Build " + currentbuilding);
+		btn=(Button) getView().findViewById(R.id.button1);
+		btn.setText("Can Build " + currentbuilding);
 		
 	  // 	GPSManager _gps=((MainActivity)getParentFragment().getActivity()).gps;
 	   //	Location location=_gps.getLocation();
@@ -81,6 +81,7 @@ public class UserInfoFragment extends Fragment {
 	}
 	@Override
 	public void onResume(){
+		fragmentState=true;
 		super.onResume();
 		int money= user.GetMoney();
 		int cap=user.GetCap();
@@ -102,7 +103,7 @@ public class UserInfoFragment extends Fragment {
 				while(true)
 				{
 					try {
-						Thread.sleep(100);
+						Thread.sleep(1000);
 					}
 					catch(InterruptedException e) {
 						e.printStackTrace();
@@ -120,12 +121,13 @@ public class UserInfoFragment extends Fragment {
 				}
 			}
 		});
-		if(!runnable.isAlive())
+		if(fragmentState)
 			runnable.start();
 	}
 	@Override
 	public void onPause(){
 		super.onPause();
+		fragmentState=false;
 		((MainActivity)getParentFragment().getActivity()).user=user;
 	}
 }
