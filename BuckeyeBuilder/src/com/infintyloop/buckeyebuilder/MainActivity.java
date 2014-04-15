@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.infinityloop.buckeyebuilder.adapter.TabsPagerAdapter;
+import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -23,16 +24,14 @@ import android.app.FragmentTransaction;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	IUser user = new User();
-	ArrayList<IBuilding> buildingList = new ArrayList<IBuilding>();
+	ArrayList<Building> buildingList = new ArrayList<Building>();
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
 	GPSManager gps= new GPSManager(this);
 	double userLat, userLon;
 	String currentBuilding;
-	String json;
-	ArrayList<IBuilding> gsontest;
-	//Gson gson= new Gson();//new GsonBuilder().registerTypeAdapter(IBuilding.class, new IBuildingInstanceCreator()).create();
+	Gson gson= new Gson();//new GsonBuilder().registerTypeAdapter(Building.class, new BuildingInstanceCreator()).create();
 	//Tab names
 	private String[] tabs = { "Build", "Manage", "Build Plan" };
 	
@@ -51,8 +50,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		/* Data and Back-end Processes */
  			user = intent.getParcelableExtra("User");
  			buildingList = intent.getParcelableArrayListExtra("BuildingList");
- 			//json=gson.toJson(buildingList);
- 			//gsontest= gson.fromJson(json, new TypeToken<ArrayList<IBuilding>>(){}.getType());
  			
  		}
  		else{
@@ -179,10 +176,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		super.onSaveInstanceState(savedInstanceState);
 	}
 	@Override
-	public void onPause()
+	public void onStop()
 	{
-		super.onPause();
-		
+		super.onStop();
+		DataHandler.saveData(this, buildingList, user);
 		
 	}
 }

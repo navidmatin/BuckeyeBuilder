@@ -2,7 +2,7 @@ package com.infintyloop.buckeyebuilder;
 import java.util.ArrayList;
 
 import com.infinityloop.buckeyebuilder.databasehelper.BuildingDatabaseHelper;
-import com.infintyloop.buckeyebuilder.IBuilding;
+import com.infintyloop.buckeyebuilder.Building;
 import com.infintyloop.buckeyebuilder.IUser;
 
 public class BuildingFactory{
@@ -19,15 +19,20 @@ public class BuildingFactory{
 	
 	
 	//Use the database for the above info^
-	public ArrayList<IBuilding> listOfBuildings = new ArrayList<IBuilding>();
+	public ArrayList<Building> listOfBuildings = new ArrayList<Building>();
 	
 	private int paycheck;
 	private IUser user;
 	
 	public void MakeBuildings(){
 		for (int i=0;i < BuildingNames.length; i++){
+<<<<<<< HEAD
 		buildingdatabasehelper.insert(BuildingNames[i],Cost[i], genRates[i], description[i], longitudes[i], latitudes[i], radiusValues[i]);
 			IBuilding temp= new Building();
+=======
+		//	buildingdatabasehelper.addBuilding(BuildingNames[i],Cost[i], genRates[i], description[i], longitudes[i], latitudes[i], radiusValues[i]);
+			Building temp= new Building();
+>>>>>>> gson
 			temp.GiveValuesToBuilding(BuildingNames[i],Cost[i], genRates[i], description[i], longitudes[i], latitudes[i], radiusValues[i]);
 			listOfBuildings.add(temp);
 		}
@@ -36,21 +41,21 @@ public class BuildingFactory{
 	public void AssignLevels(int[] levels, IUser theUser){
 		user = theUser;
 		for (int i=0; i < levels.length; i++){
-			IBuilding x = listOfBuildings.get(i);
+			Building x = listOfBuildings.get(i);
 			int temp = levels[i];
 			x.SetLevel(temp);
 			listOfBuildings.set(i, x);
 		}		
 	}
 	
-	public ArrayList<IBuilding> ReturnBuildingList(){
+	public ArrayList<Building> ReturnBuildingList(){
 		return listOfBuildings;
 	}
 	
 	public void PayUser(){
 		paycheck = 0;
 		for (int i = 0; i < BuildingNames.length; i++){
-			IBuilding temp = listOfBuildings.get(i); 
+			Building temp = listOfBuildings.get(i); 
 			if(temp.GetLevel() > 0){
 				paycheck = paycheck + temp.GetCurrentGenRate();
 			}
@@ -58,10 +63,10 @@ public class BuildingFactory{
 		//user.MakeMoney();
 	}
 	
-	public static IBuilding FindBuilding(String buildingName, ArrayList<IBuilding> buildingList)
+	public static Building FindBuilding(String buildingName, ArrayList<Building> buildingList)
 	{
 		
-		for(IBuilding building: buildingList)
+		for(Building building: buildingList)
 		{
 			if(building.GetName()==buildingName)
 				return building;

@@ -27,7 +27,7 @@ public class BuildFragment extends Fragment{
 	private SupportMapFragment mapFragment;
 	private Fragment userInfoFragment;
 	private View userInfoFragmentView;
-	private ArrayList<IBuilding> buildingList;
+	private ArrayList<Building> buildingList;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -61,7 +61,7 @@ public class BuildFragment extends Fragment{
 		userInfoFragmentView=userInfoFragment.getView();
 		setUpMapIfNeeded();
 		buildingList=((MainActivity)getActivity()).buildingList;
-		for(IBuilding building : buildingList)
+		for(Building building : buildingList)
 		{
 			double lat=building.GetLatitude();
 			double longi=building.GetLongitude();

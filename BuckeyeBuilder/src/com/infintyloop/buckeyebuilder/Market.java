@@ -7,9 +7,9 @@ import android.os.Parcelable;
 
 public class Market implements Parcelable{
 
-	public static void PayUser(ArrayList<IBuilding> buildings, IUser user){
+	public static void PayUser(ArrayList<Building> buildings, IUser user){
 		int paycheck = 0;
-		for (IBuilding building : buildings){
+		for (Building building : buildings){
 			if(building.GetLevel() > 0){
 				paycheck = paycheck + building.GetCurrentGenRate();
 			}

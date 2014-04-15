@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class ManageFragment extends Fragment {
-	ArrayList<IBuilding> buildingList;
+	ArrayList<Building> buildingList;
 	IUser user;
 	LinearLayout linearLayout;
 	@Override
@@ -30,7 +30,7 @@ public class ManageFragment extends Fragment {
 		super.onStart();
 		buildingList=((MainActivity)getActivity()).buildingList;
 		user=((MainActivity)getActivity()).user;
-		for (IBuilding building : buildingList)
+		for (Building building : buildingList)
 		{
 			if(building.GetLevel()>0)
 			{
