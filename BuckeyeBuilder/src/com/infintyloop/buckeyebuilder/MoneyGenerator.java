@@ -29,7 +29,7 @@ public class MoneyGenerator implements Parcelable{
 	 * This method must be called each time user look at the user info page, or manage page for the first time
 	 * **/
 	public int GenerateMoney(long viewTime){
-		int cash=(int) (((viewTime-genTime)/1000)*genRate);
+		int cash=(int) (((viewTime-genTime)/1000)*genRate/100);
 		genTime=System.currentTimeMillis();
 		return cash;
 	}

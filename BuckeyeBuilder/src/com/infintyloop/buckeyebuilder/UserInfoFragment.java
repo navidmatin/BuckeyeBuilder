@@ -27,14 +27,15 @@ public class UserInfoFragment extends Fragment {
 	String currentbuilding;
 	boolean fragmentState=false;
 	ArrayList<Building> buildingList;
+	LocationHandler locationHandler;
+	TextView genRateView;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		this.dh=new DatabaseHelper(getActivity());
 		View viewRoot= inflater.inflate(R.layout.user_info_fragment, container,false);
 		//TEST: Show current Long and Lat
-		
+		locationHandler = new LocationHandler();
 		return viewRoot;
 	}
 	@Override
@@ -47,12 +48,10 @@ public class UserInfoFragment extends Fragment {
 		currentbuilding= ((MainActivity)getParentFragment().getActivity()).currentBuilding;
 		//ArrayList<Building> gsonthing =((MainActivity)getParentFragment().getActivity()).gsontest;
 		buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
-		int genRate=user.CalculateCurrentGenRate(buildingList);
-		TextView genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
-		genRateView.setText(genRate+"$"+ " per hour");
 		
-		btn=(Button) getView().findViewById(R.id.button1);
-		btn.setText("Can Build " + currentbuilding);
+
+		
+
 		
 	  // 	GPSManager _gps=((MainActivity)getParentFragment().getActivity()).gps;
 	   //	Location location=_gps.getLocation();
@@ -63,37 +62,49 @@ public class UserInfoFragment extends Fragment {
 		//	Toast.makeText(getActivity(), currentbuilding, Toast.LENGTH_LONG).show();
 //		}
 	
-		btn.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-		for(int i = 0; i < buildingList.size(); i++){
-			IBuilding temp = buildingList.get(i);
-			String tempName = temp.GetName();
-			if (tempName == currentbuilding){
-				temp.Upgrade(user);
-			}
-			
+
+		
+		
+	}
+	
+	private void findBuildingsAround(){
+		if(buildingList!=null){
+			locationHandler.Initialize(buildingList);
+			GPSManager myGPSManager=((MainActivity)getParentFragment().getActivity()).gps;
+    		myGPSManager.getLocation();
+ 		    	 		if(myGPSManager.canGetLocation()){ 
+ 		    				double userLat = myGPSManager.getLatitude();
+ 		    				double userLon = myGPSManager.getLongitude();
+ 		    				locationHandler.RecieveLocation(userLat, userLon);
+ 		    			}
+ 		    	 		currentbuilding= locationHandler.CheckLocationForBuilding();
 		}
-			}
-			
-		});
-		
-		
 	}
 	@Override
 	public void onResume(){
 		fragmentState=true;
 		super.onResume();
-		int money= user.GetMoney();
-		int cap=user.GetCap();
 		if(moneyView==null)
 			moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
 		moneyView.setText(null);
+		genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
 		moneyGeneratorThread();
-		//moneyView.setText(money+"$ /"+cap+"$");
-		//user.MakeMoney();
-		//this.dh.updateTime(user.GetUsername());
-		//Toast.makeText(getActivity(), user.GetMoney(), Toast.LENGTH_LONG).show();
+		findBuildingsAround();
+		btn=(Button) getView().findViewById(R.id.button1);
+		btn.setText("Can Build " + currentbuilding);
+		btn.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Building building=BuildingFactory.FindBuilding(currentbuilding, buildingList);
+				if(building.level==0)
+				{
+					building.Upgrade(user);
+					buildingList=BuildingFactory.addBuildingtoTheList(building, buildingList);
+				}
+				
+			
+			}
+		});
 	}
 	//Constantly updating the money
 	private void moneyGeneratorThread() {
@@ -112,10 +123,14 @@ public class UserInfoFragment extends Fragment {
 					handler.post(new Runnable(){
 						@Override
 						public void run(){
+							//Constantly updating the genRate and 
 							user.MakeMoney();
 							int money= user.GetMoney();
 							int cap=user.GetCap();
 							moneyView.setText(money+"$ /"+cap+"$");
+							int genRate=user.CalculateCurrentGenRate(buildingList);
+							
+							genRateView.setText(genRate+"$"+ " per hour");
 							
 						}
 					});

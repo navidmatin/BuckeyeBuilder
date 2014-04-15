@@ -87,43 +87,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			}
  			
  		});
- 		
-
- 		
-
- 
-
- 		LocationHandler myHandler = new LocationHandler();
-
- 		myHandler.Initialize(buildingList);
-
- //		Thread t = new Thread(new Runnable() {
- //		    public void run() {
- 		    	
- 		    		Location location = gps.getLocation();
-
- 		    	 		if(gps.canGetLocation()){ 
- 		    				userLat = gps.getLatitude();
- 		    				userLon = gps.getLongitude();
- 		    				myHandler.RecieveLocation(userLat, userLon);
- 		    			}
- 		    	 		currentBuilding = myHandler.CheckLocationForBuilding();
- 		    	 		//currentBuilding="Dreese";
- //		    }
- //		});
- 	//	t.start();
- //		Thread t = new Thread(myHandler, "My Thread");
- //		t.start();
- 		
-
-		
-//		String currentBuilding = localHandler.CheckLocationForBuilding();
 		
 	}
-	public void sendMessage(View view){
-		 		Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-		 		startActivity(intent);
-		 	}
+		 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

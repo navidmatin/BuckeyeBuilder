@@ -51,9 +51,10 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 			double tempRad = rads.get(i);
 			if((Math.abs(userLatitude - tempLat) <= tempRad) && (Math.abs(userLongitude - tempLon) <= tempRad)){
 				currentLocal = buildingNames.get(i);
+				return currentLocal;
 			}
 		}
-		return currentLocal;
+		return null;
 	}
 	
 //	@Override
