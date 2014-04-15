@@ -45,27 +45,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		/**START DATA**/
 		/* Data and Back-end Processes */
  		
- 		if(savedInstanceState ==null)
- 		{
+
  		/* Data and Back-end Processes */
  			user = intent.getParcelableExtra("User");
  			buildingList = intent.getParcelableArrayListExtra("BuildingList");
- 			
- 		}
- 		else{
- 			IUser tempUser1 = intent.getParcelableExtra("User");
- 			IUser tempUser2 = savedInstanceState.getParcelable("User");
- 			if(tempUser1.GetUsername()==tempUser2.GetUsername())
- 			{
- 				user= savedInstanceState.getParcelable("User");
- 				buildingList=savedInstanceState.getParcelableArrayList("BuildingList");
- 			}
- 			else
- 			{
- 				user=tempUser1;
- 				buildingList = intent.getParcelableArrayListExtra("BuildingList");
- 			}
- 		}
+ 		
  		
  		/**END DATA**/
  		
@@ -164,16 +148,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 		
-	}
-	@Override 
-	public void onSaveInstanceState(Bundle savedInstanceState)
-	{
-		
-		if(user!=null)
-			savedInstanceState.putParcelable("User", user);
-		if(buildingList!=null)
-			savedInstanceState.putParcelableArrayList("BuildingList", buildingList);
-		super.onSaveInstanceState(savedInstanceState);
 	}
 	@Override
 	public void onStop()

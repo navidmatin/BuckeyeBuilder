@@ -58,7 +58,7 @@ public class UpgradeDialogFragment extends DialogFragment {
 		
 		buildingName.setText(building.GetName());
 		description.setText(building.GetDescription());
-		int levelnumber=building.GetLevel()+1;
+		int levelnumber=building.GetLevel();
 		level.setText("Level "+ Integer.toString(levelnumber));
 		levelGenRate.setText(building.GetCurrentGenRate()+"$");
 		levelCost.setText(building.GetCurrentCost()+"$");

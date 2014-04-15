@@ -26,13 +26,9 @@ public class BuildingFactory{
 	
 	public void MakeBuildings(){
 		for (int i=0;i < BuildingNames.length; i++){
-<<<<<<< HEAD
-		buildingdatabasehelper.insert(BuildingNames[i],Cost[i], genRates[i], description[i], longitudes[i], latitudes[i], radiusValues[i]);
-			IBuilding temp= new Building();
-=======
+
 		//	buildingdatabasehelper.addBuilding(BuildingNames[i],Cost[i], genRates[i], description[i], longitudes[i], latitudes[i], radiusValues[i]);
 			Building temp= new Building();
->>>>>>> gson
 			temp.GiveValuesToBuilding(BuildingNames[i],Cost[i], genRates[i], description[i], longitudes[i], latitudes[i], radiusValues[i]);
 			listOfBuildings.add(temp);
 		}
