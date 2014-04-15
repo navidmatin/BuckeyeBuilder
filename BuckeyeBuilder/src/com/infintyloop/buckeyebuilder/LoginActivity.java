@@ -3,6 +3,7 @@ package com.infintyloop.buckeyebuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
 import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
 import com.infintyloop.buckeyebuilder.R;
 
@@ -190,33 +191,25 @@ public class LoginActivity extends Activity {
 	}
 	private void setupUser(String username){
 		
-		// grab buildings from the "database", if you are 
-		// getting null Building returns then use the built in values..
-		// and create the Buildings
-		
-		BuildingFactory myFactory = new BuildingFactory();
-		IUser user = new User();
-				
-    	SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
-    	SharedPreferences.Editor editor=settings.edit();
-        editor.putString(OPT_NAME, username);
-        editor.commit();
-        
-        intent=new Intent(this, MainActivity.class);
-		myFactory.MakeBuildings();
-
-		// given user, enter their cash and cap values.. 
-		
-		user.GiveValuesToUser(musername, 1000, 300);
-        intent.putExtra("User", user);
-        
-        // grab levels from the "database" corresponding to the specific user
-        // if the values are null, initialize all buildings to level 0
-        
-		myFactory.AssignLevels(new int[] {2,1,0}, user); 
-		ArrayList<Building> myBuildings = myFactory.ReturnBuildingList();
-       
-		intent.putExtra("BuildingList", myBuildings);
+		intent=new Intent(this, MainActivity.class);
+		//Check to see if we have user in the savedFile
+		IUser user = DataHandler.getUserData(this, musername);
+		if(user==null){
+			user=new User();
+			// given user, enter their cash and cap values..
+			user.GiveValuesToUser(musername, 1000, 300);
+		}
+		intent.putExtra("User", user);
+	    //Check to see if we have buildings in the savedfile otherwise create new ones
+		ArrayList<Building> buildingList=DataHandler.getBuildingListData(this, musername);
+		if(buildingList==null)
+		{
+			BuildingFactory myFactory = new BuildingFactory();
+			myFactory.MakeBuildings();
+			myFactory.AssignLevels(new int[] {2,1,0}, user); 		
+			buildingList = myFactory.ReturnBuildingList();
+		}
+		intent.putExtra("BuildingList", buildingList);
 	}
 	public void createNewUser() {
 		startActivity(new Intent(this, RegisterActivity.class));

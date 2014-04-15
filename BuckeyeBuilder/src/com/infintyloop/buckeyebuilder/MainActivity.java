@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.infinityloop.buckeyebuilder.adapter.TabsPagerAdapter;
+import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -49,8 +50,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		/* Data and Back-end Processes */
  			user = intent.getParcelableExtra("User");
  			buildingList = intent.getParcelableArrayListExtra("BuildingList");
- 			//json=gson.toJson(buildingList);
- 			//gsontest= gson.fromJson(json, new TypeToken<ArrayList<Building>>(){}.getType());
  			
  		}
  		else{
@@ -177,10 +176,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		super.onSaveInstanceState(savedInstanceState);
 	}
 	@Override
-	public void onPause()
+	public void onStop()
 	{
-		super.onPause();
-		
+		super.onStop();
+		DataHandler.saveData(this, buildingList, user);
 		
 	}
 }

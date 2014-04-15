@@ -8,4 +8,6 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_building_detail">BuildingDetailActivity</string>
     <string name="title_activity_build_plan">BuildPlanActivity</string>
+    <string name="buildings_file_name">savedbuildings#</string>
+    <string name="user_file_name">saveduser#</string>
 </resources>
