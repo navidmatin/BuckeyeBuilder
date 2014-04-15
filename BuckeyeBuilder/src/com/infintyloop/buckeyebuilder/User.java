@@ -55,6 +55,7 @@ public class User implements IUser {
 		if(amount<=money)
 		{
 			money=money-amount;
+			moneyCap += 50;
 		}
 	}
 	  

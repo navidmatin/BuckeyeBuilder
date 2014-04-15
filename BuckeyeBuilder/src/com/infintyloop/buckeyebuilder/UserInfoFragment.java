@@ -26,6 +26,7 @@ public class UserInfoFragment extends Fragment {
 	IUser user;
 	String currentbuilding;
 	boolean fragmentState=false;
+	ArrayList<Building> buildingList;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -45,7 +46,7 @@ public class UserInfoFragment extends Fragment {
 
 		currentbuilding= ((MainActivity)getParentFragment().getActivity()).currentBuilding;
 		//ArrayList<Building> gsonthing =((MainActivity)getParentFragment().getActivity()).gsontest;
-		ArrayList<Building> buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
+		buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
 		int genRate=user.CalculateCurrentGenRate(buildingList);
 		TextView genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
 		genRateView.setText(genRate+"$"+ " per hour");
@@ -62,20 +63,20 @@ public class UserInfoFragment extends Fragment {
 		//	Toast.makeText(getActivity(), currentbuilding, Toast.LENGTH_LONG).show();
 //		}
 	
-	//	btn.setOnClickListener(new OnClickListener(){
-		//	@Override
-//			public void onClick(View v) {
-	//	for(int i = 0; i < buildingList.size(); i++){
-	//		IBuilding temp = buildingList.get(i);
-	//		String tempName = temp.GetName();
-	//		if (tempName == currentbuilding){
-	//			temp.Upgrade(user);
-	//		}
+		btn.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+		for(int i = 0; i < buildingList.size(); i++){
+			IBuilding temp = buildingList.get(i);
+			String tempName = temp.GetName();
+			if (tempName == currentbuilding){
+				temp.Upgrade(user);
+			}
 			
-	//	}
-	//		}
+		}
+			}
 			
-	//	});
+		});
 		
 		
 	}
