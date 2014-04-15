@@ -38,8 +38,9 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 	
 	// will be grabbed from user class or location void API
 	public void RecieveLocation(double lat, double lon){
-		userLongitude = lat;
-		userLatitude = lon;
+		userLongitude = lon;
+		userLatitude = lat;
+
 	}
 	public String CheckLocationForBuilding(){
 		// foreach loop
@@ -48,7 +49,7 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 			double tempLat = lats.get(i);
 			double tempLon = lons.get(i);
 			double tempRad = rads.get(i);
-			if((userLongitude > (tempLon - tempRad)) && (userLongitude < (tempLon + tempRad)) && (userLatitude < (tempLat + tempRad)) && (userLatitude > (tempLat - tempRad))){
+			if((Math.abs(userLatitude - tempLat) <= tempRad) && (Math.abs(userLongitude - tempLon) <= tempRad)){
 				currentLocal = buildingNames.get(i);
 			}
 		}
