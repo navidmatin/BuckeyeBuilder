@@ -31,6 +31,7 @@ public class UserInfoFragment extends Fragment {
 	ArrayList<Building> buildingList;
 	LocationHandler locationHandler;
 	TextView genRateView;
+	Building building=null;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -78,19 +79,23 @@ public class UserInfoFragment extends Fragment {
 		findBuildingsAround();
 		
 		
-		if(currentbuilding != "null"){
+		if(currentbuilding != null) {
+			building=BuildingFactory.FindBuilding(currentbuilding, buildingList);
+			if(building.GetLevel()==0)
+			{
 					LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.meow);
 					Button btn = new Button(getActivity());
 					LayoutParams params = new  LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 					btn.setLayoutParams(params);
 					btn.setText("Can Build " + currentbuilding);
 					linearLayout.addView(btn);	
+					
 		
 		
 		btn.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Building building=BuildingFactory.FindBuilding(currentbuilding, buildingList);
+				
 				if(building.level==0)
 				{
 					building.Upgrade(user);
@@ -102,7 +107,7 @@ public class UserInfoFragment extends Fragment {
 			}
 		});
 		}
-		
+		}
 	}
 	//Constantly updating the money
 	private void moneyGeneratorThread() {
