@@ -11,10 +11,10 @@ public class BuildingFactory{
 	  "McPherson Chemical Lab"};
 	
 	private int[] Cost = {100,200,300,200,300,400,500,100,200,325,300,350,100};
-	private int[] genRates = {20,25,30,25,10,10,70,80,10,100,20,60,250};
+	private int[] genRates = {20,25,30,25,400,10,70,80,10,100,20,60,250};
 	private double[] latitudes = {40.003671,40.002989,40.002319,40.002295,40.002402,40.003613,40.003688,39.998670,40.001563,40.001196,40.002437,40.001115,40.002461};
 	private double[] longitudes = {-83.015363,-83.014996,-83.015826,-83.014377,-83.015043, -83.012501,-83.016863,-83.039015,-83.015875, -83.014979, -83.013310, -83.014391, -83.012200};
-	private double[] radiusValues = {0.000087,0.000049,0.000146,0.000378,0.000246,0.000246,0.000250,0.0005,0.0004,0.0004,0.0004,0.0005,0.0004};
+	private double[] radiusValues = {0.000087,0.000049,0.000146,0.000078,0.000546,0.000246,0.000250,0.0005,0.0004,0.0004,0.0004,0.0005,0.0004};
 	private String[] description = {
 			"Building 1: Department of Civil and Environmental Engineering, Geodetic Science, Administration, Computer Services and Experiment Station Engineering Building",
 			"Buidling 2: College Engineering, College Science, and College Academic Building",
@@ -22,7 +22,7 @@ public class BuildingFactory{
 			"Buidling 4: Department of Mechanical and Aerospace Engineering",
 			"Buidling 5: Computer Science and Engineering, Electrical and Computer Engineering Buildin",
 			"Building 6: Chemical and Biomolecular Engineering", 
-			"Buidling 7: Architecture Library, Austin E Knowlton School of Architecture, ksa café", 
+			"Buidling 7: Architecture Library, Austin E Knowlton School of Architecture, ksa cafï¿½", 
 			"Buidling 8: Introductory Biology Program",
 			"Buidling 9: Integrated Systems Engineering, Office of the Chief Information Officer",
 			"Building 10: Mathematics and Statistics Building",

@@ -32,6 +32,7 @@ public class UserInfoFragment extends Fragment {
 	LocationHandler locationHandler;
 	TextView genRateView;
 	Building building=null;
+	boolean b=false;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -81,8 +82,9 @@ public class UserInfoFragment extends Fragment {
 		
 		if(currentbuilding != null) {
 			building=BuildingFactory.FindBuilding(currentbuilding, buildingList);
-			if(building.GetLevel()==0)
+			if(building.GetLevel()==0 && !b)
 			{
+					b=true;
 					LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.meow);
 					Button btn = new Button(getActivity());
 					LayoutParams params = new  LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
