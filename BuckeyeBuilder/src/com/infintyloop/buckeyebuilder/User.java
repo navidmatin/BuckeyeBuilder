@@ -25,29 +25,30 @@ public class User implements IUser {
 		genTime=System.currentTimeMillis();
 		mGenerator=new MoneyGenerator();
 	}
+	// returns user's money generator
 	public MoneyGenerator mGenerator(){
 		return mGenerator;
 	}
+	// makes user serializable
 	public User(Parcel in){
 		readFrmParce(in);
 	}
-
+	// if user is being loaded, loads values
 	public void GiveValuesToUser(String userName, int cap, int cash){
 		name = userName;
 		moneyCap = cap;
 		money = cash;
-		// somehow set value to all variables
 	}
-	
+	// returns username
 	public String GetUsername(){
 		return name;
 	}
-	
-	  
+	// returns money
 	public int GetMoney(){
 		return money;
 	}
-	
+	// deducts a certain amount from money and increases the amount of money that
+	// can be owned
 	public void Pay(int amount){
 		if(amount<=money)
 		{
@@ -55,14 +56,15 @@ public class User implements IUser {
 			moneyCap += 50;
 		}
 	}
-	  
+	// returns cap on money
 	public int GetCap(){
 		return moneyCap;
 	}
-	
+	// the total amount that the user is generating
 	public int CalculateCurrentGenRate(ArrayList<Building> buildingList)
 	{
 		int _genRate=0;
+		// gets the genrate of each building and adds them for lump sum
 		for(Building building : buildingList)
 		{
 			_genRate+=building.GetCurrentGenRate();
@@ -71,6 +73,7 @@ public class User implements IUser {
 		return _genRate;
 	}
 	/** WRONG IMPLEMENTATION OF MONEY GENERATION, JUST FOR CHECKING **/
+	// if the money is not at the current cap, make some amount of money
 	public void MakeMoney() {
 		mGenerator.UpdateGenRate(genRate);
 		genTime=System.currentTimeMillis();
@@ -80,25 +83,21 @@ public class User implements IUser {
 		}
 		else 
 			money=moneyCap;
-		
-	// if money cap is not hit.. then call generate money
-	// ODO Auto-generated method stub
 	}
-	
+	// returns the number of buildings that are owned
 	public int NumberofBuildingsOwned(){
 		return ownedBuildings;
 	}
+	// increments your building total
 	public void IncreaseNumberofBuildingsOwned(int i){
 		ownedBuildings+=i;
 	}
-	 
+	// currently nonfunctional
 	public void Walk() {
-	// TODO Auto-generated method stub
 	}
-	
+	// makes serializable
 	 @Override
 	public int describeContents() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	private void readFrmParce(Parcel in) {		
