@@ -3,6 +3,7 @@ package com.infintyloop.buckeyebuilder;
 import java.util.ArrayList;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ public class ManageFragment extends Fragment {
 	ArrayList<Building> buildingList;
 	IUser user;
 	LinearLayout linearLayout;
+	boolean fragmentState=false;
+	int ownedBuildings = 0;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -25,26 +28,34 @@ public class ManageFragment extends Fragment {
          
         return rootView;
     }
-	@Override
-	public void onStart(){
-		super.onStart();
+	private void generateCurrentBuilding(){
 		buildingList=((MainActivity)getActivity()).buildingList;
-		user=((MainActivity)getActivity()).user;
 		for (Building building : buildingList)
 		{
 			if(building.GetLevel()>0)
 			{
+				ownedBuildings++;
 					//Dynamically adding the buttons
-					linearLayout = (LinearLayout) getActivity().findViewById(R.id.manage_list);
+					
 					Button button = new Button(getActivity());
 					LayoutParams params = new  LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 					button.setLayoutParams(params);
 					button.setText(building.GetName());
-					
 					button.setOnClickListener(showUpgradeFragment(button));
 					linearLayout.addView(button);	
 			}
 		}
+	}
+	@Override
+	public void onResume(){
+		super.onResume();
+		linearLayout = (LinearLayout) getActivity().findViewById(R.id.manage_list);
+
+		fragmentState=true;
+		buildingList=((MainActivity)getActivity()).buildingList;
+		user=((MainActivity)getActivity()).user;
+		updateUI();
+		
 	}
 	private View.OnClickListener showUpgradeFragment(final Button button)
 	{
@@ -66,16 +77,42 @@ public class ManageFragment extends Fragment {
 		};
 		
 	}
-	/*private void showUpgradeFragment()
-	{
-		FragmentManager fm= getFragmentManager();
-		UpgradeDialogFragment upgradeDialog = new UpgradeDialogFragment();
-		upgradeDialog.setArguments(bundle);
-		upgradeDialog.show(fm, "upgrade_dialog_fragment");
-	}*/
+	//Constantly updating the money
+	private void updateUI() {
+		final Handler handler = new Handler();
+		Thread runnable = new Thread(new Runnable() {
+			private long startTime = System.currentTimeMillis();
+			public void run(){
+				while(true)
+				{
+					try {
+						Thread.sleep(1000);
+					}
+					catch(InterruptedException e) {
+						e.printStackTrace();
+					}
+					handler.post(new Runnable(){
+						@Override
+						public void run(){
+							user=((MainActivity)getActivity()).user;
+							if(user.NumberofBuildingsOwned()>ownedBuildings)
+							{
+								linearLayout.removeAllViewsInLayout();
+								ownedBuildings=0;
+								generateCurrentBuilding();
+							}
+						}
+					});
+				}
+			}
+		});
+		if(fragmentState)
+			runnable.start();
+	}
 	@Override
 	public void onStop(){
 		super.onPause();
+		fragmentState=false;
 		linearLayout.removeAllViewsInLayout();
 		((MainActivity)getActivity()).buildingList=buildingList;
 	}

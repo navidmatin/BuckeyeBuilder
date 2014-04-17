@@ -99,6 +99,7 @@ public class UserInfoFragment extends Fragment {
 				if(building.level==0)
 				{
 					building.Upgrade(user);
+					user.IncreaseNumberofBuildingsOwned(1);
 					buildingList=BuildingFactory.addBuildingtoTheList(building, buildingList);
 				}
 				

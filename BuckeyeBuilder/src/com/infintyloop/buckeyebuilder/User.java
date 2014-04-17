@@ -12,21 +12,18 @@ public class User implements IUser {
 	private int moneyCap;
 	// private Location location;
 	private int money;
-	private Market myMarket;
-	private int longitude, latitude;
 	private long genTime;
 	private MoneyGenerator mGenerator;
 	private int genRate;
+	private int ownedBuildings;
 	
 	
 	//Constructors
 	public User() {
+		ownedBuildings=0;
 		genRate=0;
 		genTime=System.currentTimeMillis();
 		mGenerator=new MoneyGenerator();
-	}
-	public Market myMarket() {
-		return myMarket;
 	}
 	public MoneyGenerator mGenerator(){
 		return mGenerator;
@@ -88,6 +85,12 @@ public class User implements IUser {
 	// ODO Auto-generated method stub
 	}
 	
+	public int NumberofBuildingsOwned(){
+		return ownedBuildings;
+	}
+	public void IncreaseNumberofBuildingsOwned(int i){
+		ownedBuildings+=i;
+	}
 	 
 	public void Walk() {
 	// TODO Auto-generated method stub
@@ -102,10 +105,8 @@ public class User implements IUser {
 			name=in.readString();
 			moneyCap=in.readInt();
 			money=in.readInt();	
-			myMarket = in.readParcelable(Market.class.getClassLoader());
 			mGenerator= in.readParcelable(MoneyGenerator.class.getClassLoader());
-			longitude = in.readInt();
-			latitude = in.readInt();
+			ownedBuildings = in.readInt();
 			genTime=in.readLong();
 			genRate=in.readInt();
 	}
@@ -114,10 +115,8 @@ public class User implements IUser {
 		dest.writeString(name);
 		dest.writeInt(moneyCap);
 		dest.writeInt(money);
-		dest.writeParcelable(myMarket, flags);
 		dest.writeParcelable(mGenerator, flags);
-		dest.writeInt(longitude);
-		dest.writeInt(latitude);
+		dest.writeInt(ownedBuildings);
 		dest.writeLong(genTime);
 		dest.writeInt(genRate);
 	}

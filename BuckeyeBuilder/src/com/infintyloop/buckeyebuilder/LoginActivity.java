@@ -193,22 +193,23 @@ public class LoginActivity extends Activity {
 		
 		intent=new Intent(this, MainActivity.class);
 		//Check to see if we have user in the savedFile
-		IUser user = DataHandler.getUserData(this, musername);
-		if(user==null){
-			user=new User();
+		//IUser user = DataHandler.getUserData(this, musername);
+		//if(user==null){
+			IUser user=new User();
 			// given user, enter their cash and cap values..
 			user.GiveValuesToUser(musername, 1000, 300);
-		}
+			user.IncreaseNumberofBuildingsOwned(2);
+	//	}
 		intent.putExtra("User", user);
 	    //Check to see if we have buildings in the savedfile otherwise create new ones
-		ArrayList<Building> buildingList=DataHandler.getBuildingListData(this, musername);
-		if(buildingList==null)
-		{
+		//ArrayList<Building> buildingList=DataHandler.getBuildingListData(this, musername);
+		//if(buildingList==null)
+		//{
 			BuildingFactory myFactory = new BuildingFactory();
 			myFactory.MakeBuildings();
 			myFactory.AssignLevels(new int[] {2,1,0}, user); 		
-			buildingList = myFactory.ReturnBuildingList();
-		}
+		ArrayList<Building>	buildingList = myFactory.ReturnBuildingList();
+	//	}
 		intent.putExtra("BuildingList", buildingList);
 	}
 	public void createNewUser() {
