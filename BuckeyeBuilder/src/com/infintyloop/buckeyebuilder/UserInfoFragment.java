@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class UserInfoFragment extends Fragment {
-	Button btn;
+	Button btn=null;
 	double longi;
 	double lat;
 	DatabaseHelper dh;
@@ -98,9 +98,21 @@ public class UserInfoFragment extends Fragment {
 				
 				if(building.level==0)
 				{
-					building.Upgrade(user);
-					user.IncreaseNumberofBuildingsOwned(1);
-					buildingList=BuildingFactory.addBuildingtoTheList(building, buildingList);
+					if(user.GetMoney()<building.GetCurrentCost())
+					{
+						Alert.notEnoughMoneyAlert(getActivity());
+					}
+					else{
+						building.Upgrade(user);
+						if(building.GetLevel()==0)
+							Alert.upgradeFailed(getActivity());
+						user.IncreaseNumberofBuildingsOwned(1);
+						buildingList=BuildingFactory.addBuildingtoTheList(building, buildingList);
+						((TextView)v).setText(currentbuilding+" Is already built");
+						v.setEnabled(false);
+						((MainActivity)getParentFragment().getActivity()).updateMap++;
+					}
+					
 				}
 				
 			
