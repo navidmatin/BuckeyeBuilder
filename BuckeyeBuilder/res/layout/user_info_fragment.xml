@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   	android:id="@+id/meow"
+    
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 		    <TableRow android:paddingTop="20dp"
@@ -37,16 +39,10 @@
 		            />  
 		    </TableRow>
 			<TableRow
+			    
 			    android:paddingTop="20dp"
      		android:layout_marginLeft="20dp"
      		android:layout_marginRight="20dp">
-		
-				<Button
-				    android:id="@+id/button1"
-				    android:layout_width="match_parent"
-				    android:layout_height="wrap_content"
-				    android:layout_weight="1"
-				    android:text="Build " />
 		
 		    </TableRow>
 </TableLayout>

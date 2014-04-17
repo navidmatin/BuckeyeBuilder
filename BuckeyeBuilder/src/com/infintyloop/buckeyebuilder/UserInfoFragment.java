@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,8 +76,17 @@ public class UserInfoFragment extends Fragment {
 		genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
 		
 		findBuildingsAround();
-		btn=(Button) getView().findViewById(R.id.button1);
-		btn.setText("Can Build " + currentbuilding);
+		
+		
+		if(currentbuilding != "null"){
+					LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.meow);
+					Button btn = new Button(getActivity());
+					LayoutParams params = new  LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+					btn.setLayoutParams(params);
+					btn.setText("Can Build " + currentbuilding);
+					linearLayout.addView(btn);	
+		
+		
 		btn.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -90,6 +101,8 @@ public class UserInfoFragment extends Fragment {
 			
 			}
 		});
+		}
+		
 	}
 	//Constantly updating the money
 	private void moneyGeneratorThread() {
