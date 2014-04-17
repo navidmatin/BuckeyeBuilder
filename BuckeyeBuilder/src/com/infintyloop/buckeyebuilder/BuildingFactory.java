@@ -7,13 +7,14 @@ import com.infintyloop.buckeyebuilder.IUser;
 
 public class BuildingFactory{
 	private String[] BuildingNames = {"Hitchcock Hall","Bolz Hall","Dreese Laboratories","Scott Laboratories","Caldwell Laboratories", 
-	 "Koffolt Laboratories","Knowlton Hall","Jennings Hall","Baker Systems","Cockins Hall","Smith Laboratory"};
+	 "Koffolt Laboratories","Knowlton Hall","Jennings Hall","Baker Systems","Cockins Hall","Smith Laboratory","Dulles Hall",
+	  "McPherson Chemical Lab"};
 	
-	private int[] Cost = {100,200,300,200,300,400,500,100,200,325,90};
-	private int[] genRates = {20,25,30,25,10,10,70,80,10,100,20};
-	private double[] latitudes = {40.003671,40.002989,40.002319,40.002295,40.002402,40.003613,40.003688,39.998670,40.001563,40.001196,40.002437};
-	private double[] longitudes = {-83.015363,-83.014996,-83.015826,-83.014377,-83.015043, -83.012501,-83.016863,-83.039015,-83.015875, -83.014979, -83.013310};
-	private double[] radiusValues = {0.000087,0.000049,0.000146,0.000378,0.000246,0.000246,0.000250,0.0005,0.0004,0.0004,0004};
+	private int[] Cost = {100,200,300,200,300,400,500,100,200,325,300,350,100};
+	private int[] genRates = {20,25,30,25,10,10,70,80,10,100,20,60,250};
+	private double[] latitudes = {40.003671,40.002989,40.002319,40.002295,40.002402,40.003613,40.003688,39.998670,40.001563,40.001196,40.002437,40.001115,40.002461};
+	private double[] longitudes = {-83.015363,-83.014996,-83.015826,-83.014377,-83.015043, -83.012501,-83.016863,-83.039015,-83.015875, -83.014979, -83.013310, -83.014391, -83.012200};
+	private double[] radiusValues = {0.000087,0.000049,0.000146,0.000378,0.000246,0.000246,0.000250,0.0005,0.0004,0.0004,0.0004,0.0005,0.0004};
 	private String[] description = {
 			"Building 1: Department of Civil and Environmental Engineering, Geodetic Science, Administration, Computer Services and Experiment Station Engineering Building",
 			"Buidling 2: College Engineering, College Science, and College Academic Building",
@@ -25,7 +26,10 @@ public class BuildingFactory{
 			"Buidling 8: Introductory Biology Program",
 			"Buidling 9: Integrated Systems Engineering, Office of the Chief Information Officer",
 			"Building 10: Mathematics and Statistics Building",
-			"Building 11: ",
+			"Building 11: Anthropology Arts and Sciences Honors Advising, Astronomy, Engineering Experiment Station,Film Studies, Office of Energy and Environment, Physics,Public Health",
+			"Building 12: History, Humanities Administration, Melton Center For Jewish Studies, The Center for Folklore Studies, Women's Studies",
+			"Building 13: Astronomy and Chemistry Building"
+
 			
 			};
 	
