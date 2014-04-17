@@ -31,6 +31,7 @@ public class BuildFragment extends Fragment{
 	private Fragment userInfoFragment;
 	private View userInfoFragmentView;
 	private ArrayList<Building> buildingList;
+	private int ownedBuildings=0;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -57,13 +58,10 @@ public class BuildFragment extends Fragment{
 		transaction.commit();
 		return viewRoot;
 	}
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-		userInfoFragmentView=userInfoFragment.getView();
+	private void SetupTheMap(){
 		setUpMapIfNeeded();
 		buildingList=((MainActivity)getActivity()).buildingList;
+		//This section puts a marker for each buildings
 		for(Building building : buildingList)
 		{
 			double lat=building.GetLatitude();
@@ -105,9 +103,19 @@ public class BuildFragment extends Fragment{
 				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
 				);
 			}
-			
 		}
+	}
+	@Override
+	public void onResume(){
+		SetupTheMap();
+		super.onResume();
 		
+	}
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+		userInfoFragmentView=userInfoFragment.getView();
 		//map=((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment)).getMap();	
 	}
 	private void setUpMapIfNeeded() {

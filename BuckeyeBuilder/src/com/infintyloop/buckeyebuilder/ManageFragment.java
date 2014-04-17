@@ -85,8 +85,9 @@ public class ManageFragment extends Fragment {
 		};
 		
 	}
-	//Constantly updating the money
+	//Constantly updating the Buildings list
 	private void updateUI() {
+		user=((MainActivity)getActivity()).user;
 		final Handler handler = new Handler();
 		Thread runnable = new Thread(new Runnable() {
 			private long startTime = System.currentTimeMillis();
@@ -102,7 +103,7 @@ public class ManageFragment extends Fragment {
 					handler.post(new Runnable(){
 						@Override
 						public void run(){
-							user=((MainActivity)getActivity()).user;
+							
 							if(user.NumberofBuildingsOwned()>ownedBuildings)
 							{
 								linearLayout.removeAllViewsInLayout();
