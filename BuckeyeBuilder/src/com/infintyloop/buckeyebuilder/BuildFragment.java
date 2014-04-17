@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BuildFragment extends Fragment{
 	final static String ARG_POSITION = "position";
@@ -42,28 +43,36 @@ public class BuildFragment extends Fragment{
 		View viewRoot= inflater.inflate(R.layout.build_fragment, container,false);
 		
 		//For now I'm just using the SupportMapFragment() and not GoogleMapFragment custom fragment
-		mapFragment = new  SupportMapFragment();
-		//Map stuff
-		 GoogleMapOptions options = new GoogleMapOptions();
-         options.mapType(GoogleMap.MAP_TYPE_NORMAL)
-         	.compassEnabled(true)
-         	.rotateGesturesEnabled(false)
-         	.tiltGesturesEnabled(true)
-         	.zoomGesturesEnabled(true);
-         mapFragment=SupportMapFragment.newInstance(options);
-		userInfoFragment = new UserInfoFragment();
+
+		
 		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-		transaction.add(R.id.map_fragment, mapFragment);
+		if(mapFragment==null){
+			mapFragment = new  SupportMapFragment();
+			//Map stuff
+			GoogleMapOptions options = new GoogleMapOptions();
+			options.mapType(GoogleMap.MAP_TYPE_NORMAL)
+         		.compassEnabled(true)
+         		.rotateGesturesEnabled(false)
+         		.tiltGesturesEnabled(true)
+         		.zoomGesturesEnabled(true);
+			mapFragment=SupportMapFragment.newInstance(options);
+			transaction.add(R.id.map_fragment, mapFragment);
+		}
+		userInfoFragment = new UserInfoFragment();
 		transaction.add(R.id.user_info_fragment_placeholder, userInfoFragment);	
 		transaction.commit();
+		Toast.makeText(this.getActivity(), "ON CREATE VIEW IS CALLED", Toast.LENGTH_SHORT).show();
 		return viewRoot;
 	}
 	private void SetupTheMap(){
+		
 		setUpMapIfNeeded();
 		buildingList=((MainActivity)getActivity()).buildingList;
 		//This section puts a marker for each buildings
+		Toast.makeText(this.getActivity(), "SET_UP THE MAP IS CALLED", Toast.LENGTH_SHORT).show();
 		for(Building building : buildingList)
 		{
+			
 			double lat=building.GetLatitude();
 			double longi=building.GetLongitude();
 			LatLng latlng= new LatLng(lat, longi);
@@ -107,6 +116,7 @@ public class BuildFragment extends Fragment{
 	}
 	@Override
 	public void onResume(){
+		Toast.makeText(this.getActivity(), "RESUME IS CALLED", Toast.LENGTH_SHORT).show();
 		SetupTheMap();
 		super.onResume();
 		
