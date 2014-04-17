@@ -36,6 +36,7 @@ public class BuildFragment extends Fragment{
 	private ArrayList<Building> buildingList;
 	boolean fragmentState=false;
 	int updateMap=0;
+	int mainActivityupdateMap=0;
 	ArrayList<Marker> markerList= new ArrayList<Marker>();
 	
 	@Override
@@ -60,6 +61,7 @@ public class BuildFragment extends Fragment{
          		.tiltGesturesEnabled(true)
          		.zoomGesturesEnabled(true);
 			mapFragment=SupportMapFragment.newInstance(options);
+			
 			transaction.add(R.id.map_fragment, mapFragment);
 		}
 		userInfoFragment = new UserInfoFragment();
@@ -68,9 +70,12 @@ public class BuildFragment extends Fragment{
 		return viewRoot;
 	}
 	private void SetupTheMap(){
-
+		if(getActivity()!=null)
+		{
+		mainActivityupdateMap=((MainActivity)getActivity()).updateMap;
+		}
 		setUpMapIfNeeded();
-		if(updateMap<((MainActivity)getActivity()).updateMap)
+		if(updateMap<mainActivityupdateMap)
 		{
 			buildingList=((MainActivity)getActivity()).buildingList;
 			//This section puts a marker for each buildings
