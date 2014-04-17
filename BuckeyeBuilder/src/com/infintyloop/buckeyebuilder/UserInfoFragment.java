@@ -42,29 +42,13 @@ public class UserInfoFragment extends Fragment {
 	public void onStart()
 	{
 		super.onStart();
-		
+		fragmentState=true;
+		moneyGeneratorThread();
 		user = ((MainActivity)getParentFragment().getActivity()).user;
 
 		currentbuilding= ((MainActivity)getParentFragment().getActivity()).currentBuilding;
 		//ArrayList<Building> gsonthing =((MainActivity)getParentFragment().getActivity()).gsontest;
 		buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
-		
-
-		
-
-		
-	  // 	GPSManager _gps=((MainActivity)getParentFragment().getActivity()).gps;
-	   //	Location location=_gps.getLocation();
-	//	if(_gps.canGetLocation()){
-		//	longi=_gps.getLatitude();
-			//lat=_gps.getLongitude();
-	//		Toast.makeText(getActivity().getApplicationContext(),"Your location is -\n Lat:"+ lat + "\nLong: "+longi, Toast.LENGTH_LONG).show();
-		//	Toast.makeText(getActivity(), currentbuilding, Toast.LENGTH_LONG).show();
-//		}
-	
-
-		
-		
 	}
 	
 	private void findBuildingsAround(){
@@ -82,13 +66,13 @@ public class UserInfoFragment extends Fragment {
 	}
 	@Override
 	public void onResume(){
-		fragmentState=true;
+
 		super.onResume();
 		if(moneyView==null)
 			moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
 		moneyView.setText(null);
 		genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
-		moneyGeneratorThread();
+		
 		findBuildingsAround();
 		btn=(Button) getView().findViewById(R.id.button1);
 		btn.setText("Can Build " + currentbuilding);
@@ -113,7 +97,7 @@ public class UserInfoFragment extends Fragment {
 		Thread runnable = new Thread(new Runnable() {
 			private long startTime = System.currentTimeMillis();
 			public void run(){
-				while(true)
+				while(fragmentState)
 				{
 					try {
 						Thread.sleep(1000);
@@ -138,7 +122,6 @@ public class UserInfoFragment extends Fragment {
 				}
 			}
 		});
-		if(fragmentState)
 			runnable.start();
 	}
 	@Override

@@ -47,14 +47,22 @@ public class ManageFragment extends Fragment {
 		}
 	}
 	@Override
+	public void onStart(){
+		super.onStart();
+		fragmentState=true;
+		ownedBuildings=0;
+		updateUI();
+	}
+	@Override
 	public void onResume(){
+
 		super.onResume();
 		linearLayout = (LinearLayout) getActivity().findViewById(R.id.manage_list);
 
-		fragmentState=true;
+
 		buildingList=((MainActivity)getActivity()).buildingList;
 		user=((MainActivity)getActivity()).user;
-		updateUI();
+		
 		
 	}
 	private View.OnClickListener showUpgradeFragment(final Button button)
@@ -83,10 +91,10 @@ public class ManageFragment extends Fragment {
 		Thread runnable = new Thread(new Runnable() {
 			private long startTime = System.currentTimeMillis();
 			public void run(){
-				while(true)
+				while(fragmentState)
 				{
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					}
 					catch(InterruptedException e) {
 						e.printStackTrace();
@@ -106,7 +114,6 @@ public class ManageFragment extends Fragment {
 				}
 			}
 		});
-		if(fragmentState)
 			runnable.start();
 	}
 	@Override

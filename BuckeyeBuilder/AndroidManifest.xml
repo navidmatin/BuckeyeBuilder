@@ -34,7 +34,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBSR3NrMaFzmuNqVQoVSiOsOMGrVxcJ4Fo" />
+            android:value="AIzaSyDOa1M3KhVdXY_Ptvxu5PJiHMf_tDeoMpM" />
 
         <activity
             android:name="com.infintyloop.buckeyebuilder.LoginActivity"
@@ -53,9 +53,7 @@
             android:label="@string/title_activity_register"
             android:parentActivityName="com.infintyloop.buckeyebuilder.LoginActivity"
             android:launchMode="singleInstance" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.infintyloop.buckeyebuilder.LoginActivity" />
+
         </activity>
     </application>
 
