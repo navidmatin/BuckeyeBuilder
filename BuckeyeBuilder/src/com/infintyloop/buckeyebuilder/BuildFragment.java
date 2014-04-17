@@ -2,10 +2,13 @@ package com.infintyloop.buckeyebuilder;
 //import android.app.Fragment;
 import java.util.ArrayList;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -66,9 +69,42 @@ public class BuildFragment extends Fragment{
 			double lat=building.GetLatitude();
 			double longi=building.GetLongitude();
 			LatLng latlng= new LatLng(lat, longi);
-			map.addMarker(new MarkerOptions()
-					.position(latlng)
-					);
+			if(building.GetLevel()==0)
+			{
+				map.addMarker(new MarkerOptions()
+						.position(latlng)
+						.title(building.GetName())
+						.snippet("Not Built Yet")
+						.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+						);
+			}
+			else if(building.GetLevel()==1)
+			{
+				map.addMarker(new MarkerOptions()
+				.position(latlng)
+				.title(building.GetName())
+				.snippet("Level 1, Generation Rate:"+building.GetCurrentGenRate())
+				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+				);
+			}
+			else if(building.GetLevel()==2)
+			{
+				map.addMarker(new MarkerOptions()
+				.position(latlng)
+				.title(building.GetName())
+				.snippet("Level 2, Generation Rate:"+building.GetCurrentGenRate())
+				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
+				);
+			}
+			else if(building.GetLevel()==3)
+			{
+				map.addMarker(new MarkerOptions()
+				.position(latlng)
+				.title(building.GetName())
+				.snippet("Level 3, Generation Rate:"+building.GetCurrentGenRate())
+				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+				);
+			}
 			
 		}
 		
@@ -81,7 +117,11 @@ public class BuildFragment extends Fragment{
 	                            .getMap();
 	        // Check if we were successful in obtaining the map.
 	        if (map != null) {
-	        	//CameraPosition camPosition= new CameraPosition(null, mCurrentPosition, mCurrentPosition, mCurrentPosition);
+	        	
+	        	LatLng l= new LatLng(39.999050, -83.019880);
+	        	//CameraPosition camPosition= new CameraPosition(l, 10, mCurrentPosition, mCurrentPosition);
+	        	
+	        	map.animateCamera(CameraUpdateFactory.newLatLngZoom(l, 15));
 	        	int i = userInfoFragmentView.getHeight();
 	        	i=userInfoFragmentView.getMeasuredHeight();
 	        	map.setMyLocationEnabled(true);
