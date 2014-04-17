@@ -108,6 +108,7 @@ public class UserInfoFragment extends Fragment {
 							Alert.upgradeFailed(getActivity());
 						user.IncreaseNumberofBuildingsOwned(1);
 						buildingList=BuildingFactory.addBuildingtoTheList(building, buildingList);
+						((MainActivity)getParentFragment().getActivity()).buildingList=buildingList;
 						((TextView)v).setText(currentbuilding+" Is already built");
 						v.setEnabled(false);
 						((MainActivity)getParentFragment().getActivity()).updateMap++;
@@ -159,5 +160,6 @@ public class UserInfoFragment extends Fragment {
 		super.onPause();
 		fragmentState=false;
 		((MainActivity)getParentFragment().getActivity()).user=user;
+
 	}
 }

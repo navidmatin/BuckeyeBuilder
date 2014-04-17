@@ -74,7 +74,8 @@ public class BuildFragment extends Fragment{
 		{
 			buildingList=((MainActivity)getActivity()).buildingList;
 			//This section puts a marker for each buildings
-			markerList.clear();
+			for(Marker m: markerList)
+				m.remove();
 			for(Building building : buildingList)
 			{
 					

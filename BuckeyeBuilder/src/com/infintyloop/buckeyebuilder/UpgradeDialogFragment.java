@@ -91,6 +91,8 @@ public class UpgradeDialogFragment extends DialogFragment {
 			building.Upgrade(user);
 			if(beforeUpgradelvl==building.GetLevel())
 				Alert.upgradeFailed(getActivity());
+			else
+				((MainActivity)getActivity()).updateMap++;
 		}
 	}
 }

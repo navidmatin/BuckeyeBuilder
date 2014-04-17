@@ -11,6 +11,8 @@ import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
 
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
