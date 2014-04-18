@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,6 @@ public class UserInfoFragment extends Fragment {
 	LocationHandler locationHandler;
 	TextView genRateView;
 	Building building=null;
-	boolean b;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -40,7 +40,6 @@ public class UserInfoFragment extends Fragment {
 		View viewRoot= inflater.inflate(R.layout.user_info_fragment, container,false);
 		//TEST: Show current Long and Lat
 		locationHandler = new LocationHandler();
-		b=false;
 		return viewRoot;
 	}
 	@Override
@@ -83,46 +82,40 @@ public class UserInfoFragment extends Fragment {
 		
 		if(currentbuilding != null) {
 			building=BuildingFactory.FindBuilding(currentbuilding, buildingList);
-			if(building.GetLevel()==0 && !b)
-			{
-					b=true;
-					LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.meow);
-					Button btn = new Button(getActivity());
-					LayoutParams params = new  LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-					btn.setLayoutParams(params);
-					btn.setText("Can Build " + currentbuilding);
-					linearLayout.addView(btn);	
-					
-		
-		
-		btn.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				
-				if(building.level==0)
-				{
-					if(user.GetMoney()<building.GetCurrentCost())
-					{
-						Alert.notEnoughMoneyAlert(getActivity());
+			Button btn = (Button) getView().findViewById(R.id.build_button);
+			if(building.GetLevel()==0)
+			{				
+				btn.setText("Build " + currentbuilding);
+				btn.setEnabled(true);
+
+				btn.setOnClickListener(new OnClickListener(){
+					@Override
+					public void onClick(View v) {		
+						if(building.level==0)
+						{
+							if(user.GetMoney()<building.GetCurrentCost())
+							{
+								Alert.notEnoughMoneyAlert(getActivity());
+							}
+							else{
+								building.Upgrade(user);
+								if(building.GetLevel()==0)
+									Alert.upgradeFailed(getActivity());
+								user.IncreaseNumberofBuildingsOwned(1);
+								buildingList=BuildingFactory.addBuildingtoTheList(building, buildingList);
+								((MainActivity)getParentFragment().getActivity()).buildingList=buildingList;
+								((TextView)v).setText(currentbuilding+" Is already built");
+								v.setEnabled(false);
+								((MainActivity)getParentFragment().getActivity()).updateMap++;
+							}	
+						}
 					}
-					else{
-						building.Upgrade(user);
-						if(building.GetLevel()==0)
-							Alert.upgradeFailed(getActivity());
-						user.IncreaseNumberofBuildingsOwned(1);
-						buildingList=BuildingFactory.addBuildingtoTheList(building, buildingList);
-						((MainActivity)getParentFragment().getActivity()).buildingList=buildingList;
-						((TextView)v).setText(currentbuilding+" Is already built");
-						v.setEnabled(false);
-						((MainActivity)getParentFragment().getActivity()).updateMap++;
-					}
-					
-				}
-				
-			
+				});
 			}
-		});
-		}
+			else
+			{
+				btn.setText(currentbuilding+"Is already built");
+			}
 		}
 	}
 	//Constantly updating the money
