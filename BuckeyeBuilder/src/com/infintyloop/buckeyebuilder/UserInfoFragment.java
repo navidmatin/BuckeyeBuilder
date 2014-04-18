@@ -32,7 +32,7 @@ public class UserInfoFragment extends Fragment {
 	LocationHandler locationHandler;
 	TextView genRateView;
 	Building building=null;
-	boolean b=false;
+	boolean b;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -40,6 +40,7 @@ public class UserInfoFragment extends Fragment {
 		View viewRoot= inflater.inflate(R.layout.user_info_fragment, container,false);
 		//TEST: Show current Long and Lat
 		locationHandler = new LocationHandler();
+		b=false;
 		return viewRoot;
 	}
 	@Override
