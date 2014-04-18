@@ -1,5 +1,7 @@
 package com.infintyloop.buckeyebuilder;
-
+/**
+ * User interface
+ */
 import java.util.ArrayList;
 
 import android.os.Parcel;

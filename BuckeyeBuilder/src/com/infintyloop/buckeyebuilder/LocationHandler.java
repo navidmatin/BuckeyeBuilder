@@ -1,5 +1,7 @@
 package com.infintyloop.buckeyebuilder;
-
+/**
+ * Handles the location of the buildings and finding the current building
+ */
 import java.util.ArrayList;
 
 import android.content.Context;

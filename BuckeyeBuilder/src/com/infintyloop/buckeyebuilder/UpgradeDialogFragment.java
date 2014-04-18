@@ -11,7 +11,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
+/**
+ * a dialog fragment that shows the windows with currently owned building information 
+ * and also gives user the option to upgrade the building
+ */
 public class UpgradeDialogFragment extends DialogFragment {
 	
 	private TextView buildingName;

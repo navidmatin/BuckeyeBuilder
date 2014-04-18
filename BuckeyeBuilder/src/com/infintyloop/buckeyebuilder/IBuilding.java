@@ -1,6 +1,8 @@
 package com.infintyloop.buckeyebuilder;
 
-
+/**
+ * Building interface, Not being Used for the current version! Just here in case of expanding the app
+ */
 import android.os.Parcel;
 import android.os.Parcelable;
 

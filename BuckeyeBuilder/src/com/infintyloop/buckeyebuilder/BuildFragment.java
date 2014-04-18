@@ -25,7 +25,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+/**
+ * A fragment that holds both the map and userinfo fragment. It is the default fragment for the user to see after logging in
+ */
 public class BuildFragment extends Fragment{
 	final static String ARG_POSITION = "position";
 	int mCurrentPosition =1;

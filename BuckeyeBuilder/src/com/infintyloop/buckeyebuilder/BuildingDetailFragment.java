@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
+/**
+ * A Dialog fragment that opens up through BuildPlan Fragment, and shows building general information
+ */
 public class BuildingDetailFragment extends DialogFragment{
 	private TextView buildingName;
 	private TextView description;

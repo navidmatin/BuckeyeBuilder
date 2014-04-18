@@ -1,6 +1,8 @@
 package com.infintyloop.buckeyebuilder;
 
-
+/**
+ * A service that get's user's current GPS location
+ */
 
 import android.app.AlertDialog;
 import android.app.Service;

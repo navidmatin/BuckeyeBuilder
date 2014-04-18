@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.Settings;
-
+/**
+ * A class with static methods for showing different alerts!
+ */
 public class Alert {
 	public static void notEnoughMoneyAlert(Context context){
 	AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);

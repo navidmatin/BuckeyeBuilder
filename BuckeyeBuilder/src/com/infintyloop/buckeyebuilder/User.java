@@ -5,7 +5,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.infintyloop.buckeyebuilder.Market;
-
+/**
+ * User class which holds all of the user information
+ */
 public class User implements IUser {
 
 	private String name;

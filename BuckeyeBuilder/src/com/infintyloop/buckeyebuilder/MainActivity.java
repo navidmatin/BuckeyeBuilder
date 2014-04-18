@@ -23,7 +23,11 @@ import android.widget.Toast;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
-
+/**
+ * The only activity other than the Login and Register Activity:
+ * This activity holds all of the tabs and all of the fragments. It also works as a terminal for data
+ * all of the fragments access data through the main activity
+ */
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	IUser user = new User();
 	ArrayList<Building> buildingList = new ArrayList<Building>();

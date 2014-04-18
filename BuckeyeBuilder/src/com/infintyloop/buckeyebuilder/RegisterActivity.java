@@ -20,8 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Activity which displays a register screen to the user, offering registration as
- * well.
+ * Activity which displays a register screen to the user
  */
 public class RegisterActivity extends Activity {
 	/**

@@ -19,7 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
+/**
+ * A nested fragment that is placed inside the BuildFragment. It shows the user current money 
+ * and the generation rate
+ */
 public class UserInfoFragment extends Fragment {
 	Button btn=null;
 	double longi;

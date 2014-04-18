@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+/**
+ * Not Being used. In case of expanding the app so user can buy raw material (The logic might be wrong)
+ */
 public class Market implements Parcelable{
 
 	public static void PayUser(ArrayList<Building> buildings, IUser user){

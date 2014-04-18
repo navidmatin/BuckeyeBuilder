@@ -2,7 +2,9 @@ package com.infintyloop.buckeyebuilder;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+/**
+ * A class representing each Building
+ */
 public class Building implements IBuilding {
 	
 	private String name;

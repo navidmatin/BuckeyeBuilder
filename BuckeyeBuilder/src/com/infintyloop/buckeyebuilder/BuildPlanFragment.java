@@ -20,7 +20,9 @@ import android.widget.LinearLayout;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
-
+/**
+ *	A fragment that shows list of all of the buildings available to be built
+ */
 public class BuildPlanFragment extends Fragment {
 	ArrayList<Building> buildingList;
 	private Intent intent;

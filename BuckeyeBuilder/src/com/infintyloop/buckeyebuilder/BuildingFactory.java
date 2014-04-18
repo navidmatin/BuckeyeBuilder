@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import com.infinityloop.buckeyebuilder.databasehelper.BuildingDatabaseHelper;
 import com.infintyloop.buckeyebuilder.Building;
 import com.infintyloop.buckeyebuilder.IUser;
-
+/**
+ * A class that is called if the user new, in order to generate all of the buildings
+ */
 public class BuildingFactory{
 	private String[] BuildingNames = {"Hitchcock Hall","Bolz Hall","Dreese Laboratories","Scott Laboratories","Caldwell Laboratories", 
 	 "Koffolt Laboratories","Knowlton Hall","Jennings Hall","Baker Systems","Cockins Hall","Smith Laboratory","Dulles Hall",

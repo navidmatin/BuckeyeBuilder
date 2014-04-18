@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
+/**
+ * A fragment that shows all of the buildings that are currently owned
+ */
 public class ManageFragment extends Fragment {
 	ArrayList<Building> buildingList;
 	IUser user;

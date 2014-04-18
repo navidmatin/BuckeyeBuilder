@@ -6,7 +6,9 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.ParcelableSpan;
-
+/**
+ * Generates money!
+ */
 public class MoneyGenerator implements Parcelable{
 	private int genRate;
 	private long genTime; //last time it generated money
