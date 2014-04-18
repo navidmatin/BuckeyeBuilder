@@ -11,7 +11,11 @@ import com.infintyloop.buckeyebuilder.Building;
 import com.infintyloop.buckeyebuilder.IUser;
 import com.infintyloop.buckeyebuilder.R;
 import com.infintyloop.buckeyebuilder.User;
-
+/**
+ * A class that saves and reads the data from the sharedPreferences file
+ * The data get saved as a JSON string, and this class read it back with help of
+ * GSON library.
+ */
 public class DataHandler {
 	public static void saveData(Context context, ArrayList<Building> buildingList, IUser user)
 	{

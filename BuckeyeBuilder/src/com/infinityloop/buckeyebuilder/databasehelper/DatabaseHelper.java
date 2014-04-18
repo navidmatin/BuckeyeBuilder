@@ -11,7 +11,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
+/**
+ * DataBase helper from TicTacToe!
+ */
 public class DatabaseHelper {
    private static final String DATABASE_NAME = "TicTacToe.db";
    private static final int DATABASE_VERSION = 1;

@@ -1,5 +1,8 @@
 package com.infinityloop.buckeyebuilder.databasehelper;
 
+/**
+ * a Database helper for buildings, Not being Used!
+ */
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

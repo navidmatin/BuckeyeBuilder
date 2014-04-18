@@ -1,5 +1,8 @@
 package com.infinityloop.buckeyebuilder.adapter;
 
+/**
+ * Adapter for tabs!
+ */
 import com.infintyloop.buckeyebuilder.BuildFragment;
 import com.infintyloop.buckeyebuilder.BuildPlanFragment;
 import com.infintyloop.buckeyebuilder.ManageFragment;
