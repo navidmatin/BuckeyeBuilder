@@ -50,7 +50,7 @@ public class BuildingFactory{
 
 		//	buildingdatabasehelper.addBuilding(BuildingNames[i],Cost[i], genRates[i], description[i], longitudes[i], latitudes[i], radiusValues[i]);
 			Building temp= new Building();
-			temp.GiveValuesToBuilding(BuildingNames[i],Cost[i], genRates[i], description[i], longitudes[i], latitudes[i], radiusValues[i]);
+			temp.GiveValuesToBuilding(BuildingNames[i],getCost()[i], genRates[i], description[i], longitudes[i], latitudes[i], radiusValues[i]);
 			listOfBuildings.add(temp);
 		}
 	}
@@ -103,5 +103,21 @@ public class BuildingFactory{
 			}
 		}
 		return null;
+	}
+
+	public String[] getBuildingNames() {
+		return BuildingNames;
+	}
+
+	public void setBuildingNames(String[] buildingNames) {
+		BuildingNames = buildingNames;
+	}
+
+	public int[] getCost() {
+		return Cost;
+	}
+
+	public void setCost(int[] cost) {
+		Cost = cost;
 	}
 }
