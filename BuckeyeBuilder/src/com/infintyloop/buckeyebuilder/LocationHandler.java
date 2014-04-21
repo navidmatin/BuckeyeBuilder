@@ -5,6 +5,7 @@ package com.infintyloop.buckeyebuilder;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -18,7 +19,7 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 	private ArrayList<String> buildingNames = new ArrayList<String>();
 	private int radius;
 	private String currentLocal = "null";
-	
+	private Location myLocation;
     //public static void main(ArrayList<Building> allBuildings) {
      //   (new Thread(new LocationHandler())).start();
    // }
@@ -39,25 +40,46 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 	}
 	
 	// will be grabbed from user class or location void API
-	public void RecieveLocation(double lat, double lon){
-		userLongitude = lon;
-		userLatitude = lat;
+	public void RecieveLocation( Location loc){
+		myLocation=loc;
+		userLongitude = myLocation.getLongitude();
+		userLatitude = myLocation.getLatitude();
 
 	}
 	public String CheckLocationForBuilding(){
-		// foreach loop
-	//	for(String xa : buildingNames)
+		Location closestBuilding=null;
 		for (int i = 0; i < buildingNames.size(); i++){
 			double tempLat = lats.get(i);
 			double tempLon = lons.get(i);
 			double tempRad = rads.get(i);
 			if((Math.abs(userLatitude - tempLat) <= tempRad) && (Math.abs(userLongitude - tempLon) <= tempRad)){
+				if(closestBuilding==null){
+					closestBuilding = new Location(buildingNames.get(i));
+					closestBuilding.setLatitude(tempLat);
+					closestBuilding.setLongitude(tempLon);
+				}
+				else
+				{
+					Location thisBuilding = new Location(buildingNames.get(i));
+					thisBuilding.setLatitude(tempLat);
+					thisBuilding.setLongitude(tempLon);
+					if(thisBuilding.distanceTo(myLocation)<closestBuilding.distanceTo(myLocation))
+						closestBuilding=thisBuilding;
+				}
+			
 				currentLocal = buildingNames.get(i);
 				return currentLocal;
 			}
 		}
-		return null;
+		if(closestBuilding!=null)
+		{
+			currentLocal=closestBuilding.getProvider();
+			return currentLocal;
+		}
+		else
+			return null;
 	}
+	
 	
 //	@Override
 //	protected String doInBackground(Object... arg0) {

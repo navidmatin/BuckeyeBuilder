@@ -64,9 +64,9 @@ public class UserInfoFragment extends Fragment {
 			GPSManager myGPSManager=((MainActivity)getParentFragment().getActivity()).gps;
     		myGPSManager.getLocation();
  		    	 		if(myGPSManager.canGetLocation()){ 
- 		    				double userLat = myGPSManager.getLatitude();
- 		    				double userLon = myGPSManager.getLongitude();
- 		    				locationHandler.RecieveLocation(userLat, userLon);
+ 		    				//double userLat = myGPSManager.getLatitude();
+ 		    				//double userLon = myGPSManager.getLongitude();
+ 		    				locationHandler.RecieveLocation(myGPSManager.getLocation());
  		    			}
  		    	 		currentbuilding= locationHandler.CheckLocationForBuilding();
 		}
