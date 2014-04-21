@@ -47,11 +47,12 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 
 	}
 	public String CheckLocationForBuilding(){
+
 		Location closestBuilding=null;
 		for (int i = 0; i < buildingNames.size(); i++){
 			double tempLat = lats.get(i);
 			double tempLon = lons.get(i);
-			double tempRad = rads.get(i);
+			double tempRad = 0.001;//rads.get(i);
 			if((Math.abs(userLatitude - tempLat) <= tempRad) && (Math.abs(userLongitude - tempLon) <= tempRad)){
 				if(closestBuilding==null){
 					closestBuilding = new Location(buildingNames.get(i));
@@ -68,16 +69,17 @@ public class LocationHandler{// implements Runnable { //extends AsyncTask
 				}
 			
 				currentLocal = buildingNames.get(i);
-				return currentLocal;
 			}
 		}
-		if(closestBuilding!=null)
+		if(closestBuilding==null)
 		{
+			return null;
+			
+		}
+		else{
 			currentLocal=closestBuilding.getProvider();
 			return currentLocal;
 		}
-		else
-			return null;
 	}
 	
 	
