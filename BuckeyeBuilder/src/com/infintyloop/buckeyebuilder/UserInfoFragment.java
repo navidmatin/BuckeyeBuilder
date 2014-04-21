@@ -70,19 +70,6 @@ public class UserInfoFragment extends Fragment {
  		    			}
  		    	 		currentbuilding= locationHandler.CheckLocationForBuilding();
 		}
-	}
-	@Override
-	public void onResume(){
-
-		super.onResume();
-		if(moneyView==null)
-			moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
-		moneyView.setText(null);
-		genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
-		
-		findBuildingsAround();
-		
-		
 		if(currentbuilding != null) {
 			building=BuildingFactory.FindBuilding(currentbuilding, buildingList);
 			Button btn = (Button) getView().findViewById(R.id.build_button);
@@ -121,6 +108,47 @@ public class UserInfoFragment extends Fragment {
 			}
 		}
 	}
+	@Override
+	public void onResume(){
+
+		super.onResume();
+		if(moneyView==null)
+			moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
+		moneyView.setText(null);
+		genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
+		
+		findBuildingsAround();
+		locationCheckerThread();
+		
+
+	}
+	//Constantly updating buildings around
+		private void locationCheckerThread() {
+			final Handler handler = new Handler();
+			Thread runnable = new Thread(new Runnable() {
+				public void run(){
+					while(fragmentState)
+					{
+						try {
+							Thread.sleep(30000);
+						}
+						catch(InterruptedException e) {
+							e.printStackTrace();
+						}
+						handler.post(new Runnable(){
+							@Override
+							public void run(){
+								//Constantly updating the build button 
+								findBuildingsAround();
+								
+							}
+						});
+					}
+				}
+			});
+				runnable.start();
+		}
+		
 	//Constantly updating the money
 	private void moneyGeneratorThread() {
 		final Handler handler = new Handler();
