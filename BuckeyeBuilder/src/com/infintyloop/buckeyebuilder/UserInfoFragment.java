@@ -61,6 +61,8 @@ public class UserInfoFragment extends Fragment {
 	private void findBuildingsAround(){
 		if(buildingList!=null){
 			locationHandler.Initialize(buildingList);
+			if(((MainActivity)getParentFragment().getActivity())!=null)
+			{
 			GPSManager myGPSManager=((MainActivity)getParentFragment().getActivity()).gps;
     		myGPSManager.getLocation();
  		    	 		if(myGPSManager.canGetLocation()){ 
@@ -106,6 +108,7 @@ public class UserInfoFragment extends Fragment {
 			{
 				btn.setText(currentbuilding+"Is already built");
 			}
+		}
 		}
 	}
 	@Override
