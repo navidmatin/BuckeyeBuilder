@@ -18,4 +18,4 @@ gen-external-apklibs
 *.swp
 out
 .metadata/*
-BuckeyeBuilder/project.properties
+*/project.properties
