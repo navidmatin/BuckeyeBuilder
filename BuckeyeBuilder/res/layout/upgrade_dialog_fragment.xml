@@ -2,26 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+     >
 
         <TextView
             android:id="@+id/upgrade_building_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/Title_blue"
             android:layout_margin="10dp"/>
         <TextView
             android:id="@+id/upgrade_building_description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Info:"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/Title_blue"
             android:layout_margin="10dp" />
         <LinearLayout
@@ -33,20 +31,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/Title_blue"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textColor="@color/Title_blue" />
 			<TextView
 		    android:id="@+id/upgrade_level_cost"
 		    android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_weight="1" />
 			<TextView
 		    android:id="@+id/upgrade_level_gen_rate"
 		    android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_weight="1" />
         </LinearLayout>
 		
 		<LinearLayout

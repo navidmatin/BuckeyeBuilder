@@ -1,59 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/meow"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-		    <TableRow android:paddingTop="20dp"
-     		android:layout_marginLeft="20dp"
-     		android:layout_marginRight="20dp">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 		        <TextView
 		            android:id="@+id/textMoney"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:text="Money:"
+		            android:layout_weight="1"
 		            android:textAppearance="?android:attr/textAppearanceLarge" />
 		        <TextView
 		             android:id="@+id/textMoneyAmount"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
 		            android:textAppearance="?android:attr/textAppearanceLarge" />
-		      </TableRow>
-		      <TableRow
-			    android:paddingTop="20dp"
-     		android:layout_marginLeft="20dp"
-     		android:layout_marginRight="20dp"> 
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
 		        <TextView 
 		            android:id="@+id/moneyperHour"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:layout_weight="0.1"
+		            android:layout_weight="1"
 		            android:textAppearance="?android:attr/textAppearanceSmall"
 		            />
 		        <ProgressBar
 		            android:id="@+id/progressBar1"
 		            style="?android:attr/progressBarStyleHorizontal"
-		            android:layout_width="match_parent"
+		            android:layout_weight="2"
+		            android:layout_width="0dp"
 		            android:layout_height="wrap_content"
-		            android:layout_weight="5"
 		            />  
-		    </TableRow>
-			<TableRow
-			    
-			    android:paddingTop="20dp"
-     		android:layout_marginLeft="20dp"
-     		android:layout_marginRight="20dp"
-     		><Button
+		            </LinearLayout>
+		<Button
 	           style="?android:attr/buttonBarButtonStyle"
 	           android:id="@+id/build_button"
-	           android:layout_width="match_parent"
-	           android:layout_height="match_parent"
-	           android:layout_weight="1"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
 	           android:layout_margin="10dp"
 	           android:text="Nothing to Build"
+	           android:layout_gravity="center"
 	           android:background="@drawable/buttonshape"
-	           android:textAppearance="?android:attr/textAppearanceLarge"
 	           android:enabled="false" />
 
 		
-		    </TableRow>
-</TableLayout>
+
+</LinearLayout>
