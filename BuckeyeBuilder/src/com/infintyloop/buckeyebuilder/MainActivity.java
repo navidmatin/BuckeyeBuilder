@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.infinityloop.buckeyebuilder.adapter.TabsPagerAdapter;
 import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
+import com.parse.ParseUser;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.app.ActionBar;
@@ -100,11 +103,25 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
 		return true;
 	}
-	
-
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		//Handle item selection
+		switch(item.getItemId()){
+			case R.id.action_log_out:
+			{
+				ParseUser.logOut();
+				ParseUser currentUser = ParseUser.getCurrentUser(); 
+				startActivity(new Intent(this, LoginActivity.class));
+			}
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		viewPager.setCurrentItem(tab.getPosition());

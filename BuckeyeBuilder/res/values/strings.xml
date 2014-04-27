@@ -3,6 +3,7 @@
 
     <string name="app_name">BuckeyeBuilder</string>
     <string name="action_settings">Settings</string>
+    <string name="action_log_out">Log out</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_login">Buckeye Builder</string>
@@ -10,4 +11,5 @@
     <string name="title_activity_build_plan">BuildPlanActivity</string>
     <string name="buildings_file_name">savedbuildings#</string>
     <string name="user_file_name">saveduser#</string>
+    <string name="user_buildings">buildingsowned</string>
 </resources>

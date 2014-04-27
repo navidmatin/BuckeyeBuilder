@@ -1,6 +1,12 @@
 package com.infintyloop.buckeyebuilder;
 
+import java.util.ArrayList;
+
 import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -12,6 +18,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -33,6 +40,7 @@ public class RegisterActivity extends Activity {
 	 */
 	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
 
+	Intent intentforsignup; 
 
 	// Values for email and password at the time of the register attempt.
 	private String mUsername;
@@ -52,7 +60,9 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
+		Parse.initialize(this, "***REMOVED***", "***REMOVED***");
 		
+		intentforsignup= new Intent(this, LoginActivity.class);
 		// Set up the register form.
 		mUsername = getIntent().getStringExtra(EXTRA_EMAIL);
 		mUsernameView = (EditText) findViewById(R.id.register_username);
@@ -130,9 +140,31 @@ public class RegisterActivity extends Activity {
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
-			
+
 			if ((mPassword.equals(mPConfirm)) && (!mUsername.equals(""))
 					&& (!mPassword.equals("")) && (!mPConfirm.equals(""))) {
+				//Parse User
+				ParseUser pUser = new ParseUser();
+				//Accepted credentials
+				//Creating an empty ArrayList of buildings owned for the new user
+				ArrayList<Pair<String,String>> buildingsOwned = new ArrayList<Pair<String,String>>();
+				//Setting up the Parse User
+				pUser.setUsername(mUsername);
+				pUser.setPassword(mPassword);
+				pUser.put(getString(R.string.user_buildings), buildingsOwned); 
+				
+				pUser.signUpInBackground(new SignUpCallback() {
+					  public void done(ParseException e) {
+					    if (e == null) {
+					      // Hooray! Let them use the app now.
+					   	startActivity(intentforsignup);
+					    } else {
+					      // Sign up didn't succeed. Look at the ParseException
+					      // to figure out what went wrong
+					    }
+					  }
+					});
+				/*
 				this.dh = new DatabaseHelper(this);
 				this.dh.insert(mUsername, mPassword);
 				// this.labResult.setText("Added");
@@ -140,7 +172,7 @@ public class RegisterActivity extends Activity {
 						Toast.LENGTH_SHORT).show();
 				mregisterStatusMessageView.setText(R.string.register_progress_creating_new_user);
 				showProgress(true);
-				startActivity(new Intent(this, LoginActivity.class));
+				startActivity(new Intent(this, LoginActivity.class));*/
 			} else if ((mUsername.equals("")) || (mPassword.equals(""))
 					|| (mPConfirm.equals(""))) {
 				Toast.makeText(RegisterActivity.this, "Missing entry", Toast.LENGTH_SHORT)
@@ -202,84 +234,4 @@ public class RegisterActivity extends Activity {
 		}
 	}
 
-	/**
-	 * Represents an asynchronous register/registration task used to authenticate
-	 * the user.
-	 */
-	/*public class UserregisterTask extends AsyncTask<Void, Void, Boolean> {
-
-		@Override
-		protected Boolean doInBackground(Void... params) {
-			
-			String username = mUsernameView.getText().toString();
-			String password = mPasswordView.getText().toString();
-			String confirm = mPConfirm.getText().toString();
-			if ((password.equals(confirm)) && (!username.equals(""))
-					&& (!password.equals("")) && (!confirm.equals(""))) {
-				dh = new DatabaseHelper(savedInstanceState);
-				this.dh.insert(username, password);
-				// this.labResult.setText("Added");
-				Toast.makeText(Account.this, "new record inserted",
-						Toast.LENGTH_SHORT).show();
-				finish();
-			} else if ((username.equals("")) || (password.equals(""))
-					|| (confirm.equals(""))) {
-				Toast.makeText(Account.this, "Missing entry", Toast.LENGTH_SHORT)
-						.show();
-			} else if (!password.equals(confirm)) {
-				new AlertDialog.Builder(this)
-						.setTitle("Error")
-						.setMessage("passwords do not match")
-						.setNeutralButton("Try Again",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int which) {
-									}
-								})
-
-						.show();
-			}
-			/*
-			// TODO: attempt authentication against a network service.
-
-			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mUsername)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
-				}
-			}*/
-	/*
-
-			// TODO: register the new account here.
-			return true;
-		}
-
-		@Override
-		protected void onPostExecute(final Boolean success) {
-			mAuthTask = null;
-			showProgress(false);
-
-			if (success) {
-				finish();
-			} else {
-				mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
-				mPasswordView.requestFocus();
-			}
-		}
-
-		@Override
-		protected void onCancelled() {
-			mAuthTask = null;
-			showProgress(false);
-		}
-	}*/
 }

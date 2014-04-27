@@ -14,11 +14,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -26,7 +24,11 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import com.parse.ParseException;
+import com.parse.LogInCallback;
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
+import com.parse.ParseUser;
 import com.infintyloop.buckeyebuilder.BuildingFactory;
 import com.infintyloop.buckeyebuilder.IUser;
 
@@ -49,7 +51,7 @@ public class LoginActivity extends Activity {
 	private UserLoginTask mAuthTask = null;
 
 	// Values for username and password at the time of the login attempt.
-	private String musername;
+	private String mUsername;
 	private String mPassword;
 
 	// UI references.
@@ -63,12 +65,21 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		setContentView(R.layout.activity_login);
+		//Parse Stuff
+		Parse.initialize(this, "***REMOVED***", "***REMOVED***");
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if(currentUser!=null)
+		{
+			setupUser(mUsername);
+			startActivity(intent);
+			finish();
+		}
 		// Set up the login form.
-		musername = getIntent().getStringExtra(EXTRA_username);
+		mUsername = getIntent().getStringExtra(EXTRA_username);
 		musernameView = (EditText) findViewById(R.id.username);
-		musernameView.setText(musername);
+		musernameView.setText(mUsername);
 
 		mPasswordView = (EditText) findViewById(R.id.password);
 		mPasswordView
@@ -126,7 +137,7 @@ public class LoginActivity extends Activity {
 		mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
-		musername = musernameView.getText().toString();
+		mUsername = musernameView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
 
 		boolean cancel = false;
@@ -138,7 +149,7 @@ public class LoginActivity extends Activity {
 			focusView = mPasswordView;
 			cancel = true;
 		} else if (mPassword.length() < 4) {
-			mPasswordView.setError(getString(R.string.error_invalid_password));
+			mPasswordView.setError(getString(R.string.error_short_password));
 			focusView = mPasswordView;
 			cancel = true;
 		}
@@ -148,6 +159,24 @@ public class LoginActivity extends Activity {
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
+			
+			ParseUser.logInInBackground(mUsername, mPassword, new LogInCallback() {
+				  public void done(ParseUser user, ParseException e) {
+				    if (user != null) {
+				    	mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
+						mAuthTask = new UserLoginTask();
+						mAuthTask.execute((Void) null);
+				    	setupUser(mUsername);
+				    	startActivity(intent);
+						finish();
+				      // Hooray! The user is logged in.
+				    } else {
+				    	mPasswordView.setError(getString(R.string.error_invalid_password));
+				      // Signup failed. Look at the ParseException to see what happened.
+				    }
+				  }
+				});
+			/**
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
@@ -158,7 +187,7 @@ public class LoginActivity extends Activity {
 				mAuthTask.execute((Void) null);
 				startActivity(intent);
 				finish();
-			}
+			}**/
 			
 		}
 	}
@@ -188,16 +217,16 @@ public class LoginActivity extends Activity {
 		
 		intent=new Intent(this, MainActivity.class);
 		//Check to see if we have user in the savedFile
-		IUser user = DataHandler.getUserData(this, musername);
+		IUser user = DataHandler.getUserData(this, mUsername);
 		if(user==null){
 			user=new User();
 			// given user, enter their cash and cap values..
-			user.GiveValuesToUser(musername, 1000, 300);
+			user.GiveValuesToUser(mUsername, 1000, 300);
 			user.IncreaseNumberofBuildingsOwned(2);
 		}
 		intent.putExtra("User", user);
 	    //Check to see if we have buildings in the savedfile otherwise create new ones
-		ArrayList<Building> buildingList=DataHandler.getBuildingListData(this, musername);
+		ArrayList<Building> buildingList=DataHandler.getBuildingListData(this, mUsername);
 		if(buildingList==null)
 		{
 			BuildingFactory myFactory = new BuildingFactory();

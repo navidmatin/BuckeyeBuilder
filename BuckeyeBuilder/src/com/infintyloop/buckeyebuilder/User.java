@@ -31,7 +31,7 @@ public class User implements IUser {
 	public MoneyGenerator mGenerator(){
 		return mGenerator;
 	}
-	// makes user serializable
+	// makes user parcelable
 	public User(Parcel in){
 		readFrmParce(in);
 	}
