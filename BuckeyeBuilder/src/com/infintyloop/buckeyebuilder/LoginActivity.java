@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.facebook.Request;
 import com.facebook.Session;
 import com.facebook.Session.StatusCallback;
 import com.facebook.SessionState;
@@ -135,7 +136,28 @@ public class LoginActivity extends Activity {
 				});
 	}
 	protected void facebookLogin(){
-		
+		List<String> permissions = Arrays.asList("basic_info");
+		ParseFacebookUtils.logIn(permissions, this, new LogInCallback() {
+			@Override
+			public void done(ParseUser user, ParseException err) {
+				if (user == null) {
+					Log.d("com.infintyloop.buckeyebuilder","Uh oh. The user cancelled the Facebook login.");
+				} else if (user.isNew()) {
+					Log.d("com.infintyloop.buckeyebuilder",
+							"User signed up and logged in through Facebook!");
+					//FACEBOOK STUFF
+					setupUser(user.getUsername());
+					startActivity(intent);
+					finish();
+				} else {
+					Log.d("com.infintyloop.buckeyebuilder",
+							"User logged in through Facebook!");
+					setupUser(user.getUsername());
+					startActivity(intent);
+					finish();
+				}
+			}
+		});
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

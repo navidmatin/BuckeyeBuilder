@@ -41,8 +41,7 @@
         <activity
             android:name="com.infintyloop.buckeyebuilder.LoginActivity"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateVisible"
-            android:launchMode="singleInstance" >
+            android:windowSoftInputMode="adjustResize|stateVisible" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
