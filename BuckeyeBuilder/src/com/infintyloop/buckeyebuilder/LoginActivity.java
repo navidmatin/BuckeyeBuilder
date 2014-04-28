@@ -1,8 +1,17 @@
 package com.infintyloop.buckeyebuilder;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import com.facebook.Session;
+import com.facebook.Session.StatusCallback;
+import com.facebook.SessionState;
+import com.facebook.LoggingBehavior;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.Settings;
 import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
 import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
 import com.infintyloop.buckeyebuilder.R;
@@ -18,16 +27,19 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.parse.ParseException;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 import com.infintyloop.buckeyebuilder.BuildingFactory;
 import com.infintyloop.buckeyebuilder.IUser;
@@ -48,8 +60,8 @@ public class LoginActivity extends Activity {
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
-	private UserLoginTask mAuthTask = null;
-
+	//Facebook
+	
 	// Values for username and password at the time of the login attempt.
 	private String mUsername;
 	private String mPassword;
@@ -68,8 +80,8 @@ public class LoginActivity extends Activity {
 		
 		setContentView(R.layout.activity_login);
 		//Parse Stuff
-		Parse.initialize(this, "***REMOVED***", "***REMOVED***");
 		ParseUser currentUser = ParseUser.getCurrentUser();
+		
 		if(currentUser!=null)
 		{
 			setupUser(mUsername);
@@ -112,25 +124,31 @@ public class LoginActivity extends Activity {
 					public void onClick(View view) {
 						createNewUser();
 					}
-				});			
+				});		
+		//FACEBOOK LOGIN SHOWING
+		findViewById(R.id.authButton).setOnClickListener(
+				new View.OnClickListener(){
+					@Override
+					public void onClick(View view){
+						facebookLogin();
+				}
+				});
 	}
-
+	protected void facebookLogin(){
+		
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
-
 	/**
 	 * Attempts to sign in or register the account specified by the login form.
 	 * If there are form errors (invalid username, missing fields, etc.), the
 	 * errors are presented and no actual login attempt is made.
 	 */
 	public void attemptLogin() {
-		if (mAuthTask != null) {
-			return;
-		}
 
 		// Reset errors.
 		musernameView.setError(null);
@@ -159,24 +177,23 @@ public class LoginActivity extends Activity {
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
-			
+			showProgress(true);
 			ParseUser.logInInBackground(mUsername, mPassword, new LogInCallback() {
 				  public void done(ParseUser user, ParseException e) {
 				    if (user != null) {
 				    	mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-						mAuthTask = new UserLoginTask();
-						mAuthTask.execute((Void) null);
 				    	setupUser(mUsername);
 				    	startActivity(intent);
 						finish();
 				      // Hooray! The user is logged in.
 				    } else {
+				    	showProgress(false);
 				    	mPasswordView.setError(getString(R.string.error_invalid_password));
 				      // Signup failed. Look at the ParseException to see what happened.
 				    }
 				  }
 				});
-			/**
+			/*
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
@@ -187,7 +204,7 @@ public class LoginActivity extends Activity {
 				mAuthTask.execute((Void) null);
 				startActivity(intent);
 				finish();
-			}**/
+			}*/
 			
 		}
 	}
@@ -279,46 +296,10 @@ public class LoginActivity extends Activity {
 			mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
 		}
 	}
-
-	/**
-	 * Represents an asynchronous login/registration task used to authenticate
-	 * the user.
-	 */
-	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-		@Override
-		protected Boolean doInBackground(Void... params) {
-			// TODO: attempt authentication against a network service.
-
-			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-
-			// TODO: register the new account here.
-			return true;
-		}
-
-		@Override
-		protected void onPostExecute(final Boolean success) {
-			mAuthTask = null;
-			showProgress(false);
-
-			if (success) {
-				finish();
-			} else {
-				mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
-				mPasswordView.requestFocus();
-			}
-		}
-
-		@Override
-		protected void onCancelled() {
-			mAuthTask = null;
-			showProgress(false);
-		}
+	//Facebook single-sign in
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		  ParseFacebookUtils.finishAuthentication(requestCode, resultCode, data);
 	}
 }

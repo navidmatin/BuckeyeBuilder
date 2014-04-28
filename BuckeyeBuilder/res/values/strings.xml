@@ -12,4 +12,5 @@
     <string name="buildings_file_name">savedbuildings#</string>
     <string name="user_file_name">saveduser#</string>
     <string name="user_buildings">buildingsowned</string>
+    <string name="app_id">***REMOVED***</string>
 </resources>
