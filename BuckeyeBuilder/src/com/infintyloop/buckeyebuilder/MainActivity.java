@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.infinityloop.buckeyebuilder.adapter.TabsPagerAdapter;
 import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 
 import android.location.Location;
@@ -114,11 +115,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		switch(item.getItemId()){
 			case R.id.action_log_out:
 			{
+				DataHandler.saveData(this, buildingList, user);
+				ParseFacebookUtils.getSession().closeAndClearTokenInformation();
 				ParseUser.logOut();
-				ParseUser currentUser = ParseUser.getCurrentUser(); 
 				startActivity(new Intent(this, LoginActivity.class));
-			}
-			default:
+				finish();
+			}DataHandler.saveData(this, buildingList, user);DataHandler.saveData(this, buildingList, user);		default:
 				return super.onOptionsItemSelected(item);
 		}
 	}

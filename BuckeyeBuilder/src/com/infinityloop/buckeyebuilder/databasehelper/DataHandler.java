@@ -11,6 +11,8 @@ import com.infintyloop.buckeyebuilder.Building;
 import com.infintyloop.buckeyebuilder.IUser;
 import com.infintyloop.buckeyebuilder.R;
 import com.infintyloop.buckeyebuilder.User;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 /**
  * A class that saves and reads the data from the sharedPreferences file
  * The data get saved as a JSON string, and this class read it back with help of
@@ -20,18 +22,26 @@ public class DataHandler {
 	public static void saveData(Context context, ArrayList<Building> buildingList, IUser user)
 	{
 		Gson gson= new Gson();
-		//Saving Building data
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		//Saving Building data to local file
 		SharedPreferences buildingSharedPref = context.getSharedPreferences(context.getString(R.string.buildings_file_name)+user.GetUsername(), Context.MODE_PRIVATE);
 		SharedPreferences.Editor bspEditor = buildingSharedPref.edit();
-		String json=gson.toJson(buildingList);
-		bspEditor.putString("buildingList", json);
+		String buildingjson=gson.toJson(buildingList);
+		bspEditor.putString("buildingList", buildingjson);
 		bspEditor.commit();
-		//Saving User data
+		//Saving User data to local file
 		SharedPreferences userSharedPref = context.getSharedPreferences(context.getString(R.string.user_file_name)+user.GetUsername(), Context.MODE_PRIVATE);
 		SharedPreferences.Editor uEditor = userSharedPref.edit();
-		json=gson.toJson(user);
-		uEditor.putString("user", json);
+		String userjson=gson.toJson(user);
+		uEditor.putString("user", userjson);
 		uEditor.commit();
+		if(currentUser!=null)
+		{
+			currentUser.put("buildingJSON", buildingjson);
+			currentUser.put("userJSON", userjson);
+			currentUser.saveInBackground();
+
+		}
 		
 	}
 	public static ArrayList<Building> getBuildingListData(Context context, String username)
@@ -43,7 +53,18 @@ public class DataHandler {
 			ArrayList<Building> buildingList=gson.fromJson(json, new TypeToken<ArrayList<Building>>(){}.getType());
 			return buildingList;
 		}
-		else
+		else{
+			ParseUser currentUser = ParseUser.getCurrentUser();
+			if(currentUser!=null)
+			{
+				json=currentUser.getString("buildingJSON");
+				if(json!=null)
+				{
+					ArrayList<Building> buildingList=gson.fromJson(json, new TypeToken<ArrayList<Building>>(){}.getType());
+					return buildingList;
+				}
+			}
+		}
 			return null;
 	}
 	public static IUser getUserData(Context context, String username)
@@ -55,7 +76,18 @@ public class DataHandler {
 			IUser user=gson.fromJson(json, new TypeToken<User>(){}.getType());
 			return user;
 		}
-		else
+		else {
+			ParseUser currentUser = ParseUser.getCurrentUser();
+			if(currentUser!=null)
+			{
+				json=currentUser.getString("userJSON");
+				if(json!=null)
+				{
+					IUser user=gson.fromJson(json, new TypeToken<User>(){}.getType());
+					return user;
+				}
+			}
 			return null;
+		}
 	}
 }

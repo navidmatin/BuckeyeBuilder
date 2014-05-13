@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.facebook.Request;
+import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.Session.StatusCallback;
 import com.facebook.SessionState;
@@ -13,6 +14,7 @@ import com.facebook.LoggingBehavior;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.Settings;
+import com.facebook.model.GraphUser;
 import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
 import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
 import com.infintyloop.buckeyebuilder.R;
@@ -89,6 +91,16 @@ public class LoginActivity extends Activity {
 			startActivity(intent);
 			finish();
 		}
+		
+	/*	//Facebook
+		Session.openActiveSession(this, true, new Session.StatusCallback() {
+			@Override
+		    public void call(Session session, SessionState state, Exception exception) {
+				if (session.isOpened()) {
+					
+				}
+		    }
+		});*/
 		// Set up the login form.
 		mUsername = getIntent().getStringExtra(EXTRA_username);
 		musernameView = (EditText) findViewById(R.id.username);
@@ -132,10 +144,27 @@ public class LoginActivity extends Activity {
 					@Override
 					public void onClick(View view){
 						facebookLogin();
+						showProgress(true);
 				}
 				});
 	}
 	protected void facebookLogin(){
+		
+		Session.openActiveSession(this, true, new Session.StatusCallback() {
+			@Override
+			public void call (Session session, SessionState state, Exception exception){
+				if(session.isOpened()){
+					Request.newMeRequest(session, new Request.GraphUserCallback() {
+						@Override
+						public void onCompleted(GraphUser user, Response response) {
+							if(user!=null){
+								mUsername=user.getName();
+							}
+						}
+					}).executeAsync();
+				}
+			}
+		});
 		List<String> permissions = Arrays.asList("basic_info");
 		ParseFacebookUtils.logIn(permissions, this, new LogInCallback() {
 			@Override
@@ -230,6 +259,7 @@ public class LoginActivity extends Activity {
 			
 		}
 	}
+	/*
 	private boolean checkLogin(){
     	String username=this.musernameView.getText().toString();
         String password=this.mPasswordView.getText().toString();
@@ -251,7 +281,7 @@ public class LoginActivity extends Activity {
     		.show();
         	return false;
         }	
-	}
+	}*/
 	private void setupUser(String username){
 		
 		intent=new Intent(this, MainActivity.class);
@@ -324,4 +354,5 @@ public class LoginActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		  ParseFacebookUtils.finishAuthentication(requestCode, resultCode, data);
 	}
+	
 }
