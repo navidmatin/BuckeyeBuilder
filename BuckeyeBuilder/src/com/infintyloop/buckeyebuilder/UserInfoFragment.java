@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,9 @@ import android.widget.Toast;
  * and the generation rate
  */
 public class UserInfoFragment extends Fragment {
+	private static final int PROGRESS = 0x1;
+	private int mProgressStatus = 0;
+	private ProgressBar mProgress;
 	Button btn=null;
 	double longi;
 	double lat;
@@ -36,6 +40,7 @@ public class UserInfoFragment extends Fragment {
 	LocationHandler locationHandler;
 	TextView genRateView;
 	Building building=null;
+	
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -52,12 +57,11 @@ public class UserInfoFragment extends Fragment {
 		fragmentState=true;
 		moneyGeneratorThread();
 		user = ((MainActivity)getParentFragment().getActivity()).user;
+		
 
 		currentbuilding= ((MainActivity)getParentFragment().getActivity()).currentBuilding;
-		//ArrayList<Building> gsonthing =((MainActivity)getParentFragment().getActivity()).gsontest;
 		buildingList = ((MainActivity)getParentFragment().getActivity()).buildingList;
 	}
-	
 	private void findBuildingsAround(){
 		if(buildingList!=null){
 			locationHandler.Initialize(buildingList);
@@ -119,6 +123,8 @@ public class UserInfoFragment extends Fragment {
 			moneyView = (TextView) getView().findViewById(R.id.textMoneyAmount);
 		moneyView.setText(null);
 		genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
+		if(mProgress==null)
+			mProgress = (ProgressBar) getView().findViewById(R.id.progressBar1);
 		
 		findBuildingsAround();
 		locationCheckerThread();
@@ -175,8 +181,9 @@ public class UserInfoFragment extends Fragment {
 							int cap=user.GetCap();
 							moneyView.setText(money+"$ /"+cap+"$");
 							int genRate=user.CalculateCurrentGenRate(buildingList);
-							
 							genRateView.setText(genRate+"$"+ " per hour");
+							double percentage = (double) money/cap;
+							mProgress.setProgress((int) (percentage*100));
 							
 						}
 					});
