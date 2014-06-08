@@ -116,7 +116,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			case R.id.action_log_out:
 			{
 				DataHandler.saveData(this, buildingList, user);
-				ParseFacebookUtils.getSession().closeAndClearTokenInformation();
+				if(ParseFacebookUtils.getSession()!=null)
+					ParseFacebookUtils.getSession().closeAndClearTokenInformation();
 				ParseUser.logOut();
 				startActivity(new Intent(this, LoginActivity.class));
 				finish();

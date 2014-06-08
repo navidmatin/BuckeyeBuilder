@@ -87,7 +87,7 @@ public class UserInfoFragment extends Fragment {
 				btn.setOnClickListener(new OnClickListener(){
 					@Override
 					public void onClick(View v) {		
-						if(building.level==0)
+						if(building.GetLevel()==0)
 						{
 							if(user.GetMoney()<building.GetCurrentCost())
 							{

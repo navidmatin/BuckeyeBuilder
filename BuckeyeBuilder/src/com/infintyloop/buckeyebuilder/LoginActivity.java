@@ -290,8 +290,7 @@ public class LoginActivity extends Activity {
 		if(user==null){
 			user=new User();
 			// given user, enter their cash and cap values..
-			user.GiveValuesToUser(mUsername, 1000, 300);
-			user.IncreaseNumberofBuildingsOwned(2);
+			user.GiveValuesToUser(mUsername, 3000000, 1000000);
 		}
 		intent.putExtra("User", user);
 	    //Check to see if we have buildings in the savedfile otherwise create new ones
@@ -300,7 +299,6 @@ public class LoginActivity extends Activity {
 		{
 			BuildingFactory myFactory = new BuildingFactory();
 			myFactory.MakeBuildings();
-			myFactory.AssignLevels(new int[] {2,1,0}, user); 		
 			buildingList = myFactory.ReturnBuildingList();
 		}
 		intent.putExtra("BuildingList", buildingList);

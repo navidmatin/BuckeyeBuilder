@@ -39,6 +39,7 @@ public class BuildingDetailFragment extends DialogFragment{
 		levelCost3 = (TextView) view.findViewById(R.id.detail_third_level_cost);
 		levelGenRate3= (TextView) view.findViewById(R.id.detail_third_level_gen_rate);
 		Button cancelBtn = (Button) view.findViewById(R.id.detail_cancel_button);
+		
 		cancelBtn.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -56,7 +57,7 @@ public class BuildingDetailFragment extends DialogFragment{
 		super.onResume();
 		bundle=this.getArguments();
 		building=bundle.getParcelable("Building");
-		
+		//BuildingFactory.getBuildingsFromDatabase();
 		buildingName.setText(building.GetName());
 		description.setText(building.GetDescription());
 		

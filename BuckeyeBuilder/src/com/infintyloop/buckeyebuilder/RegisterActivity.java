@@ -60,7 +60,7 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
-		Parse.initialize(this, "***REMOVED***", "***REMOVED***");
+
 		
 		intentforsignup= new Intent(this, LoginActivity.class);
 		// Set up the register form.

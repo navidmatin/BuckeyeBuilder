@@ -8,7 +8,7 @@ import android.os.Parcelable;
 public class Building implements IBuilding {
 	
 	private String name;
-	public int level;
+	private int level;
 	private int cost; // Cost of level 0 to 1 upgrade
 	private int genRate;
 	private double lat;
@@ -17,6 +17,7 @@ public class Building implements IBuilding {
 	//private double radius;
 	private int currentCost;
 	private String description;
+	public String version;
 	
 	public Building(){};
 	
@@ -112,10 +113,10 @@ public class Building implements IBuilding {
 		longi= in.readDouble();
 		lat = in.readDouble();
 		radius=in.readDouble();
+		version = in.readString();
 	}
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		// TODO Auto-generated method stub
 		dest.writeString(name);
 		dest.writeInt(level);
 		dest.writeString(description);
@@ -125,6 +126,7 @@ public class Building implements IBuilding {
 		dest.writeDouble(longi);
 		dest.writeDouble(lat);
 		dest.writeDouble(radius);
+		dest.writeString(version);
 	}
 	
 	public static final Parcelable.Creator<Building> CREATOR = 
