@@ -24,8 +24,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -128,7 +131,9 @@ public class LoginActivity extends Activity {
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						attemptLogin();
+						
+							attemptLogin();
+						
 					}
 				});
 		findViewById(R.id.create_new_user_button).setOnClickListener(
@@ -228,80 +233,52 @@ public class LoginActivity extends Activity {
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
-			showProgress(true);
-			ParseUser.logInInBackground(mUsername, mPassword, new LogInCallback() {
-				  public void done(ParseUser user, ParseException e) {
-				    if (user != null) {
-				    	mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-				    	setupUser(mUsername);
-				    	startActivity(intent);
-						finish();
-				      // Hooray! The user is logged in.
-				    } else {
-				    	showProgress(false);
-				    	mPasswordView.setError(getString(R.string.error_invalid_password));
-				      // Signup failed. Look at the ParseException to see what happened.
-				    }
-				  }
-				});
-			/*
-			// Show a progress spinner, and kick off a background task to
-			// perform the user login attempt.
-			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-			if(checkLogin())
-			{				
+			if(BuckeyeBuilderUtility.isConnectedToInternet(this))
+			{
 				showProgress(true);
-				mAuthTask = new UserLoginTask();
-				mAuthTask.execute((Void) null);
-				startActivity(intent);
-				finish();
-			}*/
+				ParseUser.logInInBackground(mUsername, mPassword, new LogInCallback() {
+					  public void done(ParseUser user, ParseException e) {
+					    if (user != null) {
+					    	mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
+					    	setupUser(mUsername);
+					    	startActivity(intent);
+							finish();
+					      // Hooray! The user is logged in.
+					    } else {
+					    	showProgress(false);
+					    	mPasswordView.setError(getString(R.string.error_invalid_password));
+					      // Signup failed. Look at the ParseException to see what happened.
+					    }
+					  }
+					});
+			}
+			else
+				BuckeyeBuilderUtility.showTextAlertDialog(this, "No Internet Connection", this.getString(R.string.no_internet));
 			
 		}
 	}
-	/*
-	private boolean checkLogin(){
-    	String username=this.musernameView.getText().toString();
-        String password=this.mPasswordView.getText().toString();
-        this.dh=new DatabaseHelper(this);
-        List<String> names=this.dh.selectAll(username,password);
-        if(names.size() >0){ // Login successful
-        	// Save username as the name of the player & Set up the initial values for the user
-            setupUser(username);
-            return true;
-        	
-        } else {
-            // Try again? 
-        	new AlertDialog.Builder(this)
-    		.setTitle("Error")
-    		.setMessage("Login failed")
-    		.setNeutralButton("Try Again", new DialogInterface.OnClickListener() {
-    			public void onClick(DialogInterface dialog, int which) {}
-    		})
-    		.show();
-        	return false;
-        }	
-	}*/
 	private void setupUser(String username){
+		//Check for internet connectivity
 		
-		intent=new Intent(this, MainActivity.class);
-		//Check to see if we have user in the savedFile
-		IUser user = DataHandler.getUserData(this, mUsername);
-		if(user==null){
-			user=new User();
-			// given user, enter their cash and cap values..
-			user.GiveValuesToUser(mUsername, 3000000, 1000000);
-		}
-		intent.putExtra("User", user);
-	    //Check to see if we have buildings in the savedfile otherwise create new ones
-		ArrayList<Building> buildingList=DataHandler.getBuildingListData(this, mUsername);
-		if(buildingList==null)
-		{
-			BuildingFactory myFactory = new BuildingFactory();
-			myFactory.MakeBuildings();
-			buildingList = myFactory.ReturnBuildingList();
-		}
-		intent.putExtra("BuildingList", buildingList);
+				intent=new Intent(this, MainActivity.class);
+				//Check to see if we have user in the savedFile
+				IUser user = DataHandler.getUserData(this, mUsername);
+				if(user==null){
+					user=new User();
+					// given user, enter their cash and cap values..
+					user.GiveValuesToUser(mUsername, 3000000, 1000000);
+				}
+				intent.putExtra("User", user);
+			    //Check to see if we have buildings in the savedfile otherwise create new ones
+				ArrayList<Building> buildingList=DataHandler.getBuildingListData(this, mUsername);
+				if(buildingList==null)
+				{
+					BuildingFactory myFactory = new BuildingFactory();
+					myFactory.MakeBuildings();
+					buildingList = myFactory.ReturnBuildingList();
+				}
+				intent.putExtra("BuildingList", buildingList);
+		
 	}
 	public void createNewUser() {
 		startActivity(new Intent(this, RegisterActivity.class));
@@ -352,5 +329,6 @@ public class LoginActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		  ParseFacebookUtils.finishAuthentication(requestCode, resultCode, data);
 	}
+	
 	
 }
