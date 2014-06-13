@@ -12,21 +12,14 @@
         parallax:tiltSensitivity="2.5"
         />
        
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textSize="46dp"
-        android:textColor="#666666"
-        android:gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:text="Buckeye Builder" />
      <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/buckeye_builder_splash_logo" 
+        android:scaleY=".75"
+        android:scaleX=".75"
        />
  
     <TextView

@@ -281,7 +281,10 @@ public class LoginActivity extends Activity {
 		
 	}
 	public void createNewUser() {
-		startActivity(new Intent(this, RegisterActivity.class));
+		if(BuckeyeBuilderUtility.isConnectedToInternet(this))
+			startActivity(new Intent(this, RegisterActivity.class));
+		else
+			BuckeyeBuilderUtility.showTextAlertDialog(this, "No internet connect", getString(R.string.no_internet));
 	}
 	/**
 	 * Shows the progress UI and hides the login form.
