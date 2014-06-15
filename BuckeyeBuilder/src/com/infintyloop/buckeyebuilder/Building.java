@@ -83,7 +83,9 @@ public class Building implements IBuilding {
 		
 		return (int) (genRate*level*1.5); //Outputting the current generation rate based on the level of the buildings
 	}
-	
+	public int getPossibleGenRatePerLevel(){
+		return (int) (genRate*1.5);
+	}
 	public void Upgrade(IUser user) {
 		if(level<3){
 			int _cost=this.GetCurrentCost();

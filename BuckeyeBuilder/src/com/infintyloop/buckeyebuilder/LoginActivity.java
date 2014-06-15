@@ -260,7 +260,7 @@ public class LoginActivity extends Activity {
 	private void setupUser(String username){
 		//Check for internet connectivity
 		
-				intent=new Intent(this, MainActivity.class);
+				intent=new Intent(this, SplashScreen.class);
 				//Check to see if we have user in the savedFile
 				IUser user = DataHandler.getUserData(this, mUsername);
 				if(user==null){

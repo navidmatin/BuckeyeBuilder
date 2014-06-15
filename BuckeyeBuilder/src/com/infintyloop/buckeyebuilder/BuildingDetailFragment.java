@@ -62,7 +62,7 @@ public class BuildingDetailFragment extends DialogFragment{
 		description.setText(building.GetDescription());
 		
 		int cost = building.GetCurrentCost();
-		int genrate = building.GetCurrentGenRate();
+		int genrate = building.getPossibleGenRatePerLevel();
 		if(building.GetLevel() == 2){
 			cost = cost/2;
 			genrate = (genrate/2);

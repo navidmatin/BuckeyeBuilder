@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 /**
  * A fragment that shows all of the buildings that are currently owned
  */
@@ -32,27 +33,30 @@ public class ManageFragment extends Fragment {
     }
 	private void generateCurrentBuilding(){
 		buildingList=((MainActivity)getActivity()).buildingList;
-		for (Building building : buildingList)
-		{
-			if(building.GetLevel()>0)
+			for (Building building : buildingList)
 			{
-				ownedBuildings++;
-					//Dynamically adding the buttons
-					
-					Button button = new Button(getActivity());
-					LayoutParams params = new  LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-					button.setLayoutParams(params);
-					button.setText(building.GetName());
-					button.setOnClickListener(showUpgradeFragment(button));
-					linearLayout.addView(button);	
+				if(building.GetLevel()>0)
+				{
+					ownedBuildings++;
+						//Dynamically adding the buttons
+						
+						Button button = new Button(getActivity());
+						LayoutParams params = new  LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+						button.setLayoutParams(params);
+						button.setText(building.GetName());
+						button.setOnClickListener(showUpgradeFragment(button));
+						linearLayout.addView(button);	
+				}
 			}
-		}
+		
 	}
 	@Override
 	public void onStart(){
 		super.onStart();
 		fragmentState=true;
 		ownedBuildings=0;
+		
+		
 		updateUI();
 	}
 	@Override
@@ -60,10 +64,15 @@ public class ManageFragment extends Fragment {
 
 		super.onResume();
 		linearLayout = (LinearLayout) getActivity().findViewById(R.id.manage_list);
-
-
 		buildingList=((MainActivity)getActivity()).buildingList;
 		user=((MainActivity)getActivity()).user;
+		if(user.NumberofBuildingsOwned()==0)
+		{
+			TextView noBuildingMessage = (TextView) getView().findViewById(R.id.no_buildings_message);
+			noBuildingMessage.setText("You built no buildings, how about starting building the campus?");
+		}
+
+		
 		
 		
 	}

@@ -1,5 +1,7 @@
 package com.infintyloop.buckeyebuilder;
 
+import java.util.ArrayList;
+
 import com.nvanbenschoten.motion.ParallaxImageView;
 
 import android.app.Activity;
@@ -15,11 +17,22 @@ public class SplashScreen extends Activity {
 	private ParallaxImageView mBackground;
 	private boolean mParallaxSet = true;
 	private boolean mPortraitLock = true;
+	Intent intent;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
+		
+		ArrayList<Building> tempBuildingList = new ArrayList<Building>();
+		Intent oldIntent = getIntent();
+		IUser tempUser = oldIntent.getParcelableExtra("User");
+		ArrayList<Building> tempbuilding = oldIntent.getParcelableArrayListExtra("BuildingList");
+		intent=new Intent(this, MainActivity.class);
+		intent.putExtra("User", tempUser);
+		intent.putExtra("BuildingList", tempbuilding);
+		
+		
 		
 		mBackground = (ParallaxImageView) findViewById(android.R.id.background);
 		mBackground.setForwardTiltOffset(.35f);
@@ -27,12 +40,10 @@ public class SplashScreen extends Activity {
 		if(mParallaxSet)
 			mBackground.registerSensorManager();
 		new Handler().postDelayed(new Runnable(){
-
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				Intent i = new Intent(SplashScreen.this, LoginActivity.class);
-				startActivity(i);
+				startActivity(intent);
 				finish();
 			}
 			
