@@ -1,4 +1,4 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 /**
  * User interface
  */
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-//import com.infintyloop.buckeyebuilder.Building;
+//import com.infinityloop.buckeyebuilder.Building;
 
 public interface IUser extends Parcelable {
 	public void GiveValuesToUser(String userName,int cap, int cash);

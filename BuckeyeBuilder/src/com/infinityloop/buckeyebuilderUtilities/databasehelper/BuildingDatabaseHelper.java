@@ -1,4 +1,4 @@
-package com.infinityloop.buckeyebuilder.databasehelper;
+package com.infinityloop.buckeyebuilderUtilities.databasehelper;
 
 /**
  * a Database helper for buildings, Not being Used!
@@ -13,12 +13,12 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.infintyloop.buckeyebuilder.BuildingFactory;
+import com.infinityloop.buckeyebuilder.BuildingFactory;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 
-//import com.infintyloop.buckeyebuilder.DatabaseHelper.TicTacToeOpenHelper;
+//import com.infinityloop.buckeyebuilder.DatabaseHelper.TicTacToeOpenHelper;
 
 
 public abstract class BuildingDatabaseHelper extends SQLiteOpenHelper    {

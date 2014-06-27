@@ -1,4 +1,4 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 
 import android.app.IntentService;
 import android.content.Intent;

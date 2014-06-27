@@ -1,4 +1,4 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 
 /**
  * Building interface, Not being Used for the current version! Just here in case of expanding the app

@@ -1,4 +1,4 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.infinityloop.buckeyebuilder.adapter.TabsPagerAdapter;
-import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
+import com.infinityloop.buckeyebuilderUtilities.adapter.TabsPagerAdapter;
+import com.infinityloop.buckeyebuilderUtilities.databasehelper.DataHandler;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 

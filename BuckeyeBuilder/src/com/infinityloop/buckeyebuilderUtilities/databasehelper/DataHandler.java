@@ -1,4 +1,4 @@
-package com.infinityloop.buckeyebuilder.databasehelper;
+package com.infinityloop.buckeyebuilderUtilities.databasehelper;
 
 import java.util.ArrayList;
 
@@ -7,10 +7,10 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.infintyloop.buckeyebuilder.Building;
-import com.infintyloop.buckeyebuilder.IUser;
-import com.infintyloop.buckeyebuilder.R;
-import com.infintyloop.buckeyebuilder.User;
+import com.infinityloop.buckeyebuilder.Building;
+import com.infinityloop.buckeyebuilder.IUser;
+import com.infinityloop.buckeyebuilder.R;
+import com.infinityloop.buckeyebuilder.User;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 /**

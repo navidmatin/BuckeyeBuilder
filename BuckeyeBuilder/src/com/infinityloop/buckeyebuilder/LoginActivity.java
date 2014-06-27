@@ -1,4 +1,4 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -15,9 +15,9 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.Settings;
 import com.facebook.model.GraphUser;
-import com.infinityloop.buckeyebuilder.databasehelper.DataHandler;
-import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
-import com.infintyloop.buckeyebuilder.R;
+import com.infinityloop.buckeyebuilderUtilities.databasehelper.DataHandler;
+import com.infinityloop.buckeyebuilderUtilities.databasehelper.DatabaseHelper;
+import com.infinityloop.buckeyebuilder.R;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -47,8 +47,8 @@ import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
-import com.infintyloop.buckeyebuilder.BuildingFactory;
-import com.infintyloop.buckeyebuilder.IUser;
+import com.infinityloop.buckeyebuilder.BuildingFactory;
+import com.infinityloop.buckeyebuilder.IUser;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -175,16 +175,16 @@ public class LoginActivity extends Activity {
 			@Override
 			public void done(ParseUser user, ParseException err) {
 				if (user == null) {
-					Log.d("com.infintyloop.buckeyebuilder","Uh oh. The user cancelled the Facebook login.");
+					Log.d("com.infinityloop.buckeyebuilder","Uh oh. The user cancelled the Facebook login.");
 				} else if (user.isNew()) {
-					Log.d("com.infintyloop.buckeyebuilder",
+					Log.d("com.infinityloop.buckeyebuilder",
 							"User signed up and logged in through Facebook!");
 					//FACEBOOK STUFF
 					setupUser(user.getUsername());
 					startActivity(intent);
 					finish();
 				} else {
-					Log.d("com.infintyloop.buckeyebuilder",
+					Log.d("com.infinityloop.buckeyebuilder",
 							"User logged in through Facebook!");
 					setupUser(user.getUsername());
 					startActivity(intent);

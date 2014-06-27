@@ -1,4 +1,4 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 /**
  * Handles the location of the buildings and finding the current building
  */

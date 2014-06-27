@@ -1,4 +1,4 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 //import android.app.Fragment;
 import java.util.ArrayList;
 

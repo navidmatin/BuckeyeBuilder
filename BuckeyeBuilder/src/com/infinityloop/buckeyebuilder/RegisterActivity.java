@@ -1,8 +1,8 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 
 import java.util.ArrayList;
 
-import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
+import com.infinityloop.buckeyebuilderUtilities.databasehelper.DatabaseHelper;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;

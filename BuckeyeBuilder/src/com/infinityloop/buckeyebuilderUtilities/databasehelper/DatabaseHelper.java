@@ -1,4 +1,4 @@
-package com.infinityloop.buckeyebuilder.databasehelper;
+package com.infinityloop.buckeyebuilderUtilities.databasehelper;
 
 import android.content.ContentValues;
 import android.content.Context;

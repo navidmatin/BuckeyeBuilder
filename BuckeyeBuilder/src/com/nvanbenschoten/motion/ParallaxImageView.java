@@ -1,6 +1,6 @@
 package com.nvanbenschoten.motion;
 
-import com.infintyloop.buckeyebuilder.R;
+import com.infinityloop.buckeyebuilder.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;

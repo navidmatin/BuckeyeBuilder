@@ -1,11 +1,11 @@
-package com.infinityloop.buckeyebuilder.adapter;
+package com.infinityloop.buckeyebuilderUtilities.adapter;
 
 /**
  * Adapter for tabs!
  */
-import com.infintyloop.buckeyebuilder.BuildFragment;
-import com.infintyloop.buckeyebuilder.BuildPlanFragment;
-import com.infintyloop.buckeyebuilder.ManageFragment;
+import com.infinityloop.buckeyebuilder.BuildFragment;
+import com.infinityloop.buckeyebuilder.BuildPlanFragment;
+import com.infinityloop.buckeyebuilder.ManageFragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

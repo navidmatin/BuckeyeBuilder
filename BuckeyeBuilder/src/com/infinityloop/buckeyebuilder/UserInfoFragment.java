@@ -1,9 +1,9 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.infinityloop.buckeyebuilder.databasehelper.DatabaseHelper;
+import com.infinityloop.buckeyebuilderUtilities.databasehelper.DatabaseHelper;
 
 import android.location.Location;
 import android.os.Bundle;

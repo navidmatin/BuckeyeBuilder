@@ -1,4 +1,4 @@
-package com.infintyloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder;
 
 import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
