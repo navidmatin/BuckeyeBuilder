@@ -32,7 +32,9 @@ public class ManageFragment extends Fragment {
         return rootView;
     }
 	private void generateCurrentBuilding(){
-		buildingList=((MainActivity)getActivity()).buildingList;
+		if(getActivity()!=null)
+		{
+			buildingList=((MainActivity)getActivity()).buildingList;
 			for (Building building : buildingList)
 			{
 				if(building.GetLevel()>0)
@@ -48,7 +50,7 @@ public class ManageFragment extends Fragment {
 						linearLayout.addView(button);	
 				}
 			}
-		
+		}
 	}
 	@Override
 	public void onStart(){

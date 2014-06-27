@@ -76,7 +76,7 @@ public class UserInfoFragment extends Fragment {
  		    			}
  		    	 		currentbuilding= locationHandler.CheckLocationForBuilding();
 		}
-		if(currentbuilding != null) {
+		if(currentbuilding != null && getView()!=null) {
 			building=BuildingFactory.FindBuilding(currentbuilding, buildingList);
 			Button btn = (Button) getView().findViewById(R.id.build_button);
 			if(building.GetLevel()==0)

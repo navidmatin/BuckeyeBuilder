@@ -151,6 +151,12 @@ public class BuildFragment extends Fragment{
 		fragmentState=false;
 		super.onPause();
 	}
+	@Override
+	public void onStop()
+	{
+		
+		super.onStop();
+	}
 	private void setUpMapIfNeeded() {
 		 // Do a null check to confirm that we have not already instantiated the map.
 	    if (map == null) {
