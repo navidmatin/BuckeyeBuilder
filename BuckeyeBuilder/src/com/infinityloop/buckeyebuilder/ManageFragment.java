@@ -69,7 +69,8 @@ public class ManageFragment extends Fragment {
 		if(user.NumberofBuildingsOwned()==0)
 		{
 			TextView noBuildingMessage = (TextView) getView().findViewById(R.id.no_buildings_message);
-			noBuildingMessage.setText("You built no buildings, how about starting building the campus?");
+			if(noBuildingMessage!=null)
+				noBuildingMessage.setText("You built no buildings, how about starting building the campus?");
 		}
 
 		
@@ -130,7 +131,7 @@ public class ManageFragment extends Fragment {
 	}
 	@Override
 	public void onStop(){
-		super.onPause();
+		super.onStop();
 		fragmentState=false;
 		((MainActivity)getActivity()).buildingList=buildingList;
 	}
