@@ -115,7 +115,7 @@ public class ManageFragment extends Fragment {
 						@Override
 						public void run(){
 							
-							if(user.NumberofBuildingsOwned()>ownedBuildings)
+							if(user.NumberofBuildingsOwned()>ownedBuildings && user.NumberofBuildingsOwned()>0)
 							{
 								linearLayout.removeAllViewsInLayout();
 								ownedBuildings=0;
@@ -132,7 +132,6 @@ public class ManageFragment extends Fragment {
 	public void onStop(){
 		super.onPause();
 		fragmentState=false;
-		linearLayout.removeAllViewsInLayout();
 		((MainActivity)getActivity()).buildingList=buildingList;
 	}
 }
