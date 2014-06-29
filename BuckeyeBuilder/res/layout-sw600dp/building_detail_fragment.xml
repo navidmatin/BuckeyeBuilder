@@ -5,7 +5,7 @@
     android:layout_margin="10dp">
 <LinearLayout 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical" >
 
 
@@ -30,8 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Information"
-            android:textColor="@color/Title_blue"
-            android:layout_margin="10dp" />
+            android:textColor="@color/Title_blue" />
 		<LinearLayout
             android:layout_width="match_parent"
    				android:layout_height="wrap_content"

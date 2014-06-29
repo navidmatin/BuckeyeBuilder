@@ -14,13 +14,13 @@
 		            android:layout_height="wrap_content"
 		            android:text="Money:"
 		            android:layout_weight="1"
-		             />
+		            android:textAppearance="?android:attr/textAppearanceLarge" />
 		        <TextView
 		             android:id="@+id/textMoneyAmount"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:layout_weight="1"
-		             />
+		            android:textAppearance="?android:attr/textAppearanceLarge" />
 </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
@@ -46,7 +46,7 @@
 	           android:id="@+id/build_button"
 	           android:layout_width="wrap_content"
 	           android:layout_height="wrap_content"
-	           android:layout_margin="5dp"
+	           android:layout_margin="10dp"
 	           android:text="Nothing to Build"
 	           android:layout_gravity="center"
 	           android:background="@drawable/buttonshape"
