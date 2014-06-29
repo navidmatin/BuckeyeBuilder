@@ -4,6 +4,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.facebook.Request;
 import com.facebook.Response;
@@ -32,14 +34,17 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.LogInCallback;
@@ -75,6 +80,7 @@ public class LoginActivity extends Activity {
 	// UI references.
 	private EditText musernameView;
 	private EditText mPasswordView;
+	private EditText input;
 	private View mLoginFormView;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
@@ -90,7 +96,7 @@ public class LoginActivity extends Activity {
 		
 		if(currentUser!=null)
 		{
-			setupUser(mUsername);
+			setupUser(currentUser.getUsername());
 			startActivity(intent);
 			finish();
 		}
@@ -149,7 +155,7 @@ public class LoginActivity extends Activity {
 					@Override
 					public void onClick(View view){
 						facebookLogin();
-						showProgress(true);
+						
 				}
 				});
 	}
@@ -180,9 +186,11 @@ public class LoginActivity extends Activity {
 					Log.d("com.infinityloop.buckeyebuilder",
 							"User signed up and logged in through Facebook!");
 					//FACEBOOK STUFF
-					setupUser(user.getUsername());
-					startActivity(intent);
-					finish();
+					//setupUser(user.getUsername());
+					//startActivity(intent);
+					promptForUsername();
+					showProgress(true);
+					
 				} else {
 					Log.d("com.infinityloop.buckeyebuilder",
 							"User logged in through Facebook!");
@@ -192,6 +200,66 @@ public class LoginActivity extends Activity {
 				}
 			}
 		});
+	}
+	private void promptForUsername()
+	{
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+		alert.setTitle("Username");
+		alert.setMessage("Buckeye Builder master needs a name!:");
+
+		// Set an EditText view to get user input 
+		input = new EditText(this);
+		alert.setView(input);
+
+		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+			  mUsername = input.getText().toString();
+			  Boolean correct=true;
+			  if(mUsername=="" || mUsername.length()==0)
+				  correct=false;
+			  else
+			  {
+				  Pattern p = Pattern.compile(".*\\W+.*");
+				  Matcher m = p.matcher(mUsername);
+				  if(m.find())
+					  correct=false;
+			  }
+			  if(correct)
+			  {
+				  ParseUser currentUser = ParseUser.getCurrentUser();
+				  currentUser.setUsername(mUsername);
+				  setupUser(mUsername);
+				  startActivity(intent);
+				  
+				  finish();
+			  }
+			  else
+			  {
+			
+				 Toast t= Toast.makeText(
+                          getApplicationContext(),
+                          "Wrong username format, please try again",
+                          Toast.LENGTH_LONG);
+				  t.setGravity(Gravity.CENTER, 0, 0);
+				  t.show();
+				  promptForUsername();
+			  }
+			}
+		});
+
+		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		  public void onClick(DialogInterface dialog, int whichButton) {
+			  //When it gets to this level there is always a Facebook session so there is no need to check for it
+			ParseFacebookUtils.getSession().closeAndClearTokenInformation();
+			  if(ParseUser.getCurrentUser()!=null)
+					ParseUser.getCurrentUser().deleteEventually();
+			  showProgress(false);
+		  }
+		});
+
+		alert.show();
+		// see http://androidsnippets.com/prompt-user-input-with-an-alertdialog
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -262,15 +330,15 @@ public class LoginActivity extends Activity {
 		
 				intent=new Intent(this, SplashScreen.class);
 				//Check to see if we have user in the savedFile
-				IUser user = DataHandler.getUserData(this, mUsername);
+				IUser user = DataHandler.getUserData(this, username);
 				if(user==null){
 					user=new User();
 					// given user, enter their cash and cap values..
-					user.GiveValuesToUser(mUsername, 3000000, 1000000);
+					user.GiveValuesToUser(username, 3000000, 1000000);
 				}
 				intent.putExtra("User", user);
 			    //Check to see if we have buildings in the savedfile otherwise create new ones
-				ArrayList<Building> buildingList=DataHandler.getBuildingListData(this, mUsername);
+				ArrayList<Building> buildingList=DataHandler.getBuildingListData(this, username);
 				if(buildingList==null)
 				{
 					BuildingFactory myFactory = new BuildingFactory();
@@ -332,6 +400,6 @@ public class LoginActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		  ParseFacebookUtils.finishAuthentication(requestCode, resultCode, data);
 	}
-	
+
 	
 }

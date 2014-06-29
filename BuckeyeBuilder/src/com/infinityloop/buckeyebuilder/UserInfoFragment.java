@@ -125,7 +125,6 @@ public class UserInfoFragment extends Fragment {
 		genRateView = (TextView) getView().findViewById(R.id.moneyperHour);
 		if(mProgress==null)
 			mProgress = (ProgressBar) getView().findViewById(R.id.progressBar1);
-		
 		findBuildingsAround();
 		locationCheckerThread();
 		

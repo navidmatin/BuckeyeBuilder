@@ -98,7 +98,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			}
  			
  		});
-		
+		Toast.makeText(this, "Welcome "+user.GetUsername(), Toast.LENGTH_LONG).show();
 	}
 		 	
 	@Override
