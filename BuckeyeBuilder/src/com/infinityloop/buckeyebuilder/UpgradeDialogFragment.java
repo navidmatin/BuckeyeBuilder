@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 /**
  * a dialog fragment that shows the windows with currently owned building information 
  * and also gives user the option to upgrade the building
@@ -95,7 +96,10 @@ public class UpgradeDialogFragment extends DialogFragment {
 			if(beforeUpgradelvl==building.GetLevel())
 				Alert.upgradeFailed(getActivity());
 			else
+			{
 				((MainActivity)getActivity()).updateMap++;
+				Toast.makeText(getActivity(), "Building upgraded successfully", Toast.LENGTH_SHORT).show();
+			}
 		}
 	}
 }

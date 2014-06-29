@@ -240,7 +240,7 @@ public class LoginActivity extends Activity {
 				 Toast t= Toast.makeText(
                           getApplicationContext(),
                           "Wrong username format, please try again",
-                          Toast.LENGTH_LONG);
+                          Toast.LENGTH_SHORT);
 				  t.setGravity(Gravity.CENTER, 0, 0);
 				  t.show();
 				  promptForUsername();
