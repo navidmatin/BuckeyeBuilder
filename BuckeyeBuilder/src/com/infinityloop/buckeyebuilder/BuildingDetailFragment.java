@@ -77,9 +77,7 @@ public class BuildingDetailFragment extends DialogFragment{
 		levelGenRate1.setText(Integer.toString(genrate) + "$/hr");
 		levelGenRate2.setText(Integer.toString(genrate*2) + "$/hr");
 		levelGenRate3.setText(Integer.toString(genrate*3) + "$/hr");
-		
-		//level.setText("Level "+ Integer.toString(levelnumber));
-		// levelGenRate.setText(building.GetCurrentGenRate()+"$");
+
 		
 		
 		

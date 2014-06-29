@@ -18,6 +18,7 @@ import android.os.Message;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -121,7 +122,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				ParseUser.logOut();
 				startActivity(new Intent(this, LoginActivity.class));
 				finish();
-			}DataHandler.saveData(this, buildingList, user);DataHandler.saveData(this, buildingList, user);		default:
+			}DataHandler.saveData(this, buildingList, user);
+			case R.id.bug_report:
+			{
+				FragmentManager fm=  getSupportFragmentManager();
+				
+				BugReportDialogFragment brdf = new BugReportDialogFragment();
+				brdf.show(fm, "bug_report_dialog");
+				
+			}
+			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}

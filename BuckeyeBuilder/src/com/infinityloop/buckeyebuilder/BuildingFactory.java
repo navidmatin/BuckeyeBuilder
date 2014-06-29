@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.util.Log;
 
-import com.infinityloop.buckeyebuilderUtilities.databasehelper.BuildingDatabaseHelper;
 import com.infinityloop.buckeyebuilder.Building;
 import com.infinityloop.buckeyebuilder.IUser;
 import com.parse.FindCallback;
