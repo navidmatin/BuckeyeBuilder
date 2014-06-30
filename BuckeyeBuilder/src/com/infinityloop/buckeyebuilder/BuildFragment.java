@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -18,6 +19,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,11 +127,29 @@ public class BuildFragment extends Fragment{
 						.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
 						));
 					}
+					map.setOnInfoWindowClickListener(new OnInfoWindowClickListener(){
+						public void onInfoWindowClick(Marker marker) {
+							//Bundling up information related to that building
+							Bundle bundle = new Bundle();
+							bundle.putParcelable("Building", BuildingFactory.FindBuilding((String) marker.getTitle(), buildingList)); //finding building name based on the Button name
+							bundle.putParcelable("User", ((MainActivity) getActivity()).user);
+							//Starting up the Dialog Fragment
+							if(bundle.get("Building")!=null)
+							{
+								FragmentManager fm= getFragmentManager();
+								UpgradeDialogFragment upgradeDialog = new UpgradeDialogFragment();
+								upgradeDialog.setArguments(bundle);
+								upgradeDialog.show(fm, "upgrade_dialog_fragment");
+							}
+						}
+					});
 					
 			}
+			
 			updateMap++;
 		
 		}
+		
 	}
 	@Override
 	public void onResume(){
@@ -196,7 +216,6 @@ public class BuildFragment extends Fragment{
 						public void run(){
 							//Constantly updating the map if needed 
 								SetupTheMap();
-							
 						}
 					});
 				}

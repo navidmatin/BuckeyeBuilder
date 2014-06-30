@@ -74,6 +74,10 @@ public class User implements IUser {
 		genRate=_genRate;
 		return _genRate;
 	}
+	public void IncreaseCap(Building building)
+	{
+		moneyCap+=building.GetCurrentCost()/2;
+	}
 	/** WRONG IMPLEMENTATION OF MONEY GENERATION, JUST FOR CHECKING **/
 	// if the money is not at the current cap, make some amount of money
 	public void MakeMoney() {

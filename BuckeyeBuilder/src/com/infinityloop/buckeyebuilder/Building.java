@@ -2,6 +2,7 @@ package com.infinityloop.buckeyebuilder;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.Toast;
 /**
  * A class representing each Building
  */
@@ -93,10 +94,11 @@ public class Building implements IBuilding {
 			{
 				user.Pay(_cost);
 				level++;
+				user.IncreaseCap(this);
 			}
 		}
 		else{
-			//Find a way to show an alert
+			//To DO: Show error here
 		}
 	}
 

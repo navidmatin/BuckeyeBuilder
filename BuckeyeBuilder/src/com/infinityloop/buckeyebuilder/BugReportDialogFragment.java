@@ -38,7 +38,7 @@ public class BugReportDialogFragment extends DialogFragment{
 				bug.add("user", ParseUser.getCurrentUser().getUsername());
 				bug.add("bug", bugDescription.getText().toString());
 				bug.saveInBackground();
-				Toast.makeText(getActivity(), "Thank you for sending us the error, we will look into it as soon as possible", Toast.LENGTH_LONG);
+				Toast.makeText(getActivity(), "Thank you for sending us the error, we will look into it as soon as possible", Toast.LENGTH_LONG).show();
 				getDialog().dismiss();
 			}
 			

@@ -145,7 +145,7 @@ public class BuildingFactory{
 		
 		for(Building building: buildingList)
 		{
-			if(building.GetName()==buildingName)
+			if(building.GetName().equals(buildingName))
 				return building;
 		}
 		return null;
