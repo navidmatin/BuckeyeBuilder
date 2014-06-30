@@ -122,7 +122,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				ParseUser.logOut();
 				startActivity(new Intent(this, LoginActivity.class));
 				finish();
-			}DataHandler.saveData(this, buildingList, user);
+			}DataHandler.saveData(this, buildingList, user);break;
 			case R.id.bug_report:
 			{
 				FragmentManager fm=  getSupportFragmentManager();
@@ -130,10 +130,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				BugReportDialogFragment brdf = new BugReportDialogFragment();
 				brdf.show(fm, "bug_report_dialog");
 				
-			}
-			default:
-				return super.onOptionsItemSelected(item);
+			}break;
+			
 		}
+		return super.onOptionsItemSelected(item);
 	}
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {

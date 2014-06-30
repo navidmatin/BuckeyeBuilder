@@ -137,7 +137,7 @@ public class LoginActivity extends Activity {
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						
+						showProgress(true);
 							attemptLogin();
 						
 					}
@@ -154,6 +154,7 @@ public class LoginActivity extends Activity {
 				new View.OnClickListener(){
 					@Override
 					public void onClick(View view){
+						showProgress(true);
 						facebookLogin();
 						
 				}
@@ -303,7 +304,7 @@ public class LoginActivity extends Activity {
 		} else {
 			if(BuckeyeBuilderUtility.isConnectedToInternet(this))
 			{
-				showProgress(true);
+				
 				ParseUser.logInInBackground(mUsername, mPassword, new LogInCallback() {
 					  public void done(ParseUser user, ParseException e) {
 					    if (user != null) {
