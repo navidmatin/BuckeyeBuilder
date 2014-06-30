@@ -130,16 +130,27 @@ public class BuildFragment extends Fragment{
 					map.setOnInfoWindowClickListener(new OnInfoWindowClickListener(){
 						public void onInfoWindowClick(Marker marker) {
 							//Bundling up information related to that building
+							Building b = BuildingFactory.FindBuilding((String) marker.getTitle(), buildingList);
 							Bundle bundle = new Bundle();
-							bundle.putParcelable("Building", BuildingFactory.FindBuilding((String) marker.getTitle(), buildingList)); //finding building name based on the Button name
+							bundle.putParcelable("Building", b); //finding building name based on the Button name
 							bundle.putParcelable("User", ((MainActivity) getActivity()).user);
 							//Starting up the Dialog Fragment
-							if(bundle.get("Building")!=null)
+							if(b!=null)
 							{
+								
 								FragmentManager fm= getFragmentManager();
-								UpgradeDialogFragment upgradeDialog = new UpgradeDialogFragment();
-								upgradeDialog.setArguments(bundle);
-								upgradeDialog.show(fm, "upgrade_dialog_fragment");
+								if(b.GetLevel()>0)
+								{
+									UpgradeDialogFragment upgradeDialog = new UpgradeDialogFragment();
+									upgradeDialog.setArguments(bundle);
+									upgradeDialog.show(fm, "upgrade_dialog_fragment");
+								}
+								else
+								{
+									BuildingDetailFragment buildingDetailFragment = new BuildingDetailFragment();
+									buildingDetailFragment.setArguments(bundle);
+									buildingDetailFragment.show(fm, "building_detail_fragment");
+								}
 							}
 						}
 					});
