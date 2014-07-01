@@ -75,6 +75,7 @@ public class RegisterActivity extends Activity {
 					public boolean onEditorAction(TextView textView, int id,
 							KeyEvent keyEvent) {
 						if (id == R.id.register || id == EditorInfo.IME_NULL) {
+							
 							attemptregister();
 							return true;
 						}
@@ -143,6 +144,7 @@ public class RegisterActivity extends Activity {
 
 			if ((mPassword.equals(mPConfirm)) && (!mUsername.equals(""))
 					&& (!mPassword.equals("")) && (!mPConfirm.equals(""))) {
+				showProgress(true);
 				//Parse User
 				ParseUser pUser = new ParseUser();
 				//Accepted credentials

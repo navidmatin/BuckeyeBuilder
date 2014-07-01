@@ -46,7 +46,6 @@ public class BuildingFactory{
 				for(ParseObject object : objects)
 				{
 					buildingNames.add(object.getString("Name"));
-					descriptions.add(object.getString("description"));
 					latitudes.add(object.getDouble("lat"));
 					longitudes.add(object.getDouble("longi"));
 					descriptions.add(object.getString("description"));
