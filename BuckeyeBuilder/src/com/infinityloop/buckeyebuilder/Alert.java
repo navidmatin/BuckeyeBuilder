@@ -53,5 +53,22 @@ public class Alert {
 			});
 			alertDialog.show();
 	}
+	public static void showAlert(String title, String message)
+	{
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(BuckeyeBuilderApplication.getAppContext());
+		
+		//Dialog title
+		alertDialog.setTitle(title);
+		
+		//Dialog message
+		alertDialog.setMessage(message);
+
+		alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog, int which){
+				dialog.cancel();
+			}
+		});
+		alertDialog.show();
+	}
 
 }

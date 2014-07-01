@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -100,6 +102,19 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  			
  		});
 		Toast.makeText(this, "Welcome "+user.GetUsername(), Toast.LENGTH_LONG).show();
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if(currentUser.getUpdatedAt() == currentUser.getCreatedAt())
+		{
+			AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
+					.setTitle("Welcome to BuckeyeBuilder")
+					.setMessage("Tutorial will come over here")
+					.setNegativeButton("Continue", new DialogInterface.OnClickListener(){
+				public void onClick(DialogInterface dialog, int which){
+					dialog.cancel();
+				}
+			});
+			alertDialog.show();
+		}
 	}
 		 	
 	@Override

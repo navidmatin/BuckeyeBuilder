@@ -161,8 +161,8 @@ public class RegisterActivity extends Activity {
 					      // Hooray! Let them use the app now.
 					   	startActivity(intentforsignup);
 					    } else {
-					      // Sign up didn't succeed. Look at the ParseException
-					      // to figure out what went wrong
+					    	showAlert("Creating User Failed","There is another user with that username");
+					    	showProgress(false);
 					    }
 					  }
 					});
@@ -180,21 +180,27 @@ public class RegisterActivity extends Activity {
 				Toast.makeText(RegisterActivity.this, "Missing entry", Toast.LENGTH_SHORT)
 						.show();
 			} else if (!mPassword.equals(mPConfirm)) {
-				new AlertDialog.Builder(this)
-						.setTitle("Error")
-						.setMessage("passwords do not match")
-						.setNeutralButton("Try Again",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int which) {
-									}
-								})
-
-						.show();
+				showAlert("Error","passwords do not match");
 			}
 		}
 	}
+	private void showAlert(String title, String message)
+	{
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+		
+		//Dialog title
+		alertDialog.setTitle(title);
+		
+		//Dialog message
+		alertDialog.setMessage(message);
 
+		alertDialog.setNegativeButton("Try Again", new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog, int which){
+				dialog.cancel();
+			}
+		});
+		alertDialog.show();
+	}
 	/**
 	 * Shows the progress UI and hides the register form.
 	 */
