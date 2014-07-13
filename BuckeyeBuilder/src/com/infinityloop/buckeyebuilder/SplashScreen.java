@@ -52,12 +52,7 @@ public class SplashScreen extends Activity {
 	}
 	
 	private void setCurrentImage(){
-		if(mCurrentImage == 1) {
-			mBackground.setImageResource(R.drawable.image1);
-		} else
-		{
-			mBackground.setImageResource(R.drawable.image2);
-		}
+			mBackground.setImageResource(R.drawable.white_texture);
 	}
 	
 	@Override
