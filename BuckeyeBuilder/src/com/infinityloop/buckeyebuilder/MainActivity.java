@@ -105,15 +105,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if(currentUser.getUpdatedAt() == currentUser.getCreatedAt())
 		{
-			AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
-					.setTitle("Welcome to BuckeyeBuilder")
-					.setMessage("Tutorial will come over here")
-					.setNegativeButton("Continue", new DialogInterface.OnClickListener(){
-				public void onClick(DialogInterface dialog, int which){
-					dialog.cancel();
-				}
-			});
-			alertDialog.show();
+			FragmentManager fm= getSupportFragmentManager();
+			TutorialDetailFragment tutorialDialog = new TutorialDetailFragment();
+			tutorialDialog.show(fm, "tutorial_detail_fragment");
 		}
 	}
 		 	

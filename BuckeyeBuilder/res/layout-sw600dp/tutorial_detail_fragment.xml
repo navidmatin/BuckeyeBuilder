@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <ScrollView
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+	<LinearLayout 
+	    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+	  <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-This is the beta version of BuckeyeBuilder, if you found any errors or missing buildings send it to us by click on error report on the top right corner." >
+
+    </TextView>
+
+
+	  
+
+	<TextView
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingTop="10dp"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:text="-The final goal in Buckeye Builder is to build all of the campus buildings, in order to build a building you need money!" >
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-Building buildings increases money generation rate and your max money cap!" >
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-In order to build a building you have to physically go to that building!" >
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-To upgrade you can click on it on the map or in manage tab. " >
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-Upgrade increases your money cap and money generation rate." >
+
+    </TextView>
+    <Button
+           android:id="@+id/tutorial_continue_button"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_weight="1"
+           android:background="@drawable/cancel_button_shape"
+           android:text="Happy building!"
+           android:layout_margin="10dp" />
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>
