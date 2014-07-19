@@ -71,12 +71,12 @@ public class BuildingDetailFragment extends DialogFragment{
 			cost = cost/3;
 			genrate = (genrate/3);
 		} 
-	levelCost1.setText(Integer.toString(cost) + "$");
-		levelCost2.setText(Integer.toString(cost*2) + "$");
-		levelCost3.setText(Integer.toString(cost*3) + "$");
-		levelGenRate1.setText(Integer.toString(genrate) + "$/hr");
-		levelGenRate2.setText(Integer.toString(genrate*2) + "$/hr");
-		levelGenRate3.setText(Integer.toString(genrate*3) + "$/hr");
+	levelCost1.setText("$"+Integer.toString(cost));
+		levelCost2.setText("$"+Integer.toString(cost*2));
+		levelCost3.setText("$"+Integer.toString(cost*3));
+		levelGenRate1.setText("$" + Integer.toString(genrate) + "/hr");
+		levelGenRate2.setText("$" + Integer.toString(genrate*2) + "/hr");
+		levelGenRate3.setText("$" + Integer.toString(genrate*3) + "/hr");
 
 		
 		

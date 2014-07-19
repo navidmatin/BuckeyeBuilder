@@ -178,9 +178,9 @@ public class UserInfoFragment extends Fragment {
 							user.MakeMoney();
 							int money= user.GetMoney();
 							int cap=user.GetCap();
-							moneyView.setText(money+"$ /"+cap+"$");
+							moneyView.setText("$"+money+" /$"+cap);
 							int genRate=user.CalculateCurrentGenRate(buildingList);
-							genRateView.setText(genRate+"$"+ " per hour");
+							genRateView.setText("$"+genRate+ " per hour");
 							double percentage = (double) money/cap;
 							mProgress.setProgress((int) (percentage*100));
 							

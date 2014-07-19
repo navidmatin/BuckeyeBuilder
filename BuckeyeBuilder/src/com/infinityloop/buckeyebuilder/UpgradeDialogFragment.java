@@ -65,8 +65,8 @@ public class UpgradeDialogFragment extends DialogFragment {
 		description.setText(building.GetDescription());
 		int levelnumber=building.GetLevel();
 		level.setText("Level "+ Integer.toString(levelnumber));
-		levelGenRate.setText(building.GetCurrentGenRate()+"$");
-		levelCost.setText(building.GetCurrentCost()+"$");
+		levelGenRate.setText("$"+building.GetCurrentGenRate());
+		levelCost.setText("$"+building.GetCurrentCost());
 
 		Button upgradeBtn= (Button) _view.findViewById(R.id.upgrade_button);
 		if(building.GetLevel()>=3)

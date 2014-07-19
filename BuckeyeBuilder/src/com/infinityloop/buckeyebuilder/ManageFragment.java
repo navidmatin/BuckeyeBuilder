@@ -72,7 +72,7 @@ public class ManageFragment extends Fragment {
 		{
 			TextView noBuildingMessage = (TextView) getView().findViewById(R.id.no_buildings_message);
 			if(noBuildingMessage!=null)
-				noBuildingMessage.setText("You built no buildings, how about starting building the campus?");
+				noBuildingMessage.setText("You have not built any buildings yet, how about you start to build the campus?");
 		}
 
 		
