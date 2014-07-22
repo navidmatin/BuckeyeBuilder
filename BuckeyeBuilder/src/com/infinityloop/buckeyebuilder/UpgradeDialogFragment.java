@@ -62,7 +62,10 @@ public class UpgradeDialogFragment extends DialogFragment {
 		user=bundle.getParcelable("User");
 		
 		buildingName.setText(building.GetName());
-		description.setText(building.GetDescription());
+		
+		//TODO Fix the description
+	//	description.setText(building.GetDescription());
+		description.setText("");
 		int levelnumber=building.GetLevel();
 		level.setText("Level "+ Integer.toString(levelnumber));
 		levelGenRate.setText("$"+building.GetCurrentGenRate());

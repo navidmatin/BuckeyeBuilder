@@ -1,6 +1,7 @@
 package com.infinityloop.buckeyebuilder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -77,4 +78,5 @@ public class BuildPlanFragment extends Fragment {
 		super.onPause();
 		linearLayout.removeAllViewsInLayout();
 	}
+	
 }

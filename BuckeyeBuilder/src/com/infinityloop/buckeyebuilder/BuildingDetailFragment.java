@@ -59,7 +59,9 @@ public class BuildingDetailFragment extends DialogFragment{
 		building=bundle.getParcelable("Building");
 		//BuildingFactory.getBuildingsFromDatabase();
 		buildingName.setText(building.GetName());
-		description.setText(building.GetDescription());
+		//To DO Fix the building information
+		//description.setText(building.GetDescription());
+		description.setText("");
 		
 		int cost = building.GetCurrentCost();
 		int genrate = building.getPossibleGenRatePerLevel();

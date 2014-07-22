@@ -38,7 +38,7 @@ public class BuildingFactory{
 	private void getBuildingsFromDatabase(String version){
 		if(version==null)
 		{
-			ParseQuery<ParseObject> query = ParseQuery.getQuery("Building");
+			ParseQuery<ParseObject> query = ParseQuery.getQuery("Building").orderByAscending("Name");
 			query.setLimit(1000);
 			List<ParseObject> objects;
 			try {
