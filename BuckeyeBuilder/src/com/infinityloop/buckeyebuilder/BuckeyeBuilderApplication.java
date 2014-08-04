@@ -16,10 +16,6 @@ public class BuckeyeBuilderApplication extends Application{
 		
 		Parse.initialize(this, "***REMOVED***", "***REMOVED***");
 		ParseFacebookUtils.initialize("***REMOVED***");
-		context = getApplicationContext();
 
-	}
-	public static Context getAppContext() {
-		return BuckeyeBuilderApplication.context;
 	}
 }

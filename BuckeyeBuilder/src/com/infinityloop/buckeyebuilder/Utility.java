@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-public class BuckeyeBuilderUtility {
+public class Utility {
 	public static boolean isConnectedToInternet(Context context) {
 		ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if(connectivity !=null)

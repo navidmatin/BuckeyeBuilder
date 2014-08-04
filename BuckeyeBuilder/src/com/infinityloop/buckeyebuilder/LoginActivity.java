@@ -302,7 +302,7 @@ public class LoginActivity extends Activity {
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
-			if(BuckeyeBuilderUtility.isConnectedToInternet(this))
+			if(Utility.isConnectedToInternet(this))
 			{
 				
 				ParseUser.logInInBackground(mUsername, mPassword, new LogInCallback() {
@@ -322,7 +322,7 @@ public class LoginActivity extends Activity {
 					});
 			}
 			else
-				BuckeyeBuilderUtility.showTextAlertDialog(this, "No Internet Connection", this.getString(R.string.no_internet));
+				Utility.showTextAlertDialog(this, "No Internet Connection", this.getString(R.string.no_internet));
 			
 		}
 	}
@@ -350,10 +350,10 @@ public class LoginActivity extends Activity {
 		
 	}
 	public void createNewUser() {
-		if(BuckeyeBuilderUtility.isConnectedToInternet(this))
+		if(Utility.isConnectedToInternet(this))
 			startActivity(new Intent(this, RegisterActivity.class));
 		else
-			BuckeyeBuilderUtility.showTextAlertDialog(this, "No internet connect", getString(R.string.no_internet));
+			Utility.showTextAlertDialog(this, "No internet connect", getString(R.string.no_internet));
 	}
 	/**
 	 * Shows the progress UI and hides the login form.
