@@ -2,7 +2,6 @@ package com.infinityloop.buckeyebuilder.Core;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Toast;
 /**
  * A class representing each Building
  */
@@ -62,6 +61,15 @@ public class Building implements IBuilding {
 		return level;
 	}
 
+	public boolean isAffordable(int money)
+	{
+		Boolean isAffordable = false;
+		if(money>GetCurrentCost())
+		{
+			isAffordable = true;
+		}
+		return isAffordable;
+	}
 	
 	public int GetCurrentCost() {
 		if(level == 0){

@@ -6,6 +6,7 @@ import com.infinityloop.buckeyebuilder.Core.Building;
 import com.infinityloop.buckeyebuilder.Core.BuildingFactory;
 import com.infinityloop.buckeyebuilder.Core.IUser;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,7 @@ public class ManageFragment extends Fragment {
 	LinearLayout linearLayout;
 	boolean fragmentState=false;
 	int ownedBuildings = 0;
+	boolean updateList;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -45,12 +47,21 @@ public class ManageFragment extends Fragment {
 				{
 					ownedBuildings++;
 						//Dynamically adding the buttons
-						
+					updateList = false;
 						Button button = new Button(getActivity());
 						LayoutParams params = new  LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 						button.setLayoutParams(params);
 						button.setText(building.GetName());
 						button.setOnClickListener(showUpgradeFragment(button));
+						if(!building.isAffordable(user.GetMoney()))
+						{
+							button.setTextColor(Color.parseColor("#adadad")); 
+							//TODO: Show ready to upgrade button
+						}
+						if(building.GetLevel()==3)
+						{
+							button.setTextColor(Color.parseColor("#0099CC"));
+						}
 						linearLayout.addView(button);	
 				}
 			}
@@ -113,7 +124,7 @@ public class ManageFragment extends Fragment {
 				while(fragmentState)
 				{
 					try {
-						Thread.sleep(500);
+						Thread.sleep(1000);
 					}
 					catch(InterruptedException e) {
 						e.printStackTrace();
@@ -122,8 +133,9 @@ public class ManageFragment extends Fragment {
 						@Override
 						public void run(){
 							
-							if(user.NumberofBuildingsOwned()>ownedBuildings && user.NumberofBuildingsOwned()>0)
+							if((user.NumberofBuildingsOwned()>ownedBuildings && user.NumberofBuildingsOwned()>0) || ((MainActivity)getActivity()).updateList)
 							{
+								
 								linearLayout.removeAllViewsInLayout();
 								ownedBuildings=0;
 								generateCurrentBuilding();

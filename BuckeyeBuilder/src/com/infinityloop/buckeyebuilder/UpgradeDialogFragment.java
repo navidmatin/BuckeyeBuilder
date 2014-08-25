@@ -104,6 +104,7 @@ public class UpgradeDialogFragment extends DialogFragment {
 			else
 			{
 				((MainActivity)getActivity()).updateMap++;
+				((MainActivity)getActivity()).updateList=true;
 				Toast.makeText(getActivity(), "Building upgraded successfully", Toast.LENGTH_SHORT).show();
 			}
 		}

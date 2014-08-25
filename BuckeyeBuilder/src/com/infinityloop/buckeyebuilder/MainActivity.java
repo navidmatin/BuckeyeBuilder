@@ -48,6 +48,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	GPSManager gps= new GPSManager(this);
 	double userLat, userLon;
 	int updateMap=1;
+	boolean updateList;
 	String currentBuilding;
 	Gson gson= new Gson();//new GsonBuilder().registerTypeAdapter(Building.class, new BuildingInstanceCreator()).create();
 	//Tab names
@@ -75,6 +76,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
  		viewPager = (ViewPager) findViewById(R.id.pager);
  		actionBar = getActionBar();
  		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+ 		updateList=false;
  		
  		viewPager.setAdapter(mAdapter);
  		//actionBar.setHomeButtonEnabled(false);
