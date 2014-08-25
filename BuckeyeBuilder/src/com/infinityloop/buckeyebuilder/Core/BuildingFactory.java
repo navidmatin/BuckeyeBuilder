@@ -1,11 +1,11 @@
-package com.infinityloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder.Core;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.util.Log;
 
-import com.infinityloop.buckeyebuilder.Building;
-import com.infinityloop.buckeyebuilder.IUser;
+import com.infinityloop.buckeyebuilder.Core.Building;
+import com.infinityloop.buckeyebuilder.Core.IUser;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;

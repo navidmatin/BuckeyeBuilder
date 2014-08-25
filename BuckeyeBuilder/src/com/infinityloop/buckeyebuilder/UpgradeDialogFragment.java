@@ -1,5 +1,8 @@
 package com.infinityloop.buckeyebuilder;
 
+import com.infinityloop.buckeyebuilder.Core.Building;
+import com.infinityloop.buckeyebuilder.Core.IUser;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;

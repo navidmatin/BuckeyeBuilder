@@ -14,6 +14,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.infinityloop.buckeyebuilder.Core.Building;
+import com.infinityloop.buckeyebuilder.Core.BuildingFactory;
 
 import android.location.Location;
 import android.os.Bundle;

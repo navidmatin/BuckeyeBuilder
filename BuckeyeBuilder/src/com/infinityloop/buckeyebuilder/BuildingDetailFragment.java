@@ -1,5 +1,7 @@
 package com.infinityloop.buckeyebuilder;
 
+import com.infinityloop.buckeyebuilder.Core.Building;
+
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;

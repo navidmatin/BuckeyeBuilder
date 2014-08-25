@@ -2,6 +2,10 @@ package com.infinityloop.buckeyebuilder;
 
 import java.util.ArrayList;
 
+import com.infinityloop.buckeyebuilder.Core.Building;
+import com.infinityloop.buckeyebuilder.Core.BuildingFactory;
+import com.infinityloop.buckeyebuilder.Core.IUser;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;

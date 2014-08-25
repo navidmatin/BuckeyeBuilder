@@ -1,10 +1,10 @@
-package com.infinityloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder.Core;
 import java.util.ArrayList;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.infinityloop.buckeyebuilder.Market;
+import com.infinityloop.buckeyebuilder.Core.Market;
 /**
  * User class which holds all of the user information
  */

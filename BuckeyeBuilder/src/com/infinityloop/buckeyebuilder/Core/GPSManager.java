@@ -1,4 +1,4 @@
-package com.infinityloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder.Core;
 
 /**
  * A service that get's user's current GPS location

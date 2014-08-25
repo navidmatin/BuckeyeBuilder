@@ -17,6 +17,11 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.Settings;
 import com.facebook.model.GraphUser;
+import com.infinityloop.buckeyebuilder.Core.Building;
+import com.infinityloop.buckeyebuilder.Core.BuildingFactory;
+import com.infinityloop.buckeyebuilder.Core.IUser;
+import com.infinityloop.buckeyebuilder.Core.User;
+import com.infinityloop.buckeyebuilder.Core.Utility;
 import com.infinityloop.buckeyebuilderUtilities.databasehelper.DataHandler;
 import com.infinityloop.buckeyebuilderUtilities.databasehelper.DatabaseHelper;
 import com.infinityloop.buckeyebuilder.R;
@@ -52,8 +57,6 @@ import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
-import com.infinityloop.buckeyebuilder.BuildingFactory;
-import com.infinityloop.buckeyebuilder.IUser;
 
 /**
  * Activity which displays a login screen to the user, offering registration as

@@ -1,4 +1,4 @@
-package com.infinityloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder.Core;
 
 import android.os.Parcel;
 import android.os.Parcelable;

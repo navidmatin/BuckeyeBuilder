@@ -3,6 +3,11 @@ package com.infinityloop.buckeyebuilder;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.infinityloop.buckeyebuilder.Core.Building;
+import com.infinityloop.buckeyebuilder.Core.BuildingFactory;
+import com.infinityloop.buckeyebuilder.Core.GPSManager;
+import com.infinityloop.buckeyebuilder.Core.IUser;
+import com.infinityloop.buckeyebuilder.Core.LocationHandler;
 import com.infinityloop.buckeyebuilderUtilities.databasehelper.DatabaseHelper;
 
 import android.location.Location;

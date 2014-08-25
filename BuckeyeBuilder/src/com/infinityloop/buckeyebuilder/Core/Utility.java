@@ -1,4 +1,4 @@
-package com.infinityloop.buckeyebuilder;
+package com.infinityloop.buckeyebuilder.Core;
 
 import android.app.AlertDialog;
 import android.content.Context;

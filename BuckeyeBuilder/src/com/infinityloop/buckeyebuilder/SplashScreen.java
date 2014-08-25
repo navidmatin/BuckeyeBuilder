@@ -2,6 +2,8 @@ package com.infinityloop.buckeyebuilder;
 
 import java.util.ArrayList;
 
+import com.infinityloop.buckeyebuilder.Core.Building;
+import com.infinityloop.buckeyebuilder.Core.IUser;
 import com.nvanbenschoten.motion.ParallaxImageView;
 
 import android.app.Activity;
