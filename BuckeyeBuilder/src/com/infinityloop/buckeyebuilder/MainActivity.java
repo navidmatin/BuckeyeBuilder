@@ -150,6 +150,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	//TODO: Create a UI Thread handler that handles all of the ui issues of the fragments
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		viewPager.setCurrentItem(tab.getPosition());
