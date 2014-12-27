@@ -13,5 +13,5 @@
     <string name="user_file_name">saveduser#</string>
     <string name="user_buildings">buildingsowned</string>
     <string name="app_id">***REMOVED***</string>
-    <string name="no_internet">You are not connected to the internet, if you have a local user name you will be able to login but not save the data to the cloud!</string>
+    <string name="no_internet">You are not connected to the internet, you are not able to login or save date</string>
 </resources>

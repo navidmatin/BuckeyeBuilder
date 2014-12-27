@@ -46,6 +46,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -87,7 +88,6 @@ public class LoginActivity extends Activity {
 	private View mLoginFormView;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
-	private DatabaseHelper dh;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,16 +103,7 @@ public class LoginActivity extends Activity {
 			startActivity(intent);
 			finish();
 		}
-		
-	/*	//Facebook
-		Session.openActiveSession(this, true, new Session.StatusCallback() {
-			@Override
-		    public void call(Session session, SessionState state, Exception exception) {
-				if (session.isOpened()) {
-					
-				}
-		    }
-		});*/
+
 		// Set up the login form.
 		mUsername = getIntent().getStringExtra(EXTRA_username);
 		musernameView = (EditText) findViewById(R.id.username);
@@ -158,52 +149,63 @@ public class LoginActivity extends Activity {
 					@Override
 					public void onClick(View view){
 						showProgress(true);
-						facebookLogin();
+                        facebookLogin();
 						
 				}
 				});
 	}
 	protected void facebookLogin(){
-		
-		Session.openActiveSession(this, true, new Session.StatusCallback() {
-			@Override
-			public void call (Session session, SessionState state, Exception exception){
-				if(session.isOpened()){
-					Request.newMeRequest(session, new Request.GraphUserCallback() {
-						@Override
-						public void onCompleted(GraphUser user, Response response) {
-							if(user!=null){
-								mUsername=user.getName();
-							}
-						}
-					}).executeAsync();
-				}
-			}
-		});
-		List<String> permissions = Arrays.asList("basic_info");
-		ParseFacebookUtils.logIn(permissions, this, new LogInCallback() {
-			@Override
-			public void done(ParseUser user, ParseException err) {
-				if (user == null) {
-					Log.d("com.persopolissoftware.buckeyebuilder","Uh oh. The user cancelled the Facebook login.");
-				} else if (user.isNew()) {
-					Log.d("com.persopolissoftware.buckeyebuilder",
-							"User signed up and logged in through Facebook!");
-					//FACEBOOK STUFF
-					//setupUser(user.getUsername());
-					//startActivity(intent);
-					promptForUsername();
-					showProgress(true);
-					
-				} else {
-					Log.d("com.persopolissoftware.buckeyebuilder",
-							"User logged in through Facebook!");
-					setupUser(user.getUsername());
-					startActivity(intent);
-					finish();
-				}
-			}
-		});
+
+            Session.openActiveSession(this, true, new Session.StatusCallback() {
+                @Override
+                public void call (Session session, SessionState state, Exception exception){
+                    if(session.isOpened()){
+                        Request.newMeRequest(session, new Request.GraphUserCallback() {
+                            @Override
+                            public void onCompleted(GraphUser user, Response response) {
+                                if(user!=null){
+                                    mUsername=user.getName();
+                                }
+                            }
+                        }).executeAsync();
+                    }
+                }
+            });
+            List<String> permissions = Arrays.asList("public_profile", "email");
+            ParseFacebookUtils.logIn(permissions, this, new LogInCallback() {
+                @Override
+                public void done(ParseUser user, ParseException err) {
+                    if (user == null) {
+                        //Log out, and try again
+                        if(ParseFacebookUtils.getSession()!=null)
+                            ParseFacebookUtils.getSession().closeAndClearTokenInformation();
+                        ParseUser.logOut();
+                        showProgress(false);
+                        if(!Utility.isConnectedToInternet(getCurrentContext()))
+                        {
+                            showProgress(false);
+                            Utility.showTextAlertDialog(getCurrentContext(), "No Internet Connection", "Facebook is currently not available. (check your internet connection)");
+                        }
+                        Log.d("com.persopolissoftware.buckeyebuilder","Uh oh. The user cancelled the Facebook login.");
+                    } else if (user.isNew()) {
+                        Log.d("com.persopolissoftware.buckeyebuilder",
+                                "User signed up and logged in through Facebook!");
+                        //FACEBOOK STUFF
+                        //setupUser(user.getUsername());
+                        //startActivity(intent);
+                        promptForUsername();
+                        showProgress(true);
+
+                    } else {
+                        Log.d("com.persopolissoftware.buckeyebuilder",
+                                "User logged in through Facebook!");
+                        setupUser(user.getUsername());
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            });
+
 	}
 	private void promptForUsername()
 	{
@@ -289,6 +291,13 @@ public class LoginActivity extends Activity {
 		boolean cancel = false;
 		View focusView = null;
 
+        // Check for a valid username
+        if (TextUtils.isEmpty(mUsername)) {
+        musernameView.setError(getString(R.string.error_field_required));
+        focusView = musernameView;
+        cancel = true;
+    }
+
 		// Check for a valid password.
 		if (TextUtils.isEmpty(mPassword)) {
 			mPasswordView.setError(getString(R.string.error_field_required));
@@ -304,6 +313,7 @@ public class LoginActivity extends Activity {
 			// There was an error; don't attempt login and focus the first
 			// form field with an error.
 			focusView.requestFocus();
+            showProgress(false);
 		} else {
 			if(Utility.isConnectedToInternet(this))
 			{
@@ -324,8 +334,10 @@ public class LoginActivity extends Activity {
 					  }
 					});
 			}
-			else
-				Utility.showTextAlertDialog(this, "No Internet Connection", this.getString(R.string.no_internet));
+			else {
+                Utility.showTextAlertDialog(this, "No Internet Connection", this.getString(R.string.no_internet));
+                showProgress(false);
+            }
 			
 		}
 	}
@@ -404,6 +416,11 @@ public class LoginActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		  ParseFacebookUtils.finishAuthentication(requestCode, resultCode, data);
 	}
+    //SUPER HACKISH!!! FIX THIS!!!
+    private Context getCurrentContext()
+    {
+        return this;
+    }
 
 	
 }
