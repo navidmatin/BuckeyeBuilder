@@ -17,12 +17,13 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="-This is the beta version of BuckeyeBuilder, if you found any errors or missing buildings send it to us by click on error report on the top right corner." >
+        android:text="-Welcome To BuckeyeBuilder, if you found any errors or missing buildings send it to us by click on error report on the top right corner." >
 
     </TextView>
 
 
-	  
+
+	  
 
 	<TextView
 	    android:layout_width="match_parent"
